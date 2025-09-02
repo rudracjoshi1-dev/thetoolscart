@@ -1,0 +1,83 @@
+import Layout from "@/components/Layout";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Mail, MessageSquare, HelpCircle } from "lucide-react";
+
+const Contact = () => {
+  return (
+    <Layout>
+      <div className="container py-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">Contact Us</h1>
+            <p className="text-lg text-muted-foreground">
+              We'd love to hear from you. Send us your feedback or questions.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <Card>
+              <CardHeader className="text-center">
+                <Mail className="h-8 w-8 mx-auto mb-2 text-primary" />
+                <CardTitle className="text-lg">Email Support</CardTitle>
+                <CardDescription>Get help with technical issues</CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card>
+              <CardHeader className="text-center">
+                <MessageSquare className="h-8 w-8 mx-auto mb-2 text-primary" />
+                <CardTitle className="text-lg">Feedback</CardTitle>
+                <CardDescription>Share your suggestions</CardDescription>
+              </CardHeader>
+            </Card>
+
+            <Card>
+              <CardHeader className="text-center">
+                <HelpCircle className="h-8 w-8 mx-auto mb-2 text-primary" />
+                <CardTitle className="text-lg">General Questions</CardTitle>
+                <CardDescription>Ask us anything</CardDescription>
+              </CardHeader>
+            </Card>
+          </div>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Send us a message</CardTitle>
+              <CardDescription>
+                Use the form below to get in touch with our team. We'll get back to you as soon as possible.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="aspect-video">
+                <iframe
+                  src="https://docs.google.com/forms/d/e/1FAIpQLSf_placeholder_form_id/viewform?embedded=true"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  className="rounded-lg"
+                  title="Contact Form"
+                >
+                  Loading contact form...
+                </iframe>
+              </div>
+              <p className="text-sm text-muted-foreground mt-4">
+                Note: This is a placeholder Google Form. Replace the src URL with your actual Google Form embed link.
+              </p>
+            </CardContent>
+          </Card>
+
+          <div className="mt-8 text-center">
+            <p className="text-muted-foreground">
+              Alternatively, you can reach us directly at{" "}
+              <a href="mailto:hello@toolkitpro.com" className="text-primary hover:underline">
+                hello@toolkitpro.com
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </Layout>
+  );
+};
+
+export default Contact;
