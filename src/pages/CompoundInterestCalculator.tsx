@@ -3,7 +3,7 @@ import Layout from "@/components/Layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { TrendingUp, DollarSign, Calendar, Target } from "lucide-react";
+import { TrendingUp, PoundSterling, Calendar, Target } from "lucide-react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -120,7 +120,7 @@ const CompoundInterestCalculator = () => {
         beginAtZero: true,
         ticks: {
           callback: function(value: any) {
-            return '$' + value.toLocaleString();
+            return '£' + value.toLocaleString();
           }
         }
       }
@@ -143,7 +143,7 @@ const CompoundInterestCalculator = () => {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <DollarSign className="h-5 w-5" />
+                    <PoundSterling className="h-5 w-5" />
                     Investment Details
                   </CardTitle>
                   <CardDescription>
@@ -209,19 +209,19 @@ const CompoundInterestCalculator = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div className="text-center p-4 bg-primary/10 rounded-lg">
                       <div className="text-xl font-bold text-primary">
-                        ${results.finalBalance.toLocaleString()}
+                        £{results.finalBalance.toLocaleString()}
                       </div>
                       <div className="text-sm text-muted-foreground">Final Balance</div>
                     </div>
                     <div className="text-center p-4 bg-accent/10 rounded-lg">
                       <div className="text-xl font-bold text-accent">
-                        ${results.totalContributions.toLocaleString()}
+                        £{results.totalContributions.toLocaleString()}
                       </div>
                       <div className="text-sm text-muted-foreground">Total Contributions</div>
                     </div>
                     <div className="text-center p-4 bg-green-500/10 rounded-lg">
                       <div className="text-xl font-bold text-green-500">
-                        ${results.totalInterest.toLocaleString()}
+                        £{results.totalInterest.toLocaleString()}
                       </div>
                       <div className="text-sm text-muted-foreground">Interest Earned</div>
                     </div>
@@ -294,9 +294,9 @@ const CompoundInterestCalculator = () => {
                     {results.yearlyData.slice(0, 10).map((data) => (
                       <tr key={data.year} className="border-b">
                         <td className="p-2">{data.year}</td>
-                        <td className="text-right p-2">${data.balance.toLocaleString()}</td>
-                        <td className="text-right p-2">${data.contributions.toLocaleString()}</td>
-                        <td className="text-right p-2 text-green-500">${data.interest.toLocaleString()}</td>
+                        <td className="text-right p-2">£{data.balance.toLocaleString()}</td>
+                        <td className="text-right p-2">£{data.contributions.toLocaleString()}</td>
+                        <td className="text-right p-2 text-green-500">£{data.interest.toLocaleString()}</td>
                       </tr>
                     ))}
                   </tbody>

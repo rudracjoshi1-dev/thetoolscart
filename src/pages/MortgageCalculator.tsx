@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { Calculator, Home, DollarSign, Calendar, PieChart } from "lucide-react";
+import { Calculator, Home, PoundSterling, Calendar, PieChart } from "lucide-react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -29,10 +29,10 @@ ChartJS.register(
 );
 
 const MortgageCalculator = () => {
-  const [loanAmount, setLoanAmount] = useState("300000");
-  const [interestRate, setInterestRate] = useState("6.5");
-  const [loanTerm, setLoanTerm] = useState([30]);
-  const [downPayment, setDownPayment] = useState("60000");
+  const [loanAmount, setLoanAmount] = useState("250000");
+  const [interestRate, setInterestRate] = useState("5.5");
+  const [loanTerm, setLoanTerm] = useState([25]);
+  const [downPayment, setDownPayment] = useState("50000");
   const [extraPayment, setExtraPayment] = useState("0");
 
   const calculations = useCallback(() => {
@@ -223,13 +223,13 @@ const MortgageCalculator = () => {
                     <div className="grid grid-cols-2 gap-4">
                       <div className="text-center p-4 bg-primary/10 rounded-lg">
                         <div className="text-2xl font-bold text-primary">
-                          ${results.monthlyPayment.toFixed(2)}
+                          £{results.monthlyPayment.toFixed(2)}
                         </div>
                         <div className="text-sm text-muted-foreground">Monthly Payment</div>
                       </div>
                       <div className="text-center p-4 bg-accent/10 rounded-lg">
                         <div className="text-2xl font-bold text-accent">
-                          ${results.totalInterest.toFixed(2)}
+                          £{results.totalInterest.toFixed(2)}
                         </div>
                         <div className="text-sm text-muted-foreground">Total Interest</div>
                       </div>
@@ -238,11 +238,11 @@ const MortgageCalculator = () => {
                     <div className="space-y-2">
                       <div className="flex justify-between">
                         <span>Loan Amount:</span>
-                        <span className="font-semibold">${results.principal.toLocaleString()}</span>
+                        <span className="font-semibold">£{results.principal.toLocaleString()}</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Total of Payments:</span>
-                        <span className="font-semibold">${results.totalPayment.toLocaleString()}</span>
+                        <span className="font-semibold">£{results.totalPayment.toLocaleString()}</span>
                       </div>
                     </div>
                   </CardContent>

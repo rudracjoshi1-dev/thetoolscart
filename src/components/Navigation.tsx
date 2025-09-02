@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +26,8 @@ const Navigation = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center">
+      <div className="container flex h-16 items-center justify-center">
+        <div className="flex items-center w-full max-w-6xl justify-between">
         <Link
           to="/"
           className="flex items-center space-x-2 text-xl font-bold bg-gradient-primary bg-clip-text text-transparent"
@@ -84,7 +86,8 @@ const Navigation = () => {
           </Link>
         </nav>
 
-        <div className="flex flex-1 items-center justify-end space-x-4">
+        <div className="flex items-center space-x-4">
+          <ThemeToggle />
           {/* Mobile Navigation */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="md:hidden">
@@ -132,6 +135,7 @@ const Navigation = () => {
               </div>
             </SheetContent>
           </Sheet>
+        </div>
         </div>
       </div>
     </header>
