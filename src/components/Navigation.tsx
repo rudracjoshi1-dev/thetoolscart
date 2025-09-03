@@ -105,19 +105,23 @@ const Navigation = () => {
                 >
                   Home
                 </Link>
-                <div className="px-2 py-1 text-lg font-medium">Tools</div>
-                <div className="ml-4 flex flex-col space-y-2">
-                  {toolsLinks.map((tool) => (
-                    <Link
-                      key={tool.href}
-                      to={tool.href}
-                      className="block px-2 py-1"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {tool.name}
-                    </Link>
-                  ))}
+                
+                <div className="space-y-2">
+                  <div className="px-2 py-1 text-lg font-medium">Tools</div>
+                  <div className="ml-4 flex flex-col space-y-2">
+                    {toolsLinks.map((tool) => (
+                      <Link
+                        key={tool.href}
+                        to={tool.href}
+                        className="block px-2 py-1 text-base hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {tool.name}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
+
                 <Link
                   to="/privacy"
                   className="block px-2 py-1 text-lg"

@@ -1,10 +1,17 @@
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, MessageSquare, HelpCircle } from "lucide-react";
 
 const Contact = () => {
   return (
     <Layout>
+      <SEO 
+        title="Contact Us - ToolKit Pro | Get in Touch"
+        description="Contact us for feedback, suggestions, or support. We'd love to hear from you about our free online tools."
+        keywords="contact, feedback, support, get in touch, help"
+        canonical="https://toolkit-pro.lovable.app/contact"
+      />
       <div className="container py-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">

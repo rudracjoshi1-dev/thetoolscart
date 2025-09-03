@@ -310,6 +310,15 @@ const CompoundInterestCalculator = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* Mobile Ad Space */}
+        <div className="mt-8 md:hidden mx-auto max-w-4xl px-4">
+          <div className="bg-gradient-to-r from-primary/5 to-accent/5 border border-border/20 rounded-lg p-4 text-center">
+            <div className="h-16 flex items-center justify-center text-muted-foreground text-sm">
+              Advertisement Space (Mobile)
+            </div>
+          </div>
+        </div>
       </div>
     </Layout>
   );
