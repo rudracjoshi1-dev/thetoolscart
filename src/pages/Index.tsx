@@ -3,41 +3,33 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Calculator, FileText, Key, TrendingUp } from "lucide-react";
 import Layout from "@/components/Layout";
-
 const Index = () => {
-  const tools = [
-    {
-      title: "Word Counter",
-      description: "Count words, characters, and get reading/speaking time estimates for your text.",
-      icon: FileText,
-      href: "/word-counter",
-      color: "from-blue-500 to-blue-600",
-    },
-    {
-      title: "Password Generator",
-      description: "Generate secure passwords with customizable length and character sets.",
-      icon: Key,
-      href: "/password-generator",
-      color: "from-green-500 to-green-600",
-    },
-    {
-      title: "Mortgage Calculator",
-      description: "Calculate monthly payments, interest breakdown, and amortization schedules.",
-      icon: Calculator,
-      href: "/mortgage-calculator",
-      color: "from-purple-500 to-purple-600",
-    },
-    {
-      title: "Compound Interest Calculator",
-      description: "Visualize how your investments grow over time with compound interest.",
-      icon: TrendingUp,
-      href: "/compound-interest",
-      color: "from-orange-500 to-orange-600",
-    },
-  ];
-
-  return (
-    <Layout>
+  const tools = [{
+    title: "Word Counter",
+    description: "Count words, characters, and get reading/speaking time estimates for your text.",
+    icon: FileText,
+    href: "/word-counter",
+    color: "from-blue-500 to-blue-600"
+  }, {
+    title: "Password Generator",
+    description: "Generate secure passwords with customizable length and character sets.",
+    icon: Key,
+    href: "/password-generator",
+    color: "from-green-500 to-green-600"
+  }, {
+    title: "Mortgage Calculator",
+    description: "Calculate monthly payments, interest breakdown, and amortization schedules.",
+    icon: Calculator,
+    href: "/mortgage-calculator",
+    color: "from-purple-500 to-purple-600"
+  }, {
+    title: "Compound Interest Calculator",
+    description: "Visualize how your investments grow over time with compound interest.",
+    icon: TrendingUp,
+    href: "/compound-interest",
+    color: "from-orange-500 to-orange-600"
+  }];
+  return <Layout>
       {/* Hero Section */}
       <section className="container py-24 md:py-32">
         <div className="text-center max-w-4xl mx-auto">
@@ -70,10 +62,9 @@ const Index = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {tools.map((tool) => {
-            const IconComponent = tool.icon;
-            return (
-              <Card key={tool.href} className="group hover:shadow-lg transition-all duration-300 bg-gradient-card border-border/50">
+          {tools.map(tool => {
+          const IconComponent = tool.icon;
+          return <Card key={tool.href} className="group hover:shadow-lg transition-all duration-300 bg-gradient-card border-border/50">
                 <CardHeader className="text-center">
                   <div className={`w-12 h-12 mx-auto mb-4 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center`}>
                     <IconComponent className="h-6 w-6 text-white" />
@@ -88,9 +79,8 @@ const Index = () => {
                     <Link to={tool.href}>Try Now</Link>
                   </Button>
                 </CardContent>
-              </Card>
-            );
-          })}
+              </Card>;
+        })}
         </div>
       </section>
 
@@ -126,8 +116,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default Index;
