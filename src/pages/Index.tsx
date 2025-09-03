@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calculator, FileText, Key, TrendingUp } from "lucide-react";
+import { Calculator, FileText, Key, TrendingUp, PiggyBank, Receipt } from "lucide-react";
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 const Index = () => {
   const tools = [{
     title: "Word Counter",
@@ -17,7 +18,7 @@ const Index = () => {
     href: "/password-generator",
     color: "from-green-500 to-green-600"
   }, {
-    title: "Mortgage Calculator",
+    title: "Mortgage Calculator", 
     description: "Calculate monthly payments, interest breakdown, and amortization schedules.",
     icon: Calculator,
     href: "/mortgage-calculator",
@@ -28,8 +29,34 @@ const Index = () => {
     icon: TrendingUp,
     href: "/compound-interest",
     color: "from-orange-500 to-orange-600"
+  }, {
+    title: "Stocks & Shares ISA Calculator",
+    description: "Calculate ISA growth potential with tax-free compound interest projections.",
+    icon: PiggyBank,
+    href: "/stocks-shares-isa",
+    color: "from-indigo-500 to-indigo-600"
+  }, {
+    title: "UK Income Tax Calculator",
+    description: "Calculate income tax, National Insurance, and take-home pay for UK salaries.",
+    icon: Receipt,
+    href: "/income-tax-calculator",
+    color: "from-red-500 to-red-600"
   }];
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return <Layout>
+      <SEO 
+        title="ToolKit Pro - Free Professional Tools for Everyday Tasks"
+        description="Access free professional-grade tools including word counter, password generator, mortgage calculator, compound interest calculator, ISA calculator and UK tax calculator."
+        keywords="free tools, word counter, password generator, mortgage calculator, compound interest, ISA calculator, UK tax calculator"
+        canonical="https://toolkit-pro.lovable.app/"
+      />
+      
       {/* Hero Section */}
       <section className="container py-24 md:py-32">
         <div className="text-center max-w-4xl mx-auto">
@@ -42,18 +69,26 @@ const Index = () => {
             Access a collection of free, professional-grade tools designed to make your work more efficient and productive.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-gradient-primary hover:shadow-glow transition-all duration-300">
-              <Link to="/word-counter">Explore Tools</Link>
+            <Button 
+              size="lg" 
+              className="bg-gradient-primary hover:shadow-glow transition-all duration-300"
+              onClick={() => scrollToSection('tools')}
+            >
+              Explore Tools
             </Button>
-            <Button asChild variant="outline" size="lg">
-              
+            <Button 
+              variant="outline" 
+              size="lg"
+              onClick={() => scrollToSection('features')}
+            >
+              Learn More
             </Button>
           </div>
         </div>
       </section>
 
       {/* Tools Grid */}
-      <section className="container py-16">
+      <section id="tools" className="container py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Choose Your Tool</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -61,7 +96,7 @@ const Index = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tools.map(tool => {
           const IconComponent = tool.icon;
           return <Card key={tool.href} className="group hover:shadow-lg transition-all duration-300 bg-gradient-card border-border/50">

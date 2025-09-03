@@ -20,6 +20,8 @@ const Navigation = () => {
     { name: "Password Generator", href: "/password-generator" },
     { name: "Mortgage Calculator", href: "/mortgage-calculator" },
     { name: "Compound Interest Calculator", href: "/compound-interest" },
+    { name: "Stocks & Shares ISA Calculator", href: "/stocks-shares-isa" },
+    { name: "UK Income Tax Calculator", href: "/income-tax-calculator" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -108,12 +110,12 @@ const Navigation = () => {
                 
                 <div className="space-y-2">
                   <div className="px-2 py-1 text-lg font-medium">Tools</div>
-                  <div className="ml-4 flex flex-col space-y-2">
+                  <div className="ml-4 flex flex-col space-y-2 max-h-60 overflow-y-auto">
                     {toolsLinks.map((tool) => (
                       <Link
                         key={tool.href}
                         to={tool.href}
-                        className="block px-2 py-1 text-base hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
+                        className="block px-2 py-1 text-sm hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
                         onClick={() => setIsOpen(false)}
                       >
                         {tool.name}
