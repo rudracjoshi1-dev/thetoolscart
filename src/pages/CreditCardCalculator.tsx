@@ -6,29 +6,15 @@ import { Label } from "@/components/ui/label";
 import { CreditCard, Calculator, PoundSterling, TrendingDown, Info, Clock, Target } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
-import { Doughnut, Line } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   ArcElement,
   Tooltip,
   Legend,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
 } from "chart.js";
 
-ChartJS.register(
-  ArcElement,
-  Tooltip,
-  Legend,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title
-);
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const CreditCardCalculator = () => {
   const [balance, setBalance] = useState(5000);
