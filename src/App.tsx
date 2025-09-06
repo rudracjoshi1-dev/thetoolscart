@@ -10,7 +10,7 @@ import PasswordGenerator from "./pages/PasswordGenerator";
 import MortgageCalculator from "./pages/MortgageCalculator";
 import CompoundInterestCalculator from "./pages/CompoundInterestCalculator";
 import StocksSharesISACalculator from "./pages/StocksSharesISACalculator";
-import IncomeTaxCalculator from "./pages/IncomeTaxCalculator";
+import CreditCardCalculator from "./pages/CreditCardCalculator";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -31,7 +31,7 @@ const App = () => (
           <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
           <Route path="/compound-interest" element={<CompoundInterestCalculator />} />
           <Route path="/stocks-shares-isa" element={<StocksSharesISACalculator />} />
-          <Route path="/income-tax-calculator" element={<IncomeTaxCalculator />} />
+          <Route path="/credit-card-calculator" element={<CreditCardCalculator />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

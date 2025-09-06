@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calculator, FileText, Key, TrendingUp, PiggyBank, Receipt } from "lucide-react";
+import { Calculator, FileText, Key, TrendingUp, PiggyBank, CreditCard } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 const Index = () => {
@@ -36,11 +36,11 @@ const Index = () => {
     href: "/stocks-shares-isa",
     color: "from-indigo-500 to-indigo-600"
   }, {
-    title: "UK Income Tax Calculator",
-    description: "Calculate income tax, National Insurance, and take-home pay for UK salaries.",
-    icon: Receipt,
-    href: "/income-tax-calculator",
-    color: "from-red-500 to-red-600"
+    title: "Credit Card Calculator",
+    description: "Calculate credit card repayment strategies and payoff timelines.",
+    icon: CreditCard,
+    href: "/credit-card-calculator",
+    color: "from-purple-500 to-purple-600"
   }];
 
   const scrollToSection = (sectionId: string) => {

@@ -21,7 +21,7 @@ const Navigation = () => {
     { name: "Mortgage Calculator", href: "/mortgage-calculator" },
     { name: "Compound Interest Calculator", href: "/compound-interest" },
     { name: "Stocks & Shares ISA Calculator", href: "/stocks-shares-isa" },
-    { name: "UK Income Tax Calculator", href: "/income-tax-calculator" },
+    { name: "Credit Card Calculator", href: "/credit-card-calculator" },
   ];
 
   const isActive = (path: string) => location.pathname === path;
