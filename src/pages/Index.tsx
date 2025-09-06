@@ -1,156 +1,267 @@
-import { Link } from "react-router-dom";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
-import { Calculator, FileText, Key, TrendingUp, PiggyBank, CreditCard } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Calculator, CreditCard, FileText, Lock, PiggyBank, TrendingUp, BarChart3, DollarSign, Target, ArrowRight, Zap, Shield } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
-const Index = () => {
-  const tools = [{
-    title: "Word Counter",
-    description: "Count words, characters, and get reading/speaking time estimates for your text.",
-    icon: FileText,
-    href: "/word-counter",
-    color: "from-blue-500 to-blue-600"
-  }, {
-    title: "Password Generator",
-    description: "Generate secure passwords with customizable length and character sets.",
-    icon: Key,
-    href: "/password-generator",
-    color: "from-green-500 to-green-600"
-  }, {
-    title: "Mortgage Calculator", 
-    description: "Calculate monthly payments, interest breakdown, and amortization schedules.",
-    icon: Calculator,
-    href: "/mortgage-calculator",
-    color: "from-purple-500 to-purple-600"
-  }, {
-    title: "Compound Interest Calculator",
-    description: "Visualize how your investments grow over time with compound interest.",
-    icon: TrendingUp,
-    href: "/compound-interest",
-    color: "from-orange-500 to-orange-600"
-  }, {
-    title: "Stocks & Shares ISA Calculator",
-    description: "Calculate ISA growth potential with tax-free compound interest projections.",
-    icon: PiggyBank,
-    href: "/stocks-shares-isa",
-    color: "from-indigo-500 to-indigo-600"
-  }, {
-    title: "Credit Card Calculator",
-    description: "Calculate credit card repayment strategies and payoff timelines.",
-    icon: CreditCard,
-    href: "/credit-card-calculator",
-    color: "from-purple-500 to-purple-600"
-  }];
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+const Index = () => {
+  const { toast } = useToast();
+
+  const financialTools = [
+    {
+      name: "Savings Calculator",
+      description: "Calculate how your savings grow with compound interest over time",
+      icon: PiggyBank,
+      href: "/savings-calculator",
+      color: "text-green-600",
+      category: "Savings & Investment"
+    },
+    {
+      name: "Mortgage Calculator", 
+      description: "Calculate monthly payments, interest, and amortization schedules",
+      icon: Calculator,
+      href: "/mortgage-calculator",
+      color: "text-blue-600",
+      category: "Loans & Credit"
+    },
+    {
+      name: "Compound Interest Calculator",
+      description: "Discover the power of compound interest on your investments",
+      icon: TrendingUp,
+      href: "/compound-interest",
+      color: "text-purple-600",
+      category: "Savings & Investment"
+    },
+    {
+      name: "Stocks & Shares ISA Calculator",
+      description: "Plan your ISA investments and track potential tax-free growth",
+      icon: BarChart3,
+      href: "/stocks-shares-isa",
+      color: "text-indigo-600",
+      category: "Savings & Investment"
+    },
+    {
+      name: "Credit Card Calculator",
+      description: "Calculate payoff times and strategies for credit card debt",
+      icon: CreditCard,
+      href: "/credit-card-calculator",
+      color: "text-red-600",
+      category: "Loans & Credit"
     }
+  ];
+
+  const otherTools = [
+    {
+      name: "Password Generator",
+      description: "Generate secure passwords with customizable options",
+      icon: Lock,
+      href: "/password-generator",
+      color: "text-green-600"
+    },
+    {
+      name: "Word Counter",
+      description: "Count words, characters, and paragraphs in your text",
+      icon: FileText,
+      href: "/word-counter",
+      color: "text-blue-600"
+    }
+  ];
+
+  const handleExploreTools = () => {
+    document.getElementById('financial-tools-section')?.scrollIntoView({ 
+      behavior: 'smooth' 
+    });
   };
-  return <Layout>
-      <SEO 
-        title="ToolKit Pro - Free Professional Tools for Everyday Tasks"
-        description="Access free professional-grade tools including word counter, password generator, mortgage calculator, compound interest calculator, ISA calculator and UK tax calculator."
-        keywords="free tools, word counter, password generator, mortgage calculator, compound interest, ISA calculator, UK tax calculator"
-        canonical="https://toolkit-pro.lovable.app/"
+
+  return (
+    <Layout>
+      <SEO
+        title="Financial Calculators & Tools | Professional Financial Planning"
+        description="Access professional financial calculators for savings, mortgages, investments, and credit cards. Plan your financial future with our free tools."
+        keywords="financial calculators, savings calculator, mortgage calculator, compound interest, investment planning, credit card calculator"
       />
       
-      {/* Hero Section */}
-      <section className="container py-24 md:py-32">
-        <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-hero bg-clip-text text-transparent">
-            Professional Tools for
-            <br />
-            Everyday Tasks
-          </h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Access a collection of free, professional-grade tools designed to make your work more efficient and productive.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              className="bg-gradient-primary hover:shadow-glow transition-all duration-300"
-              onClick={() => scrollToSection('tools')}
-            >
-              Explore Tools
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg"
-              onClick={() => scrollToSection('features')}
-            >
-              Learn More
-            </Button>
+      <div className="min-h-screen bg-gradient-to-br from-background to-secondary/20">
+        {/* Hero Section */}
+        <section className="py-20 px-4">
+          <div className="container mx-auto text-center">
+            <div className="flex justify-center mb-6">
+              <div className="p-4 bg-primary/10 rounded-full">
+                <Calculator className="h-12 w-12 text-primary" />
+              </div>
+            </div>
+            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
+              Financial Tools & Calculators
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+              Professional financial calculators to help you plan your future. Calculate savings growth, 
+              mortgage payments, investment returns, and more with our comprehensive suite of tools.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" onClick={handleExploreTools} className="text-lg px-8 py-3">
+                Explore Financial Tools
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button variant="outline" size="lg" className="text-lg px-8 py-3" onClick={() => window.location.href = '/about'}>
+                Learn More
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Ad Space */}
+        <div className="flex justify-center mb-8">
+          <div className="w-full max-w-4xl h-24 bg-muted/50 border-2 border-dashed border-muted-foreground/20 rounded-lg flex items-center justify-center mx-4">
+            <span className="text-muted-foreground text-sm">Advertisement Space</span>
           </div>
         </div>
-      </section>
 
-      {/* Tools Grid */}
-      <section id="tools" className="container py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Choose Your Tool</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Professional tools that help you get things done faster and more accurately.
-          </p>
-        </div>
+        {/* Financial Tools Section */}
+        <section id="financial-tools-section" className="py-16 px-4">
+          <div className="container mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Financial Calculators</h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Professional-grade financial calculators to help you make informed decisions about your money
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {financialTools.map((tool, index) => (
+                <Card key={index} className="group hover:shadow-lg transition-all duration-300 cursor-pointer h-full">
+                  <CardHeader>
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-3">
+                        <div className="p-2 bg-secondary/10 rounded-lg">
+                          <tool.icon className={`h-6 w-6 ${tool.color}`} />
+                        </div>
+                        <div>
+                          <CardTitle className="text-xl">{tool.name}</CardTitle>
+                          <Badge variant="outline" className="text-xs mt-1">{tool.category}</Badge>
+                        </div>
+                      </div>
+                    </div>
+                    <CardDescription className="text-base">
+                      {tool.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <Button 
+                      variant="outline" 
+                      className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                      onClick={() => window.location.href = tool.href}
+                    >
+                      Calculate Now
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {tools.map(tool => {
-          const IconComponent = tool.icon;
-          return <Card key={tool.href} className="group hover:shadow-lg transition-all duration-300 bg-gradient-card border-border/50">
-                <CardHeader className="text-center">
-                  <div className={`w-12 h-12 mx-auto mb-4 rounded-lg bg-gradient-to-r ${tool.color} flex items-center justify-center`}>
-                    <IconComponent className="h-6 w-6 text-white" />
+        {/* Other Tools Section */}
+        <section className="py-16 px-4 bg-secondary/5">
+          <div className="container mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Other Useful Tools</h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Additional utilities to help with your daily tasks
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {otherTools.map((tool, index) => (
+                <Card key={index} className="group hover:shadow-lg transition-all duration-300 cursor-pointer">
+                  <CardHeader>
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="p-2 bg-secondary/10 rounded-lg">
+                        <tool.icon className={`h-6 w-6 ${tool.color}`} />
+                      </div>
+                      <CardTitle className="text-xl">{tool.name}</CardTitle>
+                    </div>
+                    <CardDescription className="text-base">
+                      {tool.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Button 
+                      variant="outline" 
+                      className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                      onClick={() => window.location.href = tool.href}
+                    >
+                      Use Tool
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="py-16 px-4">
+          <div className="container mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Why Choose Our Financial Tools?</h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Professional-grade calculators designed for accuracy, transparency, and ease of use
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <div className="text-center">
+                <div className="flex justify-center mb-4">
+                  <div className="p-3 bg-green-100 dark:bg-green-900 rounded-full">
+                    <Shield className="h-8 w-8 text-green-600" />
                   </div>
-                  <CardTitle className="text-xl">{tool.title}</CardTitle>
-                  <CardDescription className="text-muted-foreground">
-                    {tool.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Button asChild className="w-full" variant="outline">
-                    <Link to={tool.href}>Try Now</Link>
-                  </Button>
-                </CardContent>
-              </Card>;
-        })}
-        </div>
-      </section>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Accurate & Reliable</h3>
+                <p className="text-muted-foreground">
+                  Industry-standard formulas ensure precise calculations you can trust for financial planning.
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <div className="flex justify-center mb-4">
+                  <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-full">
+                    <Target className="h-8 w-8 text-blue-600" />
+                  </div>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Goal-Oriented</h3>
+                <p className="text-muted-foreground">
+                  Set financial goals and see clear pathways to achieve them with detailed projections.
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <div className="flex justify-center mb-4">
+                  <div className="p-3 bg-purple-100 dark:bg-purple-900 rounded-full">
+                    <Zap className="h-8 w-8 text-purple-600" />
+                  </div>
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Easy to Use</h3>
+                <p className="text-muted-foreground">
+                  Intuitive interfaces with educational content to help you understand every calculation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      {/* Features Section */}
-      <section id="features" className="container py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="text-center">
-            <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-              <FileText className="h-8 w-8 text-primary" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Free to Use</h3>
-            <p className="text-muted-foreground">
-              All tools are completely free with no hidden costs or premium features.
-            </p>
-          </div>
-          <div className="text-center">
-            <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-              <Key className="h-8 w-8 text-primary" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Privacy Focused</h3>
-            <p className="text-muted-foreground">
-              Your data stays on your device. We don't store or track your usage.
-            </p>
-          </div>
-          <div className="text-center">
-            <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center">
-              <TrendingUp className="h-8 w-8 text-primary" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Professional Grade</h3>
-            <p className="text-muted-foreground">
-              Built with accuracy and reliability in mind for professional use.
-            </p>
+        {/* Ad Space */}
+        <div className="flex justify-center py-8">
+          <div className="w-full max-w-4xl h-24 bg-muted/50 border-2 border-dashed border-muted-foreground/20 rounded-lg flex items-center justify-center mx-4">
+            <span className="text-muted-foreground text-sm">Advertisement Space</span>
           </div>
         </div>
-      </section>
-    </Layout>;
+      </div>
+    </Layout>
+  );
 };
+
 export default Index;

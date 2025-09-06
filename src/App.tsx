@@ -11,6 +11,9 @@ import MortgageCalculator from "./pages/MortgageCalculator";
 import CompoundInterestCalculator from "./pages/CompoundInterestCalculator";
 import StocksSharesISACalculator from "./pages/StocksSharesISACalculator";
 import CreditCardCalculator from "./pages/CreditCardCalculator";
+import SavingsCalculator from "./pages/SavingsCalculator";
+import TermsOfUse from "./pages/TermsOfUse";
+import About from "./pages/About";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -26,12 +29,15 @@ const App = () => (
         <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/savings-calculator" element={<SavingsCalculator />} />
           <Route path="/word-counter" element={<WordCounter />} />
           <Route path="/password-generator" element={<PasswordGenerator />} />
           <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
           <Route path="/compound-interest" element={<CompoundInterestCalculator />} />
           <Route path="/stocks-shares-isa" element={<StocksSharesISACalculator />} />
           <Route path="/credit-card-calculator" element={<CreditCardCalculator />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/terms" element={<TermsOfUse />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

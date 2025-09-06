@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Calculator, PiggyBank, TrendingUp, BarChart3, CreditCard, Lock, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -15,13 +16,17 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-  const toolsLinks = [
-    { name: "Word Counter", href: "/word-counter" },
-    { name: "Password Generator", href: "/password-generator" },
-    { name: "Mortgage Calculator", href: "/mortgage-calculator" },
-    { name: "Compound Interest Calculator", href: "/compound-interest" },
-    { name: "Stocks & Shares ISA Calculator", href: "/stocks-shares-isa" },
-    { name: "Credit Card Calculator", href: "/credit-card-calculator" },
+  const financialTools = [
+    { name: "Savings Calculator", href: "/savings-calculator", icon: PiggyBank },
+    { name: "Mortgage Calculator", href: "/mortgage-calculator", icon: Calculator },
+    { name: "Compound Interest", href: "/compound-interest", icon: TrendingUp },
+    { name: "Stocks & Shares ISA", href: "/stocks-shares-isa", icon: BarChart3 },
+    { name: "Credit Card Calculator", href: "/credit-card-calculator", icon: CreditCard },
+  ];
+
+  const otherTools = [
+    { name: "Password Generator", href: "/password-generator", icon: Lock },
+    { name: "Word Counter", href: "/word-counter", icon: FileText },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -32,9 +37,12 @@ const Navigation = () => {
         <div className="flex items-center w-full max-w-6xl justify-between">
         <Link
           to="/"
-          className="flex items-center space-x-2 text-xl font-bold bg-gradient-primary bg-clip-text text-transparent"
+          className="flex items-center space-x-2 text-xl font-bold"
         >
-          ToolKit Pro
+          <Calculator className="h-6 w-6 text-primary" />
+          <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+            Financial Tools
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -50,18 +58,41 @@ const Navigation = () => {
 
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1 transition-colors hover:text-foreground/80 text-foreground/60">
-              Tools
+              Financial Tools
               <ChevronDown className="h-3 w-3" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-48">
-              {toolsLinks.map((tool) => (
+            <DropdownMenuContent align="start" className="w-56">
+              {financialTools.map((tool) => (
                 <DropdownMenuItem key={tool.href} asChild>
                   <Link
                     to={tool.href}
-                    className={`w-full ${
+                    className={`w-full flex items-center gap-2 ${
                       isActive(tool.href) ? "bg-accent" : ""
                     }`}
                   >
+                    <tool.icon className="h-4 w-4" />
+                    {tool.name}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1 transition-colors hover:text-foreground/80 text-foreground/60">
+              Other Tools
+              <ChevronDown className="h-3 w-3" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-48">
+              {otherTools.map((tool) => (
+                <DropdownMenuItem key={tool.href} asChild>
+                  <Link
+                    to={tool.href}
+                    className={`w-full flex items-center gap-2 ${
+                      isActive(tool.href) ? "bg-accent" : ""
+                    }`}
+                  >
+                    <tool.icon className="h-4 w-4" />
                     {tool.name}
                   </Link>
                 </DropdownMenuItem>
@@ -70,12 +101,12 @@ const Navigation = () => {
           </DropdownMenu>
 
           <Link
-            to="/privacy"
+            to="/about"
             className={`transition-colors hover:text-foreground/80 ${
-              isActive("/privacy") ? "text-foreground" : "text-foreground/60"
+              isActive("/about") ? "text-foreground" : "text-foreground/60"
             }`}
           >
-            Privacy Policy
+            About
           </Link>
 
           <Link
@@ -84,7 +115,7 @@ const Navigation = () => {
               isActive("/contact") ? "text-foreground" : "text-foreground/60"
             }`}
           >
-            Contact Us
+            Contact
           </Link>
         </nav>
 
@@ -109,15 +140,33 @@ const Navigation = () => {
                 </Link>
                 
                 <div className="space-y-2">
-                  <div className="px-2 py-1 text-lg font-medium">Tools</div>
-                  <div className="ml-4 flex flex-col space-y-2 max-h-60 overflow-y-auto">
-                    {toolsLinks.map((tool) => (
+                  <div className="px-2 py-1 text-lg font-medium">Financial Tools</div>
+                  <div className="ml-4 flex flex-col space-y-2 max-h-40 overflow-y-auto">
+                    {financialTools.map((tool) => (
                       <Link
                         key={tool.href}
                         to={tool.href}
-                        className="block px-2 py-1 text-sm hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
+                        className="flex items-center gap-2 px-2 py-1 text-sm hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
                         onClick={() => setIsOpen(false)}
                       >
+                        <tool.icon className="h-4 w-4" />
+                        {tool.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <div className="px-2 py-1 text-lg font-medium">Other Tools</div>
+                  <div className="ml-4 flex flex-col space-y-2">
+                    {otherTools.map((tool) => (
+                      <Link
+                        key={tool.href}
+                        to={tool.href}
+                        className="flex items-center gap-2 px-2 py-1 text-sm hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <tool.icon className="h-4 w-4" />
                         {tool.name}
                       </Link>
                     ))}
@@ -125,18 +174,18 @@ const Navigation = () => {
                 </div>
 
                 <Link
-                  to="/privacy"
+                  to="/about"
                   className="block px-2 py-1 text-lg"
                   onClick={() => setIsOpen(false)}
                 >
-                  Privacy Policy
+                  About
                 </Link>
                 <Link
                   to="/contact"
                   className="block px-2 py-1 text-lg"
                   onClick={() => setIsOpen(false)}
                 >
-                  Contact Us
+                  Contact
                 </Link>
               </div>
             </SheetContent>
