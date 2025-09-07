@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { Calculator, Home, PoundSterling, Calendar, PieChart } from "lucide-react";
+import { Calculator, Home, PoundSterling, Calendar, PieChart, AlertTriangle } from "lucide-react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -284,6 +284,119 @@ const MortgageCalculator = () => {
               )}
             </div>
           </div>
+
+          {/* Educational Content */}
+          <div className="mt-12 space-y-8">
+            {/* How to Use */}
+            <Card>
+              <CardHeader>
+                <CardTitle>How to Use the Mortgage Calculator</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-semibold mb-2">Step-by-Step Guide:</h4>
+                    <ol className="list-decimal list-inside text-sm space-y-1">
+                      <li>Enter the total price of the home you're considering</li>
+                      <li>Input your planned down payment amount</li>
+                      <li>Set the annual interest rate (check current rates with lenders)</li>
+                      <li>Choose your preferred loan term (typically 15-30 years)</li>
+                      <li>Add any extra monthly payments if applicable</li>
+                    </ol>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Understanding the Results:</h4>
+                    <ul className="list-disc list-inside text-sm space-y-1">
+                      <li><strong>Monthly Payment:</strong> Your principal and interest payment</li>
+                      <li><strong>Total Interest:</strong> Amount paid in interest over the loan term</li>
+                      <li><strong>Principal vs Interest Chart:</strong> Shows the breakdown of your total payments</li>
+                      <li><strong>First Year Payments:</strong> How much goes to principal vs interest initially</li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Ad Space */}
+            <div className="w-full h-20 bg-muted/30 rounded-lg flex items-center justify-center text-muted-foreground">
+              Advertisement Space (728x90)
+            </div>
+
+            {/* What is a Mortgage */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Understanding Mortgages</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-sm leading-relaxed">
+                  A mortgage is a loan specifically used to purchase real estate, where the property itself serves as collateral. 
+                  This means if you're unable to make payments, the lender can foreclose on the property to recover their money.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-semibold mb-2">Key Components:</h4>
+                    <ul className="list-disc list-inside text-sm space-y-1">
+                      <li><strong>Principal:</strong> The amount you borrow</li>
+                      <li><strong>Interest:</strong> The cost of borrowing money</li>
+                      <li><strong>Term:</strong> How long you have to repay (15-30 years typically)</li>
+                      <li><strong>Down Payment:</strong> Upfront payment (usually 5-20% of home price)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Additional Costs to Consider:</h4>
+                    <ul className="list-disc list-inside text-sm space-y-1">
+                      <li>Property taxes</li>
+                      <li>Homeowners insurance</li>
+                      <li>Private mortgage insurance (PMI) if down payment &lt; 20%</li>
+                      <li>Closing costs and fees</li>
+                      <li>Maintenance and repairs</li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Tips */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Mortgage Tips for Better Terms</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-green-50 dark:bg-green-950/30 p-4 rounded-lg">
+                    <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">Improve Your Credit</h4>
+                    <p className="text-sm">A higher credit score can qualify you for better interest rates, potentially saving thousands over the loan term.</p>
+                  </div>
+                  <div className="bg-blue-50 dark:bg-blue-950/30 p-4 rounded-lg">
+                    <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Save for Larger Down Payment</h4>
+                    <p className="text-sm">20% down payment eliminates PMI and reduces monthly payments. Even 10-15% can make a significant difference.</p>
+                  </div>
+                  <div className="bg-purple-50 dark:bg-purple-950/30 p-4 rounded-lg">
+                    <h4 className="font-semibold text-purple-700 dark:text-purple-300 mb-2">Shop Around</h4>
+                    <p className="text-sm">Compare rates from multiple lenders. Even a 0.25% difference in interest rate can save thousands of pounds.</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Disclaimer */}
+          <Card className="mt-8 bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800">
+            <CardContent className="p-4">
+              <div className="flex items-start gap-3">
+                <AlertTriangle className="h-5 w-5 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" />
+                <div className="text-sm">
+                  <p className="font-medium text-amber-900 dark:text-amber-100 mb-1">Important Disclaimer</p>
+                  <p className="text-amber-700 dark:text-amber-300">
+                    This calculator provides estimates only and should not be considered financial advice. Actual mortgage terms, 
+                    rates, and payments may vary. Consult with qualified mortgage professionals for accurate quotes and advice. 
+                    <a href="/disclaimer" className="underline">Read our full disclaimer</a>.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Mobile Ad Space */}
           <div className="mt-8 md:hidden">

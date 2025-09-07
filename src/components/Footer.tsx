@@ -91,11 +91,16 @@ const Footer = () => {
                   Privacy Policy
                 </a>
               </li>
-              <li>
-                <a href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Terms of Use
-                </a>
-              </li>
+               <li>
+                 <a href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
+                   Terms of Use
+                 </a>
+               </li>
+               <li>
+                 <a href="/disclaimer" className="text-muted-foreground hover:text-foreground transition-colors">
+                   Disclaimer
+                 </a>
+               </li>
             </ul>
           </div>
         </div>

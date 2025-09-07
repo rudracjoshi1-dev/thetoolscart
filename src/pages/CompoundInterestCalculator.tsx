@@ -3,7 +3,7 @@ import Layout from "@/components/Layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { TrendingUp, PoundSterling, Calendar, Target } from "lucide-react";
+import { TrendingUp, PoundSterling, Calendar, Target, AlertTriangle } from "lucide-react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -311,14 +311,163 @@ const CompoundInterestCalculator = () => {
           </Card>
         </div>
 
-        {/* Mobile Ad Space */}
-        <div className="mt-8 md:hidden mx-auto max-w-4xl px-4">
-          <div className="bg-gradient-to-r from-primary/5 to-accent/5 border border-border/20 rounded-lg p-4 text-center">
-            <div className="h-16 flex items-center justify-center text-muted-foreground text-sm">
-              Advertisement Space (Mobile)
+          {/* Educational Content */}
+          <div className="mt-12 space-y-8">
+            {/* How to Use */}
+            <Card>
+              <CardHeader>
+                <CardTitle>How to Use the Compound Interest Calculator</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-semibold mb-2">Step-by-Step Instructions:</h4>
+                    <ol className="list-decimal list-inside text-sm space-y-1">
+                      <li>Enter your starting investment amount (initial deposit)</li>
+                      <li>Set your planned monthly contribution</li>
+                      <li>Input the expected annual interest rate</li>
+                      <li>Choose your investment time horizon</li>
+                      <li>Review the growth projection and year-by-year breakdown</li>
+                    </ol>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Understanding the Output:</h4>
+                    <ul className="list-disc list-inside text-sm space-y-1">
+                      <li><strong>Final Balance:</strong> Total value after compound growth</li>
+                      <li><strong>Total Contributions:</strong> All money you put in</li>
+                      <li><strong>Interest Earned:</strong> Money made from compound growth</li>
+                      <li><strong>Growth Chart:</strong> Visual timeline of your investment</li>
+                      <li><strong>Year-by-Year Table:</strong> Detailed annual breakdown</li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Ad Space */}
+            <div className="w-full h-20 bg-muted/30 rounded-lg flex items-center justify-center text-muted-foreground">
+              Advertisement Space (728x90)
             </div>
+
+            {/* What is Compound Interest */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Understanding Compound Interest</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-sm leading-relaxed">
+                  Compound interest is often called "the eighth wonder of the world" because it's the process where your money 
+                  earns returns, and those returns then earn returns themselves. It's the key to building long-term wealth.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-semibold mb-2">How It Works:</h4>
+                    <ul className="list-disc list-inside text-sm space-y-1">
+                      <li><strong>Year 1:</strong> £1,000 @ 7% = £1,070</li>
+                      <li><strong>Year 2:</strong> £1,070 @ 7% = £1,145 (earning on the £70 gain too)</li>
+                      <li><strong>Year 3:</strong> £1,145 @ 7% = £1,225 (compound effect grows)</li>
+                      <li>This accelerating growth continues exponentially</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-2">Key Factors:</h4>
+                    <ul className="list-disc list-inside text-sm space-y-1">
+                      <li><strong>Principal:</strong> Your initial investment amount</li>
+                      <li><strong>Interest Rate:</strong> Annual percentage return</li>
+                      <li><strong>Time:</strong> How long you leave money invested</li>
+                      <li><strong>Frequency:</strong> How often interest compounds (monthly, annually)</li>
+                      <li><strong>Additional Contributions:</strong> Regular deposits accelerate growth</li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* The Power of Time */}
+            <Card>
+              <CardHeader>
+                <CardTitle>The Power of Starting Early</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-950/30 dark:to-green-950/30 p-6 rounded-lg">
+                  <h4 className="font-semibold mb-4">Example: Two Investors</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
+                      <h5 className="font-semibold text-blue-600 dark:text-blue-400 mb-2">Sarah (Starts at 25)</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>Invests £200/month for 10 years</li>
+                        <li>Total contributions: £24,000</li>
+                        <li>Stops at 35, lets it grow until 65</li>
+                        <li>Final value at 7%: ~£367,000</li>
+                      </ul>
+                    </div>
+                    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
+                      <h5 className="font-semibold text-green-600 dark:text-green-400 mb-2">John (Starts at 35)</h5>
+                      <ul className="text-sm space-y-1">
+                        <li>Invests £200/month for 30 years</li>
+                        <li>Total contributions: £72,000</li>
+                        <li>Invests until 65</li>
+                        <li>Final value at 7%: ~£245,000</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <p className="text-sm mt-4 font-medium text-center">
+                    Sarah invested £48,000 less but ended up with £122,000 more! That's the power of starting early.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Investment Tips */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Maximizing Compound Growth</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-green-50 dark:bg-green-950/30 p-4 rounded-lg">
+                    <h4 className="font-semibold text-green-700 dark:text-green-300 mb-2">Start Now</h4>
+                    <p className="text-sm">Even small amounts matter. Starting with £50/month is better than waiting to invest £500/month later.</p>
+                  </div>
+                  <div className="bg-blue-50 dark:bg-blue-950/30 p-4 rounded-lg">
+                    <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Stay Consistent</h4>
+                    <p className="text-sm">Regular contributions create momentum. Automate investments to ensure consistency.</p>
+                  </div>
+                  <div className="bg-purple-50 dark:bg-purple-950/30 p-4 rounded-lg">
+                    <h4 className="font-semibold text-purple-700 dark:text-purple-300 mb-2">Be Patient</h4>
+                    <p className="text-sm">Compound interest accelerates over time. The biggest gains often come in the later years.</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-        </div>
+
+          {/* Disclaimer */}
+          <Card className="mt-8 bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800">
+            <CardContent className="p-4">
+              <div className="flex items-start gap-3">
+                <AlertTriangle className="h-5 w-5 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" />
+                <div className="text-sm">
+                  <p className="font-medium text-amber-900 dark:text-amber-100 mb-1">Important Disclaimer</p>
+                  <p className="text-amber-700 dark:text-amber-300">
+                    This calculator provides estimates based on mathematical models and should not be considered financial advice. 
+                    Actual investment returns may vary significantly due to market conditions, fees, and other factors. 
+                    <a href="/disclaimer" className="underline">Read our full disclaimer</a>.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+         {/* Mobile Ad Space */}
+         <div className="mt-8 md:hidden mx-auto max-w-4xl px-4">
+           <div className="bg-gradient-to-r from-primary/5 to-accent/5 border border-border/20 rounded-lg p-4 text-center">
+             <div className="h-16 flex items-center justify-center text-muted-foreground text-sm">
+               Advertisement Space (Mobile)
+             </div>
+           </div>
+         </div>
       </div>
     </Layout>
   );
