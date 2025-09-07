@@ -88,18 +88,20 @@ const SavingsCalculator = () => {
       {
         label: "Total Balance",
         data: results.yearlyData.map(data => data.balance),
-        borderColor: "hsl(var(--primary))",
-        backgroundColor: "hsl(var(--primary) / 0.1)",
+        borderColor: "hsl(220, 70%, 50%)",
+        backgroundColor: "hsl(220, 70%, 50%, 0.1)",
         tension: 0.1,
-        fill: true
+        fill: true,
+        borderWidth: 3
       },
       {
         label: "Total Deposited",
         data: results.yearlyData.map(data => data.totalDeposited),
-        borderColor: "hsl(var(--secondary))",
-        backgroundColor: "hsl(var(--secondary) / 0.1)",
+        borderColor: "hsl(280, 65%, 60%)",
+        backgroundColor: "hsl(280, 65%, 60%, 0.1)",
         tension: 0.1,
-        borderDash: [5, 5]
+        borderDash: [5, 5],
+        borderWidth: 3
       }
     ]
   };
