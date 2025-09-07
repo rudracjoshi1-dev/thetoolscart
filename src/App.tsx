@@ -30,13 +30,13 @@ const App = () => (
         <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/savings-calculator" element={<SavingsCalculator />} />
-          <Route path="/word-counter" element={<WordCounter />} />
-          <Route path="/password-generator" element={<PasswordGenerator />} />
-          <Route path="/mortgage-calculator" element={<MortgageCalculator />} />
-          <Route path="/compound-interest" element={<CompoundInterestCalculator />} />
-          <Route path="/stocks-shares-isa" element={<StocksSharesISACalculator />} />
-          <Route path="/credit-card-calculator" element={<CreditCardCalculator />} />
+          <Route path="/uk-savings-calculator-interest-estimator" element={<SavingsCalculator />} />
+          <Route path="/free-online-word-counter-tool" element={<WordCounter />} />
+          <Route path="/free-secure-password-generator-online" element={<PasswordGenerator />} />
+          <Route path="/uk-mortgage-payment-calculator-online" element={<MortgageCalculator />} />
+          <Route path="/uk-compound-interest-calculator-online" element={<CompoundInterestCalculator />} />
+          <Route path="/uk-stocks-and-shares-isa-calculator" element={<StocksSharesISACalculator />} />
+          <Route path="/uk-credit-card-repayment-calculator" element={<CreditCardCalculator />} />
           <Route path="/about" element={<About />} />
           <Route path="/terms" element={<TermsOfUse />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
