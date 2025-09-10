@@ -43,14 +43,14 @@ const PrivacyPolicy = () => {
                   <li>We do not store your text in the Word Counter tool</li>
                   <li>We do not save generated passwords</li>
                   <li>We do not retain mortgage or investment calculation data</li>
-                  <li>In the contact form, your email address may be collected only if you give consent. However, this is only so that we can respond to your feedback as we do not share any data with anyone else.</li>
+                  <li>No personal information is collected or stored</li>
                 </ul>
               </section>
 
               <section className="mb-8">
                 <h2 className="text-xl font-semibold mb-4">How We Use Information</h2>
                 <p className="mb-4">
-                 Our tools process your data 
+                  Since we don't collect personal information, we don't use it for any purpose. Our tools process your data 
                   locally and securely within your browser session only.
                 </p>
               </section>
@@ -82,7 +82,8 @@ const PrivacyPolicy = () => {
               <section className="mb-8">
                 <h2 className="text-xl font-semibold mb-4">Children's Privacy</h2>
                 <p className="mb-4">
-                  Our services can be used by all ages as the content is harmless. 
+                  Our services are not directed to children under 13. We do not knowingly collect personal information from 
+                  children under 13.
                 </p>
               </section>
 
