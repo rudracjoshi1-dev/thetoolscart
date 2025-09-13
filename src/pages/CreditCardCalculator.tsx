@@ -95,12 +95,12 @@ const CreditCardCalculator = () => {
       {
         data: [balance, Math.max(0, results.totalInterest)],
         backgroundColor: [
-          'hsl(var(--chart-1))',
-          'hsl(var(--chart-2))'
+          'hsl(142, 76%, 36%)', // Green for principal
+          'hsl(0, 84%, 60%)',   // Red for interest
         ],
         borderColor: [
-          'hsl(var(--chart-1))',
-          'hsl(var(--chart-2))'
+          'hsl(142, 76%, 36%)',
+          'hsl(0, 84%, 60%)',
         ],
         borderWidth: 2,
       },
