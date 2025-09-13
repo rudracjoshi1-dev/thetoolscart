@@ -14,19 +14,13 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 mx-0">
-            <Card>
-              <CardHeader className="text-center">
-                <Mail className="h-8 w-8 mx-auto mb-2 text-primary" />
-                <CardTitle className="text-lg">Email Support</CardTitle>
-                <CardDescription>Get help with technical issues</CardDescription>
-              </CardHeader>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            
 
             <Card>
               <CardHeader className="text-center">
                 <MessageSquare className="h-8 w-8 mx-auto mb-2 text-primary" />
-                <CardTitle className="text-5xl">Feedback</CardTitle>
+                <CardTitle className="text-lg">Feedback</CardTitle>
                 <CardDescription>Share your suggestions</CardDescription>
               </CardHeader>
             </Card>
@@ -34,7 +28,7 @@ const Contact = () => {
             <Card>
               <CardHeader className="text-center">
                 <HelpCircle className="h-8 w-8 mx-auto mb-2 text-primary" />
-                <CardTitle className="text-5xl">General Questions</CardTitle>
+                <CardTitle className="text-lg">General Questions</CardTitle>
                 <CardDescription>Ask us anything</CardDescription>
               </CardHeader>
             </Card>
