@@ -1,15 +1,14 @@
 import { Calculator, Mail, Shield, FileText, PiggyBank, TrendingUp, BarChart3, CreditCard, Lock, GraduationCap, Wallet } from "lucide-react";
-
 const Footer = () => {
-  return (
-    <footer className="bg-background border-t border-border mt-auto">
+  return <footer className="bg-background border-t border-border mt-auto">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <Calculator className="h-6 w-6 text-primary" />
-              <span className="font-bold text-lg">Financial Tools</span>
+              <span className="font-bold text-lg">FinancialToolz.com
+            </span>
             </div>
             <p className="text-sm text-muted-foreground">
               Professional financial calculators and tools to help you plan your financial future.
@@ -122,8 +121,6 @@ const Footer = () => {
           <p>&copy; 2024 Financial Tools. All rights reserved. Not financial advice - for informational purposes only.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
