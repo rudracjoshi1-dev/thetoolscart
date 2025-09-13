@@ -12,6 +12,8 @@ import CompoundInterestCalculator from "./pages/CompoundInterestCalculator";
 import StocksSharesISACalculator from "./pages/StocksSharesISACalculator";
 import CreditCardCalculator from "./pages/CreditCardCalculator";
 import SavingsCalculator from "./pages/SavingsCalculator";
+import StudentLoanCalculator from "./pages/StudentLoanCalculator";
+import NetWorthCalculator from "./pages/NetWorthCalculator";
 import TermsOfUse from "./pages/TermsOfUse";
 import About from "./pages/About";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -37,6 +39,8 @@ const App = () => (
           <Route path="/uk-compound-interest-calculator-online" element={<CompoundInterestCalculator />} />
           <Route path="/uk-stocks-and-shares-isa-calculator" element={<StocksSharesISACalculator />} />
           <Route path="/uk-credit-card-repayment-calculator" element={<CreditCardCalculator />} />
+          <Route path="/uk-student-loan-repayment-calculator" element={<StudentLoanCalculator />} />
+          <Route path="/net-worth-calculator" element={<NetWorthCalculator />} />
           <Route path="/about" element={<About />} />
           <Route path="/terms" element={<TermsOfUse />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />

@@ -2,7 +2,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calculator, CreditCard, FileText, Lock, PiggyBank, TrendingUp, BarChart3, DollarSign, Target, ArrowRight, Zap, Shield } from "lucide-react";
+import { Calculator, CreditCard, FileText, Lock, PiggyBank, TrendingUp, BarChart3, DollarSign, Target, ArrowRight, Zap, Shield, GraduationCap } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 
@@ -46,9 +46,26 @@ const Index = () => {
       name: "Credit Card Calculator",
       description: "Calculate payoff times and strategies for credit card debt",
       icon: CreditCard,
-      href: "/credit-card-calculator",
+      href: "/uk-credit-card-repayment-calculator",
       color: "text-red-600",
       category: "Loans & Credit"
+    },
+    {
+      name: "Student Loan Calculator",
+      description: "Plan your education loan repayments and strategies",
+      icon: GraduationCap,
+      href: "/uk-student-loan-repayment-calculator",
+      color: "text-purple-600",
+      category: "Loans & Credit",
+      popular: true
+    },
+    {
+      name: "Net Worth Calculator",
+      description: "Track your assets and liabilities to monitor financial health",
+      icon: TrendingUp,
+      href: "/net-worth-calculator",
+      color: "text-emerald-600",
+      category: "Financial Planning"
     }
   ];
 
@@ -57,14 +74,14 @@ const Index = () => {
       name: "Password Generator",
       description: "Generate secure passwords with customizable options",
       icon: Lock,
-      href: "/password-generator",
+      href: "/free-secure-password-generator-online",
       color: "text-green-600"
     },
     {
       name: "Word Counter",
       description: "Count words, characters, and paragraphs in your text",
       icon: FileText,
-      href: "/word-counter",
+      href: "/free-online-word-counter-tool",
       color: "text-blue-600"
     }
   ];
@@ -139,7 +156,10 @@ const Index = () => {
                         </div>
                         <div>
                           <CardTitle className="text-xl">{tool.name}</CardTitle>
-                          <Badge variant="outline" className="text-xs mt-1">{tool.category}</Badge>
+                          <div className="flex items-center gap-2 mt-1">
+                            <Badge variant="outline" className="text-xs">{tool.category}</Badge>
+                            {tool.popular && <Badge className="text-xs bg-primary">Most Popular</Badge>}
+                          </div>
                         </div>
                       </div>
                     </div>

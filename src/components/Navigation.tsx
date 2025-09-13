@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Calculator, PiggyBank, TrendingUp, BarChart3, CreditCard, Lock, FileText } from "lucide-react";
+import { Menu, X, ChevronDown, Calculator, PiggyBank, TrendingUp, BarChart3, CreditCard, Lock, FileText, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -17,16 +17,18 @@ const Navigation = () => {
   const location = useLocation();
 
   const financialTools = [
-    { name: "Savings Calculator", href: "/savings-calculator", icon: PiggyBank },
-    { name: "Mortgage Calculator", href: "/mortgage-calculator", icon: Calculator },
-    { name: "Compound Interest", href: "/compound-interest", icon: TrendingUp },
-    { name: "Stocks & Shares ISA", href: "/stocks-shares-isa", icon: BarChart3 },
-    { name: "Credit Card Calculator", href: "/credit-card-calculator", icon: CreditCard },
+    { name: "Savings Calculator", href: "/uk-savings-calculator-interest-estimator", icon: PiggyBank },
+    { name: "Mortgage Calculator", href: "/uk-mortgage-payment-calculator-online", icon: Calculator },
+    { name: "Compound Interest", href: "/uk-compound-interest-calculator-online", icon: TrendingUp },
+    { name: "Stocks & Shares ISA", href: "/uk-stocks-and-shares-isa-calculator", icon: BarChart3 },
+    { name: "Credit Card Calculator", href: "/uk-credit-card-repayment-calculator", icon: CreditCard },
+    { name: "Student Loan Calculator", href: "/uk-student-loan-repayment-calculator", icon: GraduationCap },
+    { name: "Net Worth Calculator", href: "/net-worth-calculator", icon: TrendingUp },
   ];
 
   const otherTools = [
-    { name: "Password Generator", href: "/password-generator", icon: Lock },
-    { name: "Word Counter", href: "/word-counter", icon: FileText },
+    { name: "Password Generator", href: "/free-secure-password-generator-online", icon: Lock },
+    { name: "Word Counter", href: "/free-online-word-counter-tool", icon: FileText },
   ];
 
   const isActive = (path: string) => location.pathname === path;

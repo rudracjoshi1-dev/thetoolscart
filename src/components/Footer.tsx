@@ -1,4 +1,4 @@
-import { Calculator, Mail, Shield, FileText, PiggyBank, TrendingUp, BarChart3, CreditCard, Lock } from "lucide-react";
+import { Calculator, Mail, Shield, FileText, PiggyBank, TrendingUp, BarChart3, CreditCard, Lock, GraduationCap } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -21,33 +21,45 @@ const Footer = () => {
             <h3 className="font-semibold">Financial Calculators</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="/savings-calculator" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
+                <a href="/uk-savings-calculator-interest-estimator" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
                   <PiggyBank className="h-3 w-3" />
                   Savings Calculator
                 </a>
               </li>
               <li>
-                <a href="/mortgage-calculator" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
+                <a href="/uk-mortgage-payment-calculator-online" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
                   <Calculator className="h-3 w-3" />
                   Mortgage Calculator
                 </a>
               </li>
               <li>
-                <a href="/compound-interest" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
+                <a href="/uk-compound-interest-calculator-online" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
                   <TrendingUp className="h-3 w-3" />
                   Compound Interest
                 </a>
               </li>
               <li>
-                <a href="/stocks-shares-isa" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
+                <a href="/uk-stocks-and-shares-isa-calculator" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
                   <BarChart3 className="h-3 w-3" />
                   Stocks & Shares ISA
                 </a>
               </li>
               <li>
-                <a href="/credit-card-calculator" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
+                <a href="/uk-credit-card-repayment-calculator" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
                   <CreditCard className="h-3 w-3" />
                   Credit Card Calculator
+                </a>
+              </li>
+              <li>
+                <a href="/uk-student-loan-repayment-calculator" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
+                  <GraduationCap className="h-3 w-3" />
+                  Student Loan Calculator
+                </a>
+              </li>
+              <li>
+                <a href="/net-worth-calculator" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
+                  <TrendingUp className="h-3 w-3" />
+                  Net Worth Calculator
                 </a>
               </li>
             </ul>
@@ -58,13 +70,13 @@ const Footer = () => {
             <h3 className="font-semibold">Other Tools</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="/password-generator" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
+                <a href="/free-secure-password-generator-online" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
                   <Lock className="h-3 w-3" />
                   Password Generator
                 </a>
               </li>
               <li>
-                <a href="/word-counter" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
+                <a href="/free-online-word-counter-tool" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
                   <FileText className="h-3 w-3" />
                   Word Counter
                 </a>
