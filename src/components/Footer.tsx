@@ -1,4 +1,4 @@
-import { Calculator, Mail, Shield, FileText, PiggyBank, TrendingUp, BarChart3, CreditCard, Lock, GraduationCap } from "lucide-react";
+import { Calculator, Mail, Shield, FileText, PiggyBank, TrendingUp, BarChart3, CreditCard, Lock, GraduationCap, Wallet } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -58,7 +58,7 @@ const Footer = () => {
               </li>
               <li>
                 <a href="/net-worth-calculator" className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2">
-                  <TrendingUp className="h-3 w-3" />
+                  <Wallet className="h-3 w-3" />
                   Net Worth Calculator
                 </a>
               </li>

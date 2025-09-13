@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Calculator, PiggyBank, TrendingUp, BarChart3, CreditCard, Lock, FileText, GraduationCap } from "lucide-react";
+import { Menu, X, ChevronDown, Calculator, PiggyBank, TrendingUp, BarChart3, CreditCard, Lock, FileText, GraduationCap, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -23,7 +23,7 @@ const Navigation = () => {
     { name: "Stocks & Shares ISA", href: "/uk-stocks-and-shares-isa-calculator", icon: BarChart3 },
     { name: "Credit Card Calculator", href: "/uk-credit-card-repayment-calculator", icon: CreditCard },
     { name: "Student Loan Calculator", href: "/uk-student-loan-repayment-calculator", icon: GraduationCap },
-    { name: "Net Worth Calculator", href: "/net-worth-calculator", icon: TrendingUp },
+    { name: "Net Worth Calculator", href: "/net-worth-calculator", icon: Wallet },
   ];
 
   const otherTools = [

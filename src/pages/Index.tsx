@@ -2,7 +2,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calculator, CreditCard, FileText, Lock, PiggyBank, TrendingUp, BarChart3, DollarSign, Target, ArrowRight, Zap, Shield, GraduationCap } from "lucide-react";
+import { Calculator, CreditCard, FileText, Lock, PiggyBank, TrendingUp, BarChart3, DollarSign, Target, ArrowRight, Zap, Shield, GraduationCap, Wallet } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 
@@ -62,7 +62,7 @@ const Index = () => {
     {
       name: "Net Worth Calculator",
       description: "Track your assets and liabilities to monitor financial health",
-      icon: TrendingUp,
+      icon: Wallet,
       href: "/net-worth-calculator",
       color: "text-emerald-600",
       category: "Financial Planning"
