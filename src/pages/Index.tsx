@@ -14,7 +14,7 @@ const Index = () => {
       name: "Savings Calculator",
       description: "Calculate how your savings grow with compound interest over time",
       icon: PiggyBank,
-      href: "/savings-calculator",
+      href: "/uk-savings-calculator-interest-estimator",
       color: "text-green-600",
       category: "Savings & Investment"
     },
