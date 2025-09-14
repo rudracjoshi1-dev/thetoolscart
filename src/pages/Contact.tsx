@@ -51,14 +51,7 @@ const Contact = () => {
             </CardContent>
           </Card>
 
-          <div className="mt-8 text-center">
-            <p className="text-muted-foreground">
-              Alternatively, you can reach us directly at{" "}
-              <a href="mailto:hello@toolkitpro.com" className="text-primary hover:underline">
-                hello@toolkitpro.com
-              </a>
-            </p>
-          </div>
+       
         </div>
       </div>
     </Layout>;
