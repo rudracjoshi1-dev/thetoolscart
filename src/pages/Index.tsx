@@ -38,7 +38,7 @@ const Index = () => {
       name: "Stocks & Shares ISA Calculator",
       description: "Plan your ISA investments and track potential tax-free growth",
       icon: BarChart3,
-      href: "/stocks-shares-isa",
+      href: "/uk-stocks-and-shares-isa-calculator",
       color: "text-indigo-600",
       category: "Savings & Investment"
     },
