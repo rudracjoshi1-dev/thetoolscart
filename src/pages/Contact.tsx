@@ -47,9 +47,7 @@ const Contact = () => {
                   <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdc8SHG30jaoV1cX_Z6IebmAOkUSHQsm9sv6C39EY43sUT01A/viewform?embedded=true" width="100%" height="100%" frameBorder="0" className="rounded-lg" title="Contact Form">Loading Contact Form…</iframe>
                 
               </div>
-              <p className="text-sm text-muted-foreground mt-4">
-                Note: This is a placeholder Google Form. Replace the src URL with your actual Google Form embed link.
-              </p>
+              
             </CardContent>
           </Card>
 
