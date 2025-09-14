@@ -36,7 +36,7 @@ const App = () => (
           <Route path="/free-online-word-counter-tool" element={<WordCounter />} />
           <Route path="/free-secure-password-generator-online" element={<PasswordGenerator />} />
           <Route path="/uk-mortgage-payment-calculator-online" element={<MortgageCalculator />} />
-          <Route path="/compound-interest" element={<CompoundInterestCalculator />} />
+          <Route path="/uk-compound-interest-calculator-online" element={<CompoundInterestCalculator />} />
           <Route path="/uk-stocks-and-shares-isa-calculator" element={<StocksSharesISACalculator />} />
           <Route path="/uk-credit-card-repayment-calculator" element={<CreditCardCalculator />} />
           <Route path="/uk-student-loan-repayment-calculator" element={<StudentLoanCalculator />} />
