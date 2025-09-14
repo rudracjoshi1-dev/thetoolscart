@@ -30,7 +30,7 @@ const Index = () => {
       name: "Compound Interest Calculator",
       description: "Discover the power of compound interest on your investments",
       icon: TrendingUp,
-      href: "/compound-interest",
+      href: "/uk-compound-interest-calculator-online",
       color: "text-purple-600",
       category: "Savings & Investment"
     },
