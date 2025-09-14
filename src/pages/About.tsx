@@ -115,6 +115,8 @@ const About = () => {
                   <Badge variant="secondary" className="justify-center p-2">Credit Card Repayment</Badge>
                   <Badge variant="secondary" className="justify-center p-2">Password Generator</Badge>
                   <Badge variant="secondary" className="justify-center p-2">Word Counter</Badge>
+                  <Badge variant="secondary" className="justify-center p-2">Net Worth Calculator</Badge>
+                  <Badge variant="secondary" className="justify-center p-2">Student Loan Calculator</Badge>
                 </div>
               </CardContent>
             </Card>
