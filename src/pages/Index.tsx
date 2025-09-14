@@ -22,7 +22,7 @@ const Index = () => {
       name: "Mortgage Calculator", 
       description: "Calculate monthly payments, interest, and amortization schedules",
       icon: Calculator,
-      href: "/mortgage-calculator",
+      href: "/uk-mortgage-payment-calculator-online",
       color: "text-blue-600",
       category: "Loans & Credit"
     },
