@@ -443,6 +443,52 @@ const CompoundInterestCalculator = () => {
             </Card>
           </div>
 
+          {/* FAQ Section */}
+          <Card className="mt-8">
+            <CardHeader>
+              <CardTitle>Frequently Asked Questions</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-1">What is compound interest?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Compound interest is when you earn interest on both your original investment and previously earned interest. 
+                    It's often called "interest on interest" and causes your wealth to grow exponentially over time.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">What's a realistic rate of return?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Historical stock market averages are around 7-10% annually. Savings accounts typically offer 1-5%. 
+                    Conservative investments might return 3-5%, while aggressive portfolios could aim for 8-12%. Always account for inflation.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">How often does interest compound?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    This calculator uses monthly compounding, which is common for savings accounts and investments. Some accounts compound 
+                    daily or annually. More frequent compounding results in slightly higher returns.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Should I invest a lump sum or make regular contributions?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Regular contributions (dollar-cost averaging) reduce risk by spreading investments over time. Lump sums can benefit from 
+                    more time in the market. The best approach depends on your financial situation and risk tolerance.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">How does this differ from simple interest?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Simple interest only calculates interest on the original principal. Compound interest calculates interest on the 
+                    principal plus all accumulated interest, resulting in significantly higher returns over time.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Disclaimer */}
           <Card className="mt-8 bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800">
             <CardContent className="p-4">

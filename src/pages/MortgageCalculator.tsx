@@ -381,6 +381,52 @@ const MortgageCalculator = () => {
             </Card>
           </div>
 
+          {/* FAQ Section */}
+          <Card className="mt-8">
+            <CardHeader>
+              <CardTitle>Frequently Asked Questions</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-1">What is included in my monthly payment?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    This calculator shows your principal and interest payment only. Your actual monthly payment may also include 
+                    property taxes, homeowners insurance, HOA fees, and PMI if your down payment is less than 20%.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">How much should I put down as a deposit?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    While 20% is ideal to avoid PMI, many lenders offer mortgages with 5-10% down. A larger down payment reduces your 
+                    monthly payments and total interest paid, but consider keeping an emergency fund.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">What's a good interest rate?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Interest rates vary based on market conditions, your credit score, and loan type. Check current rates with multiple 
+                    lenders, as even a 0.25% difference can save thousands over the loan term.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Should I choose a 15-year or 30-year mortgage?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    15-year mortgages have higher monthly payments but lower interest rates and significantly less total interest paid. 
+                    30-year mortgages offer lower monthly payments but higher total interest. Choose based on your budget and goals.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">How do extra payments help?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Extra payments go directly toward your principal, reducing the total interest paid and shortening your loan term. 
+                    Even an extra £50-100 per month can save thousands in interest.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Disclaimer */}
           <Card className="mt-8 bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800">
             <CardContent className="p-4">

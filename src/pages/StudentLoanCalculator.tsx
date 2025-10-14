@@ -532,6 +532,53 @@ const StudentLoanCalculator = () => {
             </CardContent>
           </Card>
 
+          {/* FAQ Section */}
+          <Card className="mt-8">
+            <CardHeader>
+              <CardTitle>Frequently Asked Questions</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-1">When do I start repaying my student loan?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Repayments begin from April after you finish or leave your course, but only if you're earning above the threshold. 
+                    For Plan 2 loans, the threshold is currently £27,295 per year. If you earn below this, you don't pay anything.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">What's the difference between Plan 1, Plan 2, and Plan 5?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Plan 1 (pre-2012 England, current Scotland/NI) has a lower threshold (£22,015) but often lower interest. Plan 2 
+                    (2012-2023 England/Wales) has higher threshold (£27,295) and RPI+3% interest. Plan 5 (post-2023 England) has similar 
+                    terms to Plan 2 but different write-off period.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Will I ever pay off my student loan?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Many graduates won't pay off their full loan before it's written off (30 years for Plan 2, 40 years for Plan 5). 
+                    This is normal and by design. Only high earners typically pay off the full amount. It works more like a graduate tax.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Should I pay off my student loan early?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Usually not. Student loan interest is often lower than other debt, and many won't pay the full amount anyway due to 
+                    the 30-year write-off. It's typically better to pay off credit cards, build emergency savings, or invest instead.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">How does student loan repayment affect my take-home pay?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Student loan repayments are deducted automatically through PAYE, like tax and National Insurance. You repay 9% of 
+                    income above the threshold. So if you earn £30,295 on Plan 2, you'd pay 9% of £3,000 = £270/year (£22.50/month).
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Disclaimer */}
           <Card className="mt-8 bg-yellow-50 dark:bg-yellow-950/30 border-yellow-200 dark:border-yellow-800">
             <CardContent className="p-6">

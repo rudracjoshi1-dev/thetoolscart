@@ -419,6 +419,52 @@ const StocksSharesISACalculator = () => {
             </Card>
           </div>
 
+          {/* FAQ Section */}
+          <Card className="mt-8">
+            <CardHeader>
+              <CardTitle>Frequently Asked Questions</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-1">What's the difference between a Cash ISA and Stocks & Shares ISA?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Cash ISAs are like savings accounts with guaranteed returns but lower interest (1-5%). Stocks & Shares ISAs invest 
+                    in markets with higher potential returns (7-10% historically) but with risk of losing money. Both are tax-free.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Can I lose money in a Stocks & Shares ISA?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Yes. Investment values can go down as well as up. However, historically, diversified investments held for 5+ years 
+                    have shown positive returns. Only invest money you won't need in the short term.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">What happens if I exceed the £20,000 ISA allowance?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Contributions over £20,000 in a tax year may be rejected or subject to tax penalties. The allowance resets each April. 
+                    You can split the £20,000 between different ISA types (Cash, Stocks & Shares, Lifetime, Innovative Finance).
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Can I withdraw money from my ISA?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Yes, you can withdraw anytime from most ISAs. However, withdrawals don't restore your annual allowance (except with 
+                    Flexible ISAs). Consider keeping funds invested long-term for maximum compound growth benefits.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">What's a realistic expected return?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Historical stock market averages are 7-10% annually before fees. Conservative portfolios might return 4-6%, while 
+                    aggressive ones could aim for 8-12%. Remember, past performance doesn't guarantee future results.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Disclaimer */}
           <Card className="mt-8 bg-amber-50 dark:bg-amber-950/30 border-amber-200 dark:border-amber-800">
             <CardContent className="p-4">

@@ -239,6 +239,129 @@ const PasswordGenerator = () => {
             </Card>
           </div>
 
+          {/* What is a Password Generator */}
+          <Card className="mt-12">
+            <CardHeader>
+              <CardTitle>What is a Password Generator?</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-sm leading-relaxed">
+                A password generator is a cybersecurity tool that creates strong, random, and unique passwords to protect your online accounts. 
+                It uses advanced algorithms to combine various character types (uppercase, lowercase, numbers, and symbols) in unpredictable ways, 
+                making passwords virtually impossible for hackers to guess or crack through brute force attacks.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold mb-2">Why Use a Password Generator:</h4>
+                  <ul className="list-disc list-inside text-sm space-y-1">
+                    <li><strong>Enhanced Security:</strong> Creates passwords far stronger than human-generated ones</li>
+                    <li><strong>True Randomness:</strong> Eliminates predictable patterns and common words</li>
+                    <li><strong>Customizable Strength:</strong> Adjust length and character types to meet requirements</li>
+                    <li><strong>Instant Generation:</strong> Create secure passwords in seconds</li>
+                    <li><strong>Unique Each Time:</strong> Every password is completely different</li>
+                    <li><strong>Privacy Protected:</strong> Generated locally in your browser</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">Password Security Best Practices:</h4>
+                  <ul className="list-disc list-inside text-sm space-y-1">
+                    <li>Use passwords at least 12-16 characters long</li>
+                    <li>Include a mix of uppercase, lowercase, numbers, and symbols</li>
+                    <li>Never reuse passwords across different accounts</li>
+                    <li>Change passwords regularly (every 3-6 months)</li>
+                    <li>Store passwords in a secure password manager</li>
+                    <li>Enable two-factor authentication (2FA) when available</li>
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* How to Use */}
+          <Card className="mt-8">
+            <CardHeader>
+              <CardTitle>How to Use the Password Generator</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold mb-2">Step-by-Step Guide:</h4>
+                  <ol className="list-decimal list-inside text-sm space-y-1">
+                    <li>Adjust the password length slider (4-128 characters)</li>
+                    <li>Select which character types to include</li>
+                    <li>Click "Generate New Password" to create a password</li>
+                    <li>Review the password strength indicator</li>
+                    <li>Click the copy button to save the password</li>
+                    <li>Store it securely in a password manager</li>
+                  </ol>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">Understanding Strength Levels:</h4>
+                  <ul className="list-disc list-inside text-sm space-y-1">
+                    <li><strong>Weak:</strong> Under 8 characters or limited character types</li>
+                    <li><strong>Medium:</strong> 8-11 characters with 2-3 character types</li>
+                    <li><strong>Strong:</strong> 12+ characters with 3+ character types</li>
+                    <li><strong>Very Strong:</strong> 16+ characters with all character types</li>
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* FAQ Section */}
+          <Card className="mt-8">
+            <CardHeader>
+              <CardTitle>Frequently Asked Questions</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-1">How long should my password be?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    We recommend at least 12-16 characters for most accounts. For highly sensitive accounts (banking, email), 
+                    use 16+ characters. Longer passwords are exponentially more secure.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Are generated passwords safe to use?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Yes! All passwords are generated locally in your browser using cryptographically secure random number generation. 
+                    We never send, store, or log any passwords. They're completely private to you.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Should I include symbols in my password?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Yes, including symbols significantly increases password strength. However, ensure the website or service 
+                    you're using allows special characters. Some systems have restrictions on which symbols they accept.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">How do I remember these complex passwords?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Use a reputable password manager like Bitwarden, 1Password, or LastPass. These tools securely store and 
+                    auto-fill your passwords, so you only need to remember one master password.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Can the same password be generated twice?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    While theoretically possible, the probability is astronomically low. For a 16-character password with all 
+                    character types, there are trillions of possible combinations, making duplicates virtually impossible.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Why does the strength meter show "Medium" for my password?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    The strength meter evaluates password length and character diversity. To achieve "Very Strong," ensure your 
+                    password is 16+ characters and includes all character types (uppercase, lowercase, numbers, and symbols).
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Mobile Ad Space */}
           <div className="mt-8 md:hidden">
             <div className="bg-gradient-to-r from-primary/5 to-accent/5 border border-border/20 rounded-lg p-4 text-center">

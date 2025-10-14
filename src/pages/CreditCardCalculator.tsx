@@ -398,6 +398,52 @@ const CreditCardCalculator = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* FAQ Section */}
+          <Card className="mt-8">
+            <CardHeader>
+              <CardTitle>Frequently Asked Questions</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-1">What happens if I only pay the minimum payment?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Paying only the minimum keeps your account in good standing but dramatically extends repayment time and increases 
+                    total interest. A £5,000 balance at 18.9% APR could take 30+ years to pay off with minimum payments only.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">How is credit card interest calculated?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Credit cards use daily compounding. Your APR is divided by 365 to get a daily rate, which is applied to your 
+                    balance each day. This is why paying more than the minimum or paying early in the billing cycle helps significantly.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Should I transfer my balance to a 0% card?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    If you qualify, a 0% balance transfer can save hundreds or thousands in interest. However, check for transfer fees 
+                    (typically 3-5%) and ensure you can pay off the balance before the promotional period ends.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">How can I pay off my credit card faster?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Pay more than the minimum, make bi-weekly payments instead of monthly, stop using the card for new purchases, 
+                    and use windfalls (tax refunds, bonuses) to make extra payments. Even an extra £50/month makes a huge difference.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Will paying off my credit card improve my credit score?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Yes! Reducing your credit utilization ratio (balance ÷ credit limit) is one of the fastest ways to improve your 
+                    credit score. Keep utilization below 30%, ideally below 10%, for the best scores.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </Layout>

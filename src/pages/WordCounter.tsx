@@ -144,6 +144,121 @@ const WordCounter = () => {
             </div>
           </div>
 
+          {/* What is Word Counter */}
+          <Card className="mt-12">
+            <CardHeader>
+              <CardTitle>What is a Word Counter Tool?</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-sm leading-relaxed">
+                A word counter is a powerful text analysis tool that provides detailed statistics about your written content. 
+                It goes beyond simply counting words to give you comprehensive insights including character count, sentence count, 
+                paragraph count, and estimated reading and speaking times.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold mb-2">Key Features:</h4>
+                  <ul className="list-disc list-inside text-sm space-y-1">
+                    <li><strong>Word Count:</strong> Total number of words in your text</li>
+                    <li><strong>Character Count:</strong> With and without spaces</li>
+                    <li><strong>Sentence Count:</strong> Number of complete sentences</li>
+                    <li><strong>Paragraph Count:</strong> Distinct paragraphs identified</li>
+                    <li><strong>Reading Time:</strong> Estimated time to read (225 words/min)</li>
+                    <li><strong>Speaking Time:</strong> Estimated presentation time (140 words/min)</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">Why Use This Tool:</h4>
+                  <ul className="list-disc list-inside text-sm space-y-1">
+                    <li>Meet specific word count requirements for essays and articles</li>
+                    <li>Ensure social media posts stay within character limits</li>
+                    <li>Plan presentation timing accurately</li>
+                    <li>Optimize content for SEO and readability</li>
+                    <li>Track writing progress and productivity</li>
+                    <li>Quick, accurate, and completely free to use</li>
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* How to Use */}
+          <Card className="mt-8">
+            <CardHeader>
+              <CardTitle>How to Use the Word Counter</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold mb-2">Getting Started:</h4>
+                  <ol className="list-decimal list-inside text-sm space-y-1">
+                    <li>Type or paste your text into the input area</li>
+                    <li>Statistics update automatically as you type</li>
+                    <li>View all metrics in the right-hand panel</li>
+                    <li>Use reading/speaking time for presentations</li>
+                  </ol>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">Common Use Cases:</h4>
+                  <ul className="list-disc list-inside text-sm space-y-1">
+                    <li>Academic essays and dissertations</li>
+                    <li>Blog posts and articles</li>
+                    <li>Social media content</li>
+                    <li>Professional reports and documents</li>
+                    <li>Speech and presentation scripts</li>
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* FAQ Section */}
+          <Card className="mt-8">
+            <CardHeader>
+              <CardTitle>Frequently Asked Questions</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-1">How accurate is the word counter?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Our word counter is highly accurate, using standard algorithms to identify words separated by spaces. 
+                    It counts all words including contractions and hyphenated words as individual words.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Does it count punctuation as characters?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Yes, the character count includes all characters including punctuation, numbers, and special symbols. 
+                    We also provide a character count without spaces.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">How is reading time calculated?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Reading time is based on an average reading speed of 225 words per minute, which is the standard for adults. 
+                    Speaking time uses 140 words per minute, the average presentation pace.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Is my text saved or stored?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    No, all text processing happens in your browser. We do not save, store, or transmit your text to any server. 
+                    Your privacy is completely protected.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Can I use this for any language?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    The tool works with most languages, though reading and speaking times are calibrated for English. 
+                    Word counting works universally for any language that uses spaces to separate words.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Mobile Ad Space */}
           <div className="mt-8 md:hidden">
             <div className="bg-gradient-to-r from-primary/5 to-accent/5 border border-border/20 rounded-lg p-4 text-center">

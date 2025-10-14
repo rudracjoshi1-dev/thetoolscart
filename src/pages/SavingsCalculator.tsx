@@ -495,6 +495,52 @@ const SavingsCalculator = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {/* FAQ Section */}
+            <Card className="mt-8">
+              <CardHeader>
+                <CardTitle>Frequently Asked Questions</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold mb-1">How much should I save each month?</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Financial experts recommend saving 10-20% of your income. Start with what you can afford and gradually increase. 
+                      Even small, consistent contributions grow significantly over time due to compound interest.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">What's the difference between savings and investments?</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Savings accounts are low-risk with guaranteed returns but lower interest rates (1-5%). Investments like stocks 
+                      have higher potential returns (7-10%) but carry more risk. Use savings for short-term goals and emergencies.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">Should I save or pay off debt first?</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Generally, prioritize high-interest debt (credit cards over 15%) while building a small emergency fund. 
+                      For lower-interest debt (mortgages under 5%), you can often benefit more from saving and investing simultaneously.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">How much should I have in emergency savings?</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Aim for 3-6 months of living expenses in an easily accessible savings account. This provides a financial cushion 
+                      for unexpected expenses or job loss without needing to rely on credit cards.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">Are my savings protected?</h4>
+                    <p className="text-sm text-muted-foreground">
+                      In the UK, the FSCS protects up to £85,000 per person, per financial institution. In the US, FDIC insurance 
+                      protects up to $250,000. Spread larger amounts across multiple institutions for full protection.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>

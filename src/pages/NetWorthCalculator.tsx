@@ -572,6 +572,59 @@ const NetWorthCalculator = () => {
           </Card>
 
           {/* Disclaimer */}
+          {/* FAQ Section */}
+          <Card className="mt-8">
+            <CardHeader>
+              <CardTitle>Frequently Asked Questions</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-1">What is net worth and why is it important?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Net worth is your total assets minus total liabilities - essentially what you'd have if you sold everything and paid 
+                    off all debts. It's the best single measure of financial health and progress, more meaningful than income alone.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">What should I include as assets?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Include cash, savings, investments, pensions, property (market value), vehicles, and valuable possessions (jewelry, 
+                    art). Be realistic with valuations - use current market value, not what you paid. Don't include items worth under £1,000.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Should I include my home in net worth?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Yes, include your home's current market value as an asset and mortgage balance as a liability. While you live in it, 
+                    it's still part of your net worth. Some prefer tracking "liquid net worth" (excluding primary residence) separately.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">What is a good net worth for my age?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    A rough guideline: your net worth should equal your age multiplied by your annual income, divided by 10. So at age 30 
+                    earning £40,000, aim for £120,000. But these are just guidelines - focus on consistent growth, not arbitrary targets.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">How often should I calculate my net worth?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Monthly or quarterly tracking helps you monitor progress without obsessing over daily fluctuations. Annual reviews are 
+                    minimum. Regular tracking helps identify trends and motivates positive financial behaviors.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-1">Is negative net worth bad?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Negative net worth is common early in life, especially with student loans or a new mortgage. What matters is the 
+                    trajectory - if it's improving each year, you're on the right track. Focus on reducing liabilities and building assets.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           <Card className="mt-8 bg-yellow-50 dark:bg-yellow-950/30 border-yellow-200 dark:border-yellow-800">
             <CardContent className="p-6">
               <h3 className="font-semibold text-yellow-900 dark:text-yellow-100 mb-2">Important Disclaimer</h3>
