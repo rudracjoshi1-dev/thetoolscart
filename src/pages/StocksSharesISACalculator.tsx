@@ -93,15 +93,17 @@ const StocksSharesISACalculator = () => {
       {
         label: 'Total Invested',
         data: results.yearlyData.map(d => d.invested),
-        borderColor: 'hsl(var(--primary))',
-        backgroundColor: 'hsl(var(--primary) / 0.1)',
+        borderColor: 'rgb(59, 130, 246)',
+        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+        borderWidth: 2,
         fill: true,
       },
       {
         label: 'Investment Growth',
         data: results.yearlyData.map(d => d.total),
-        borderColor: 'hsl(var(--chart-2))',
-        backgroundColor: 'hsl(var(--chart-2) / 0.1)',
+        borderColor: 'rgb(34, 197, 94)',
+        backgroundColor: 'rgba(34, 197, 94, 0.1)',
+        borderWidth: 2,
         fill: false,
       }
     ]
