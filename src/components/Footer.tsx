@@ -6,7 +6,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <Calculator className="h-6 w-6 text-primary" />
+              <img src="/favicon.ico" alt="FinancialToolz.com" className="h-6 w-6" />
               <span className="font-bold text-lg">FinancialToolz.com
             </span>
             </div>

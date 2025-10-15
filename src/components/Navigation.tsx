@@ -51,7 +51,7 @@ const Navigation = () => {
       <div className="container flex h-16 items-center justify-center">
         <div className="flex items-center w-full max-w-6xl justify-between">
         <Link to="/" className="flex items-center space-x-2 text-xl font-bold">
-          <Calculator className="h-6 w-6 text-primary" />
+          <img src="/favicon.ico" alt="FinancialToolz.com" className="h-6 w-6" />
           <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">FinancialToolz.com
           </span>
         </Link>
