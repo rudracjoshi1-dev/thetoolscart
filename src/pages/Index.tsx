@@ -128,12 +128,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Ad Space */}
-        <div className="flex justify-center mb-8">
-          <div className="w-full max-w-4xl h-24 bg-muted/50 border-2 border-dashed border-muted-foreground/20 rounded-lg flex items-center justify-center mx-4">
-            <span className="text-muted-foreground text-sm">Advertisement Space</span>
-          </div>
-        </div>
 
         {/* Financial Tools Section */}
         <section id="financial-tools-section" className="py-16 px-4">
@@ -273,12 +267,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Ad Space */}
-        <div className="flex justify-center py-8">
-          <div className="w-full max-w-4xl h-24 bg-muted/50 border-2 border-dashed border-muted-foreground/20 rounded-lg flex items-center justify-center mx-4">
-            <span className="text-muted-foreground text-sm">Advertisement Space</span>
-          </div>
-        </div>
       </div>
     </Layout>
   );

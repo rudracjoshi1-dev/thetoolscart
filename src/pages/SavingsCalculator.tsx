@@ -154,12 +154,6 @@ const SavingsCalculator = () => {
             </p>
           </div>
 
-          {/* Ad Space */}
-          <div className="flex justify-center mb-8">
-            <div className="w-full max-w-3xl h-24 bg-muted/50 border-2 border-dashed border-muted-foreground/20 rounded-lg flex items-center justify-center">
-              <span className="text-muted-foreground text-sm">Advertisement Space</span>
-            </div>
-          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Calculator Inputs */}
@@ -398,12 +392,6 @@ const SavingsCalculator = () => {
                 </CardContent>
               </Card>
 
-              {/* Ad Space */}
-              <div className="flex justify-center">
-                <div className="w-full h-24 bg-muted/50 border-2 border-dashed border-muted-foreground/20 rounded-lg flex items-center justify-center">
-                  <span className="text-muted-foreground text-sm">Advertisement Space</span>
-                </div>
-              </div>
             </div>
           </div>
 

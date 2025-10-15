@@ -143,10 +143,6 @@ const StocksSharesISACalculator = () => {
       />
       
       <div className="container py-12">
-        {/* Ad Space */}
-        <div className="w-full h-20 bg-muted/30 rounded-lg flex items-center justify-center mb-8 text-muted-foreground">
-          Advertisement Space (728x90)
-        </div>
 
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
@@ -301,10 +297,6 @@ const StocksSharesISACalculator = () => {
                 </CardContent>
               </Card>
 
-              {/* Desktop Ad Space */}
-              <div className="hidden lg:block w-full h-20 bg-muted/30 rounded-lg flex items-center justify-center text-muted-foreground">
-                Advertisement Space (728x90)
-              </div>
             </div>
           </div>
 
@@ -340,10 +332,6 @@ const StocksSharesISACalculator = () => {
               </CardContent>
             </Card>
 
-            {/* Ad Space */}
-            <div className="w-full h-20 bg-muted/30 rounded-lg flex items-center justify-center text-muted-foreground">
-              Advertisement Space (728x90)
-            </div>
 
             {/* What is a Stocks & Shares ISA */}
             <Card>

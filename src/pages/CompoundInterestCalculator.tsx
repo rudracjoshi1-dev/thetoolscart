@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { TrendingUp, PoundSterling, Calendar, Target, AlertTriangle } from "lucide-react";
+import { CompareToggle } from "@/components/CompareToggle";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -27,10 +28,19 @@ ChartJS.register(
 );
 
 const CompoundInterestCalculator = () => {
+  const [isComparing, setIsComparing] = useState(false);
+  
+  // Scenario 1
   const [initialDeposit, setInitialDeposit] = useState("10000");
   const [monthlyContribution, setMonthlyContribution] = useState("500");
   const [annualInterestRate, setAnnualInterestRate] = useState("7");
   const [years, setYears] = useState("20");
+  
+  // Scenario 2
+  const [initialDeposit2, setInitialDeposit2] = useState("10000");
+  const [monthlyContribution2, setMonthlyContribution2] = useState("500");
+  const [annualInterestRate2, setAnnualInterestRate2] = useState("8");
+  const [years2, setYears2] = useState("20");
 
   const calculations = useCallback(() => {
     const principal = parseFloat(initialDeposit) || 0;
@@ -83,25 +93,108 @@ const CompoundInterestCalculator = () => {
   }, [initialDeposit, monthlyContribution, annualInterestRate, years]);
 
   const results = calculations();
+  
+  const calculations2 = useCallback(() => {
+    const principal = parseFloat(initialDeposit2) || 0;
+    const monthlyDeposit = parseFloat(monthlyContribution2) || 0;
+    const rate = (parseFloat(annualInterestRate2) || 0) / 100 / 12;
+    const numYears = parseInt(years2) || 1;
+    const months = numYears * 12;
+
+    if (rate === 0) {
+      const finalBalance = principal + (monthlyDeposit * months);
+      return {
+        finalBalance,
+        totalContributions: principal + (monthlyDeposit * months),
+        totalInterest: 0,
+        yearlyData: Array.from({ length: numYears }, (_, i) => ({
+          year: i + 1,
+          balance: principal + (monthlyDeposit * (i + 1) * 12),
+          contributions: principal + (monthlyDeposit * (i + 1) * 12),
+          interest: 0
+        }))
+      };
+    }
+
+    let balance = principal;
+    const yearlyData = [];
+    let totalContributions = principal;
+
+    for (let year = 1; year <= numYears; year++) {
+      for (let month = 1; month <= 12; month++) {
+        balance = balance * (1 + rate) + monthlyDeposit;
+        if (month === 12) {
+          totalContributions += monthlyDeposit * 12;
+        }
+      }
+      
+      yearlyData.push({
+        year,
+        balance,
+        contributions: principal + (monthlyDeposit * year * 12),
+        interest: balance - (principal + (monthlyDeposit * year * 12))
+      });
+    }
+
+    return {
+      finalBalance: balance,
+      totalContributions: principal + (monthlyDeposit * months),
+      totalInterest: balance - (principal + (monthlyDeposit * months)),
+      yearlyData
+    };
+  }, [initialDeposit2, monthlyContribution2, annualInterestRate2, years2]);
+
+  const results2 = calculations2();
 
   const chartData = {
     labels: results.yearlyData.map(data => `Year ${data.year}`),
-    datasets: [
-      {
-        label: 'Total Balance',
-        data: results.yearlyData.map(data => data.balance),
-        borderColor: 'hsl(221.2, 83.2%, 53.3%)',
-        backgroundColor: 'hsl(221.2, 83.2%, 53.3%, 0.1)',
-        tension: 0.1,
-      },
-      {
-        label: 'Total Contributions',
-        data: results.yearlyData.map(data => data.contributions),
-        borderColor: 'hsl(262.1, 83.3%, 57.8%)',
-        backgroundColor: 'hsl(262.1, 83.3%, 57.8%, 0.1)',
-        tension: 0.1,
-      },
-    ],
+    datasets: isComparing && results2
+      ? [
+          {
+            label: 'Scenario 1 Balance',
+            data: results.yearlyData.map(data => data.balance),
+            borderColor: 'hsl(221.2, 83.2%, 53.3%)',
+            backgroundColor: 'hsl(221.2, 83.2%, 53.3%, 0.1)',
+            tension: 0.1,
+          },
+          {
+            label: 'Scenario 1 Contributions',
+            data: results.yearlyData.map(data => data.contributions),
+            borderColor: 'hsl(262.1, 83.3%, 57.8%)',
+            backgroundColor: 'hsl(262.1, 83.3%, 57.8%, 0.1)',
+            tension: 0.1,
+          },
+          {
+            label: 'Scenario 2 Balance',
+            data: results2.yearlyData.map(data => data.balance),
+            borderColor: 'hsl(142, 71%, 45%)',
+            backgroundColor: 'hsl(142, 71%, 45%, 0.1)',
+            tension: 0.1,
+          },
+          {
+            label: 'Scenario 2 Contributions',
+            data: results2.yearlyData.map(data => data.contributions),
+            borderColor: 'hsl(25, 95%, 53%)',
+            backgroundColor: 'hsl(25, 95%, 53%, 0.1)',
+            tension: 0.1,
+          },
+        ]
+      : [
+          {
+            label: 'Total Balance',
+            data: results.yearlyData.map(data => data.balance),
+            borderColor: 'hsl(221.2, 83.2%, 53.3%)',
+            backgroundColor: 'hsl(221.2, 83.2%, 53.3%, 0.1)',
+            tension: 0.1,
+          },
+          {
+            label: 'Total Contributions',
+            data: results.yearlyData.map(data => data.contributions),
+            borderColor: 'hsl(262.1, 83.3%, 57.8%)',
+            backgroundColor: 'hsl(262.1, 83.3%, 57.8%, 0.1)',
+            tension: 0.1,
+          },
+        ],
   };
 
   const chartOptions = {
@@ -138,7 +231,9 @@ const CompoundInterestCalculator = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <CompareToggle isComparing={isComparing} onToggle={() => setIsComparing(!isComparing)} />
+
+          <div className={`grid grid-cols-1 ${isComparing ? 'lg:grid-cols-3' : 'lg:grid-cols-2'} gap-8`}>
             <div className="space-y-6">
               <Card>
                 <CardHeader>
@@ -344,10 +439,6 @@ const CompoundInterestCalculator = () => {
               </CardContent>
             </Card>
 
-            {/* Ad Space */}
-            <div className="w-full h-20 bg-muted/30 rounded-lg flex items-center justify-center text-muted-foreground">
-              Advertisement Space (728x90)
-            </div>
 
             {/* What is Compound Interest */}
             <Card>
@@ -506,14 +597,6 @@ const CompoundInterestCalculator = () => {
             </CardContent>
           </Card>
 
-         {/* Mobile Ad Space */}
-         <div className="mt-8 md:hidden mx-auto max-w-4xl px-4">
-           <div className="bg-gradient-to-r from-primary/5 to-accent/5 border border-border/20 rounded-lg p-4 text-center">
-             <div className="h-16 flex items-center justify-center text-muted-foreground text-sm">
-               Advertisement Space (Mobile)
-             </div>
-           </div>
-         </div>
       </div>
     </Layout>
   );

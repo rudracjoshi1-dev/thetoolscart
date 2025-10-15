@@ -63,7 +63,7 @@ const Navigation = () => {
           </Link>
 
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 transition-colors hover:text-foreground/80 text-foreground/60">
+            <DropdownMenuTrigger className="flex items-center gap-1 transition-colors hover:text-foreground/80 text-foreground/60" onMouseEnter={(e) => e.currentTarget.click()}>
               Financial Tools
               <ChevronDown className="h-3 w-3" />
             </DropdownMenuTrigger>
@@ -78,7 +78,7 @@ const Navigation = () => {
           </DropdownMenu>
 
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 transition-colors hover:text-foreground/80 text-foreground/60">
+            <DropdownMenuTrigger className="flex items-center gap-1 transition-colors hover:text-foreground/80 text-foreground/60" onMouseEnter={(e) => e.currentTarget.click()}>
               Other Tools
               <ChevronDown className="h-3 w-3" />
             </DropdownMenuTrigger>

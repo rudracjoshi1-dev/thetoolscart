@@ -1,11 +1,11 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import Layout from "@/components/Layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Calculator, Home, PoundSterling, Calendar, PieChart, AlertTriangle } from "lucide-react";
+import { CompareToggle } from "@/components/CompareToggle";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -29,11 +29,21 @@ ChartJS.register(
 );
 
 const MortgageCalculator = () => {
+  const [isComparing, setIsComparing] = useState(false);
+  
+  // Scenario 1
   const [loanAmount, setLoanAmount] = useState("250000");
   const [interestRate, setInterestRate] = useState("5.5");
   const [loanTerm, setLoanTerm] = useState([25]);
   const [downPayment, setDownPayment] = useState("50000");
   const [extraPayment, setExtraPayment] = useState("0");
+  
+  // Scenario 2
+  const [loanAmount2, setLoanAmount2] = useState("250000");
+  const [interestRate2, setInterestRate2] = useState("6.0");
+  const [loanTerm2, setLoanTerm2] = useState([25]);
+  const [downPayment2, setDownPayment2] = useState("50000");
+  const [extraPayment2, setExtraPayment2] = useState("0");
 
   const calculations = useCallback(() => {
     const principal = parseFloat(loanAmount) - parseFloat(downPayment);
@@ -80,20 +90,62 @@ const MortgageCalculator = () => {
   }, [loanAmount, interestRate, loanTerm, downPayment, extraPayment]);
 
   const results = calculations();
+  
+  const calculations2 = useCallback(() => {
+    const principal = parseFloat(loanAmount2) - parseFloat(downPayment2);
+    const monthlyRate = parseFloat(interestRate2) / 100 / 12;
+    const numberOfPayments = loanTerm2[0] * 12;
+    const extraMonthly = parseFloat(extraPayment2) || 0;
+
+    if (principal <= 0 || monthlyRate <= 0 || numberOfPayments <= 0) {
+      return null;
+    }
+
+    const monthlyPayment = (principal * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments))) / 
+                          (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+    const totalInterest = (monthlyPayment * numberOfPayments) - principal;
+
+    const schedule = [];
+    let remainingBalance = principal;
+    
+    for (let month = 1; month <= Math.min(12, numberOfPayments); month++) {
+      const interestPayment = remainingBalance * monthlyRate;
+      const principalPayment = monthlyPayment - interestPayment + extraMonthly;
+      remainingBalance = Math.max(0, remainingBalance - principalPayment);
+      
+      schedule.push({
+        month,
+        payment: monthlyPayment + extraMonthly,
+        principal: principalPayment,
+        interest: interestPayment,
+        balance: remainingBalance
+      });
+    }
+
+    return {
+      monthlyPayment,
+      totalInterest,
+      totalPayment: monthlyPayment * numberOfPayments,
+      principal,
+      schedule
+    };
+  }, [loanAmount2, interestRate2, loanTerm2, downPayment2, extraPayment2]);
+
+  const results2 = calculations2();
 
   const pieData = results ? {
-    labels: ['Principal', 'Interest'],
+    labels: isComparing && results2 ? ['Scenario 1 Principal', 'Scenario 1 Interest', 'Scenario 2 Principal', 'Scenario 2 Interest'] : ['Principal', 'Interest'],
     datasets: [
       {
-        data: [results.principal, results.totalInterest],
-        backgroundColor: [
-          'hsl(221.2, 83.2%, 53.3%)',
-          'hsl(262.1, 83.3%, 57.8%)',
-        ],
-        borderColor: [
-          'hsl(221.2, 83.2%, 53.3%)',
-          'hsl(262.1, 83.3%, 57.8%)',
-        ],
+        data: isComparing && results2 
+          ? [results.principal, results.totalInterest, results2.principal, results2.totalInterest]
+          : [results.principal, results.totalInterest],
+        backgroundColor: isComparing && results2
+          ? ['hsl(221.2, 83.2%, 53.3%)', 'hsl(262.1, 83.3%, 57.8%)', 'hsl(142, 71%, 45%)', 'hsl(25, 95%, 53%)']
+          : ['hsl(221.2, 83.2%, 53.3%)', 'hsl(262.1, 83.3%, 57.8%)'],
+        borderColor: isComparing && results2
+          ? ['hsl(221.2, 83.2%, 53.3%)', 'hsl(262.1, 83.3%, 57.8%)', 'hsl(142, 71%, 45%)', 'hsl(25, 95%, 53%)']
+          : ['hsl(221.2, 83.2%, 53.3%)', 'hsl(262.1, 83.3%, 57.8%)'],
         borderWidth: 1,
       },
     ],
@@ -101,18 +153,41 @@ const MortgageCalculator = () => {
 
   const barData = results ? {
     labels: results.schedule.map(item => `Month ${item.month}`),
-    datasets: [
-      {
-        label: 'Principal',
-        data: results.schedule.map(item => item.principal),
-        backgroundColor: 'hsl(221.2, 83.2%, 53.3%)',
-      },
-      {
-        label: 'Interest',
-        data: results.schedule.map(item => item.interest),
-        backgroundColor: 'hsl(262.1, 83.3%, 57.8%)',
-      },
-    ],
+    datasets: isComparing && results2 
+      ? [
+          {
+            label: 'Scenario 1 Principal',
+            data: results.schedule.map(item => item.principal),
+            backgroundColor: 'hsl(221.2, 83.2%, 53.3%)',
+          },
+          {
+            label: 'Scenario 1 Interest',
+            data: results.schedule.map(item => item.interest),
+            backgroundColor: 'hsl(262.1, 83.3%, 57.8%)',
+          },
+          {
+            label: 'Scenario 2 Principal',
+            data: results2.schedule.map(item => item.principal),
+            backgroundColor: 'hsl(142, 71%, 45%)',
+          },
+          {
+            label: 'Scenario 2 Interest',
+            data: results2.schedule.map(item => item.interest),
+            backgroundColor: 'hsl(25, 95%, 53%)',
+          },
+        ]
+      : [
+          {
+            label: 'Principal',
+            data: results.schedule.map(item => item.principal),
+            backgroundColor: 'hsl(221.2, 83.2%, 53.3%)',
+          },
+          {
+            label: 'Interest',
+            data: results.schedule.map(item => item.interest),
+            backgroundColor: 'hsl(262.1, 83.3%, 57.8%)',
+          },
+        ],
   } : null;
 
   const chartOptions = {
@@ -135,7 +210,9 @@ const MortgageCalculator = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <CompareToggle isComparing={isComparing} onToggle={() => setIsComparing(!isComparing)} />
+
+          <div className={`grid grid-cols-1 ${isComparing ? 'lg:grid-cols-3' : 'lg:grid-cols-2'} gap-8`}>
             <div className="space-y-6">
               <Card>
                 <CardHeader>
@@ -250,6 +327,122 @@ const MortgageCalculator = () => {
               )}
             </div>
 
+            {isComparing && (
+              <div className="space-y-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Home className="h-5 w-5" />
+                      Scenario 2 - Loan Details
+                    </CardTitle>
+                    <CardDescription>
+                      Enter comparison mortgage information
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="loanAmount2">Home Price</Label>
+                      <Input
+                        id="loanAmount2"
+                        type="number"
+                        value={loanAmount2}
+                        onChange={(e) => setLoanAmount2(e.target.value)}
+                        placeholder="300000"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="downPayment2">Down Payment</Label>
+                      <Input
+                        id="downPayment2"
+                        type="number"
+                        value={downPayment2}
+                        onChange={(e) => setDownPayment2(e.target.value)}
+                        placeholder="60000"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="interestRate2">Interest Rate (%)</Label>
+                      <Input
+                        id="interestRate2"
+                        type="number"
+                        step="0.1"
+                        value={interestRate2}
+                        onChange={(e) => setInterestRate2(e.target.value)}
+                        placeholder="6.5"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label>Loan Term: {loanTerm2[0]} years</Label>
+                      <Slider
+                        value={loanTerm2}
+                        onValueChange={setLoanTerm2}
+                        max={40}
+                        min={10}
+                        step={1}
+                        className="w-full"
+                      />
+                      <div className="flex justify-between text-xs text-muted-foreground">
+                        <span>10 years</span>
+                        <span>40 years</span>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="extraPayment2">Extra Monthly Payment (Optional)</Label>
+                      <Input
+                        id="extraPayment2"
+                        type="number"
+                        value={extraPayment2}
+                        onChange={(e) => setExtraPayment2(e.target.value)}
+                        placeholder="0"
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {results2 && (
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center gap-2">
+                        <Calculator className="h-5 w-5" />
+                        Scenario 2 - Payment Summary
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="text-center p-4 bg-green-500/10 rounded-lg">
+                          <div className="text-2xl font-bold" style={{color: 'hsl(142, 71%, 45%)'}}>
+                            £{results2.monthlyPayment.toFixed(2)}
+                          </div>
+                          <div className="text-sm text-muted-foreground">Monthly Payment</div>
+                        </div>
+                        <div className="text-center p-4 bg-orange-500/10 rounded-lg">
+                          <div className="text-2xl font-bold" style={{color: 'hsl(25, 95%, 53%)'}}>
+                            £{results2.totalInterest.toFixed(2)}
+                          </div>
+                          <div className="text-sm text-muted-foreground">Total Interest</div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <div className="flex justify-between">
+                          <span>Loan Amount:</span>
+                          <span className="font-semibold">£{results2.principal.toLocaleString()}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Total of Payments:</span>
+                          <span className="font-semibold">£{results2.totalPayment.toLocaleString()}</span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
+            )}
+
             <div className="space-y-6">
               {results && pieData && (
                 <Card>
@@ -317,10 +510,6 @@ const MortgageCalculator = () => {
               </CardContent>
             </Card>
 
-            {/* Ad Space */}
-            <div className="w-full h-20 bg-muted/30 rounded-lg flex items-center justify-center text-muted-foreground">
-              Advertisement Space (728x90)
-            </div>
 
             {/* What is a Mortgage */}
             <Card>
@@ -447,9 +636,6 @@ const MortgageCalculator = () => {
           {/* Mobile Ad Space */}
           <div className="mt-8 md:hidden">
             <div className="bg-gradient-to-r from-primary/5 to-accent/5 border border-border/20 rounded-lg p-4 text-center">
-              <div className="h-16 flex items-center justify-center text-muted-foreground text-sm">
-                Advertisement Space (Mobile)
-              </div>
             </div>
           </div>
         </div>
