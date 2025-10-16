@@ -8,6 +8,8 @@ import { Separator } from "@/components/ui/separator";
 import { PiggyBank, Calculator, TrendingUp, Target, Info, Clock, DollarSign } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
+import { CompareToggle } from "@/components/CompareToggle";
+import { MaximizeChart } from "@/components/MaximizeChart";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -31,11 +33,20 @@ ChartJS.register(
 );
 
 const SavingsCalculator = () => {
+  const [isComparing, setIsComparing] = useState(false);
+  
+  // Scenario 1
   const [initialAmount, setInitialAmount] = useState(1000);
   const [monthlyDeposit, setMonthlyDeposit] = useState(100);
   const [interestRate, setInterestRate] = useState(3);
   const [savingsGoal, setSavingsGoal] = useState(10000);
   const [timeHorizon, setTimeHorizon] = useState(5);
+  
+  // Scenario 2
+  const [initialAmount2, setInitialAmount2] = useState(2000);
+  const [monthlyDeposit2, setMonthlyDeposit2] = useState(200);
+  const [interestRate2, setInterestRate2] = useState(4);
+  const [timeHorizon2, setTimeHorizon2] = useState(5);
 
   const calculations = useCallback(() => {
     const monthlyRate = interestRate / 100 / 12;
@@ -80,11 +91,80 @@ const SavingsCalculator = () => {
     };
   }, [initialAmount, monthlyDeposit, interestRate, timeHorizon, savingsGoal]);
 
+  const calculations2 = useCallback(() => {
+    const monthlyRate = interestRate2 / 100 / 12;
+    const totalMonths = timeHorizon2 * 12;
+    let balance = initialAmount2;
+    const yearlyData = [];
+    
+    for (let month = 1; month <= totalMonths; month++) {
+      balance = balance * (1 + monthlyRate) + monthlyDeposit2;
+      
+      if (month % 12 === 0) {
+        yearlyData.push({
+          year: month / 12,
+          balance: Math.round(balance),
+          totalDeposited: initialAmount2 + (monthlyDeposit2 * month),
+          interestEarned: Math.round(balance - (initialAmount2 + monthlyDeposit2 * month))
+        });
+      }
+    }
+
+    const finalBalance = Math.round(balance);
+    const totalDeposited = initialAmount2 + (monthlyDeposit2 * totalMonths);
+    const totalInterest = finalBalance - totalDeposited;
+
+    return {
+      finalBalance,
+      totalDeposited,
+      totalInterest,
+      yearlyData
+    };
+  }, [initialAmount2, monthlyDeposit2, interestRate2, timeHorizon2]);
+
   const results = calculations();
+  const results2 = calculations2();
 
   const chartData = {
     labels: results.yearlyData.map(data => `Year ${data.year}`),
-    datasets: [
+    datasets: isComparing ? [
+      {
+        label: "Scenario 1 - Total Balance",
+        data: results.yearlyData.map(data => data.balance),
+        borderColor: "hsl(220, 70%, 50%)",
+        backgroundColor: "hsl(220, 70%, 50%, 0.1)",
+        tension: 0.1,
+        fill: true,
+        borderWidth: 3
+      },
+      {
+        label: "Scenario 1 - Total Deposited",
+        data: results.yearlyData.map(data => data.totalDeposited),
+        borderColor: "hsl(280, 65%, 60%)",
+        backgroundColor: "hsl(280, 65%, 60%, 0.1)",
+        tension: 0.1,
+        borderDash: [5, 5],
+        borderWidth: 3
+      },
+      {
+        label: "Scenario 2 - Total Balance",
+        data: results2.yearlyData.map(data => data.balance),
+        borderColor: "hsl(142, 76%, 36%)",
+        backgroundColor: "hsl(142, 76%, 36%, 0.1)",
+        tension: 0.1,
+        fill: true,
+        borderWidth: 3
+      },
+      {
+        label: "Scenario 2 - Total Deposited",
+        data: results2.yearlyData.map(data => data.totalDeposited),
+        borderColor: "hsl(24, 95%, 50%)",
+        backgroundColor: "hsl(24, 95%, 50%, 0.1)",
+        tension: 0.1,
+        borderDash: [5, 5],
+        borderWidth: 3
+      }
+    ] : [
       {
         label: "Total Balance",
         data: results.yearlyData.map(data => data.balance),
@@ -155,8 +235,10 @@ const SavingsCalculator = () => {
           </div>
 
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Calculator Inputs */}
+          <CompareToggle isComparing={isComparing} onToggle={() => setIsComparing(!isComparing)} />
+
+          <div className={`grid grid-cols-1 ${isComparing ? 'lg:grid-cols-4' : 'lg:grid-cols-3'} gap-8`}>
+            {/* Calculator Inputs - Scenario 1 */}
             <div className="lg:col-span-1">
               <Card className="shadow-lg">
                 <CardHeader>
@@ -313,8 +395,95 @@ const SavingsCalculator = () => {
               </Card>
             </div>
 
+            {/* Calculator Inputs - Scenario 2 */}
+            {isComparing && (
+              <div className="lg:col-span-1">
+                <Card className="shadow-lg">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Calculator className="h-5 w-5" />
+                      Scenario 2 Settings
+                    </CardTitle>
+                    <CardDescription>
+                      Compare with different parameters
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="initial-amount-2">Initial Amount</Label>
+                      <Input
+                        id="initial-amount-2"
+                        type="number"
+                        value={initialAmount2}
+                        onChange={(e) => setInitialAmount2(Number(e.target.value))}
+                      />
+                      <Slider
+                        value={[initialAmount2]}
+                        onValueChange={(value) => setInitialAmount2(value[0])}
+                        max={50000}
+                        min={0}
+                        step={100}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="monthly-deposit-2">Monthly Deposit</Label>
+                      <Input
+                        id="monthly-deposit-2"
+                        type="number"
+                        value={monthlyDeposit2}
+                        onChange={(e) => setMonthlyDeposit2(Number(e.target.value))}
+                      />
+                      <Slider
+                        value={[monthlyDeposit2]}
+                        onValueChange={(value) => setMonthlyDeposit2(value[0])}
+                        max={2000}
+                        min={0}
+                        step={25}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="interest-rate-2">Annual Interest Rate (%)</Label>
+                      <Input
+                        id="interest-rate-2"
+                        type="number"
+                        step="0.1"
+                        value={interestRate2}
+                        onChange={(e) => setInterestRate2(Number(e.target.value))}
+                      />
+                      <Slider
+                        value={[interestRate2]}
+                        onValueChange={(value) => setInterestRate2(value[0])}
+                        max={10}
+                        min={0}
+                        step={0.1}
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="time-horizon-2">Savings Period (Years)</Label>
+                      <Input
+                        id="time-horizon-2"
+                        type="number"
+                        value={timeHorizon2}
+                        onChange={(e) => setTimeHorizon2(Number(e.target.value))}
+                      />
+                      <Slider
+                        value={[timeHorizon2]}
+                        onValueChange={(value) => setTimeHorizon2(value[0])}
+                        max={40}
+                        min={1}
+                        step={1}
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
+
             {/* Results */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className={`${isComparing ? 'lg:col-span-2' : 'lg:col-span-2'} space-y-6`}>
               {/* Summary Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Card className="shadow-lg">
@@ -378,7 +547,12 @@ const SavingsCalculator = () => {
               )}
 
               {/* Chart */}
-              <Card className="shadow-lg">
+              <Card className="shadow-lg relative">
+                <MaximizeChart title="Savings Growth Projection">
+                  <div className="h-full">
+                    <Line data={chartData} options={chartOptions} />
+                  </div>
+                </MaximizeChart>
                 <CardHeader>
                   <CardTitle>Savings Growth Projection</CardTitle>
                   <CardDescription>

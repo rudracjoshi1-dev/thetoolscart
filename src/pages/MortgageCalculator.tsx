@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Calculator, Home, PoundSterling, Calendar, PieChart, AlertTriangle } from "lucide-react";
 import { CompareToggle } from "@/components/CompareToggle";
+import { MaximizeChart } from "@/components/MaximizeChart";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -445,7 +446,12 @@ const MortgageCalculator = () => {
 
             <div className="space-y-6">
               {results && pieData && (
-                <Card>
+                <Card className="relative">
+                  <MaximizeChart title="Principal vs Interest">
+                    <div className="h-full">
+                      <Pie data={pieData} options={chartOptions} />
+                    </div>
+                  </MaximizeChart>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <PieChart className="h-5 w-5" />
@@ -461,7 +467,12 @@ const MortgageCalculator = () => {
               )}
 
               {results && barData && (
-                <Card>
+                <Card className="relative">
+                  <MaximizeChart title="Payment Comparison">
+                    <div className="h-full">
+                      <Bar data={barData} options={chartOptions} />
+                    </div>
+                  </MaximizeChart>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                       <Calendar className="h-5 w-5" />

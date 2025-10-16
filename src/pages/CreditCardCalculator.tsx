@@ -6,6 +6,8 @@ import { Label } from "@/components/ui/label";
 import { CreditCard, Calculator, PoundSterling, TrendingDown, Info, Clock, Target } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
+import { CompareToggle } from "@/components/CompareToggle";
+import { MaximizeChart } from "@/components/MaximizeChart";
 import { Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -17,10 +19,27 @@ import {
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const CreditCardCalculator = () => {
+  const [isComparing, setIsComparing] = useState(false);
+  
+  // Scenario 1
   const [balance, setBalance] = useState(5000);
   const [interestRate, setInterestRate] = useState(18.9);
   const [monthlyPayment, setMonthlyPayment] = useState(100);
+  
+  // Scenario 2
+  const [balance2, setBalance2] = useState(5000);
+  const [interestRate2, setInterestRate2] = useState(15.9);
+  const [monthlyPayment2, setMonthlyPayment2] = useState(150);
+  
   const [results, setResults] = useState({
+    timeToPayOff: 0,
+    totalInterest: 0,
+    totalAmount: 0,
+    minimumPayment: 0,
+    recommendedPayment: 0
+  });
+  
+  const [results2, setResults2] = useState({
     timeToPayOff: 0,
     totalInterest: 0,
     totalAmount: 0,
@@ -75,9 +94,53 @@ const CreditCardCalculator = () => {
     });
   };
 
+  const calculatePayoff2 = () => {
+    const monthlyRate = interestRate2 / 100 / 12;
+    let currentBalance = balance2;
+    let totalInterestPaid = 0;
+    let months = 0;
+
+    const minimumPayment = Math.max(25, balance2 * 0.025);
+    const recommendedPayment = balance2 / 24 + (balance2 * monthlyRate);
+
+    if (monthlyPayment2 <= minimumPayment && monthlyPayment2 < balance2 * monthlyRate) {
+      setResults2({
+        timeToPayOff: 999,
+        totalInterest: 999999,
+        totalAmount: 999999,
+        minimumPayment,
+        recommendedPayment
+      });
+      return;
+    }
+
+    while (currentBalance > 0 && months < 600) {
+      const interestCharge = currentBalance * monthlyRate;
+      const principalPayment = Math.min(monthlyPayment2 - interestCharge, currentBalance);
+      
+      if (principalPayment <= 0) {
+        months = 999;
+        break;
+      }
+
+      totalInterestPaid += interestCharge;
+      currentBalance -= principalPayment;
+      months++;
+    }
+
+    setResults2({
+      timeToPayOff: months,
+      totalInterest: totalInterestPaid,
+      totalAmount: balance2 + totalInterestPaid,
+      minimumPayment,
+      recommendedPayment
+    });
+  };
+
   useEffect(() => {
     calculatePayoff();
-  }, [balance, interestRate, monthlyPayment]);
+    calculatePayoff2();
+  }, [balance, interestRate, monthlyPayment, balance2, interestRate2, monthlyPayment2]);
 
   const formatMonths = (months: number) => {
     if (months >= 999) return "Never";
@@ -148,8 +211,10 @@ const CreditCardCalculator = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Input Panel */}
+          <CompareToggle isComparing={isComparing} onToggle={() => setIsComparing(!isComparing)} />
+
+          <div className={`grid grid-cols-1 ${isComparing ? 'lg:grid-cols-3' : 'lg:grid-cols-2'} gap-8`}>
+            {/* Input Panel - Scenario 1 */}
             <Card className="lg:sticky lg:top-24 h-fit">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -269,7 +334,12 @@ const CreditCardCalculator = () => {
               </Card>
 
               {/* Chart */}
-              <Card>
+              <Card className="relative">
+                <MaximizeChart title="Payment Breakdown">
+                  <div className="h-full">
+                    <Doughnut data={chartData} options={chartOptions} />
+                  </div>
+                </MaximizeChart>
                 <CardHeader>
                   <CardTitle>Payment Breakdown</CardTitle>
                 </CardHeader>

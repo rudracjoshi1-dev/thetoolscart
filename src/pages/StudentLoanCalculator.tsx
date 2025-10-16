@@ -10,6 +10,8 @@ import { GraduationCap, Calculator, Share, TrendingUp, Clock, PoundSterling, Tar
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import { toast } from "sonner";
+import { CompareToggle } from "@/components/CompareToggle";
+import { MaximizeChart } from "@/components/MaximizeChart";
 import { Line, Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -411,7 +413,12 @@ const StudentLoanCalculator = () => {
                   </TabsList>
                   
                   <TabsContent value="balance">
-                    <Card>
+                    <Card className="relative">
+                      <MaximizeChart title="Loan Balance Projection">
+                        <div className="h-full">
+                          <Line data={balanceOverTimeData} options={chartOptions} />
+                        </div>
+                      </MaximizeChart>
                       <CardHeader>
                         <CardTitle className="flex items-center gap-2">
                           <LineChart className="h-5 w-5" />
@@ -432,7 +439,12 @@ const StudentLoanCalculator = () => {
                   </TabsContent>
 
                   <TabsContent value="payments">
-                    <Card>
+                    <Card className="relative">
+                      <MaximizeChart title="Annual Payments vs Interest">
+                        <div className="h-full">
+                          <Bar data={paymentBreakdownData} options={chartOptions} />
+                        </div>
+                      </MaximizeChart>
                       <CardHeader>
                         <CardTitle className="flex items-center gap-2">
                           <BarChart3 className="h-5 w-5" />

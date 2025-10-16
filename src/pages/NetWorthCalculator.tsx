@@ -9,6 +9,8 @@ import { Wallet, Calculator, Plus, Minus, TrendingUp, TrendingDown, PiggyBank, H
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import { toast } from "sonner";
+import { CompareToggle } from "@/components/CompareToggle";
+import { MaximizeChart } from "@/components/MaximizeChart";
 import { Doughnut, Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -392,7 +394,12 @@ const NetWorthCalculator = () => {
                 </TabsList>
                 
                 <TabsContent value="overview">
-                  <Card>
+                  <Card className="relative">
+                    <MaximizeChart title="Assets vs Liabilities">
+                      <div className="h-full">
+                        <Doughnut data={assetLiabilityData} options={chartOptions} />
+                      </div>
+                    </MaximizeChart>
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
                         <BarChart3 className="h-5 w-5" />
@@ -422,7 +429,12 @@ const NetWorthCalculator = () => {
                 </TabsContent>
 
                 <TabsContent value="assets">
-                  <Card>
+                  <Card className="relative">
+                    <MaximizeChart title="Asset Distribution">
+                      <div className="h-full">
+                        <Doughnut data={assetBreakdownData} options={chartOptions} />
+                      </div>
+                    </MaximizeChart>
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
                         <PiggyBank className="h-5 w-5" />

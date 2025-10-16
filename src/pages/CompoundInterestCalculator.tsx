@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { TrendingUp, PoundSterling, Calendar, Target, AlertTriangle } from "lucide-react";
 import { CompareToggle } from "@/components/CompareToggle";
+import { MaximizeChart } from "@/components/MaximizeChart";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -347,7 +348,12 @@ const CompoundInterestCalculator = () => {
             </div>
 
             <div>
-              <Card>
+              <Card className="relative">
+                <MaximizeChart title="Growth Chart">
+                  <div className="h-full">
+                    <Line data={chartData} options={chartOptions} />
+                  </div>
+                </MaximizeChart>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <TrendingUp className="h-5 w-5" />

@@ -7,6 +7,8 @@ import { Slider } from "@/components/ui/slider";
 import { PiggyBank, TrendingUp, Calculator, Info, AlertTriangle } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
+import { CompareToggle } from "@/components/CompareToggle";
+import { MaximizeChart } from "@/components/MaximizeChart";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -30,11 +32,28 @@ ChartJS.register(
 );
 
 const StocksSharesISACalculator = () => {
+  const [isComparing, setIsComparing] = useState(false);
+  
+  // Scenario 1
   const [initialInvestment, setInitialInvestment] = useState(0);
   const [monthlyContribution, setMonthlyContribution] = useState(500);
   const [expectedReturn, setExpectedReturn] = useState([5]);
   const [years, setYears] = useState([10]);
+  
+  // Scenario 2
+  const [initialInvestment2, setInitialInvestment2] = useState(1000);
+  const [monthlyContribution2, setMonthlyContribution2] = useState(750);
+  const [expectedReturn2, setExpectedReturn2] = useState([7]);
+  const [years2, setYears2] = useState([10]);
+  
   const [results, setResults] = useState({
+    totalInvested: 0,
+    totalReturn: 0,
+    finalValue: 0,
+    yearlyData: [] as { year: number; invested: number; growth: number; total: number }[]
+  });
+  
+  const [results2, setResults2] = useState({
     totalInvested: 0,
     totalReturn: 0,
     finalValue: 0,
@@ -83,13 +102,85 @@ const StocksSharesISACalculator = () => {
     });
   };
 
+  const calculateISA2 = () => {
+    const monthlyRate = expectedReturn2[0] / 100 / 12;
+    const totalMonths = years2[0] * 12;
+    const yearlyData = [];
+    
+    let currentValue = initialInvestment2;
+    let totalInvested = initialInvestment2;
+
+    for (let year = 1; year <= years2[0]; year++) {
+      for (let month = 1; month <= 12; month++) {
+        currentValue = currentValue * (1 + monthlyRate);
+        
+        const yearlyContributed = (year - 1) * 12 * monthlyContribution2 + month * monthlyContribution2;
+        const allowanceUsed = Math.min(yearlyContributed + initialInvestment2, year * currentISAAllowance);
+        
+        if (totalInvested < allowanceUsed) {
+          const contribution = Math.min(monthlyContribution2, allowanceUsed - totalInvested);
+          currentValue += contribution;
+          totalInvested += contribution;
+        }
+      }
+      
+      yearlyData.push({
+        year,
+        invested: totalInvested,
+        growth: currentValue - totalInvested,
+        total: currentValue
+      });
+    }
+
+    setResults2({
+      totalInvested,
+      totalReturn: currentValue - totalInvested,
+      finalValue: currentValue,
+      yearlyData
+    });
+  };
+
   useEffect(() => {
     calculateISA();
-  }, [initialInvestment, monthlyContribution, expectedReturn, years]);
+    calculateISA2();
+  }, [initialInvestment, monthlyContribution, expectedReturn, years, initialInvestment2, monthlyContribution2, expectedReturn2, years2]);
 
   const chartData = {
     labels: results.yearlyData.map(d => `Year ${d.year}`),
-    datasets: [
+    datasets: isComparing ? [
+      {
+        label: 'Scenario 1 - Total Invested',
+        data: results.yearlyData.map(d => d.invested),
+        borderColor: 'rgb(59, 130, 246)',
+        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+        borderWidth: 2,
+        fill: true,
+      },
+      {
+        label: 'Scenario 1 - Investment Growth',
+        data: results.yearlyData.map(d => d.total),
+        borderColor: 'rgb(34, 197, 94)',
+        backgroundColor: 'rgba(34, 197, 94, 0.1)',
+        borderWidth: 2,
+        fill: false,
+      },
+      {
+        label: 'Scenario 2 - Total Invested',
+        data: results2.yearlyData.map(d => d.invested),
+        borderColor: 'rgb(168, 85, 247)',
+        backgroundColor: 'rgba(168, 85, 247, 0.1)',
+        borderWidth: 2,
+        fill: true,
+      },
+      {
+        label: 'Scenario 2 - Investment Growth',
+        data: results2.yearlyData.map(d => d.total),
+        borderColor: 'rgb(249, 115, 22)',
+        backgroundColor: 'rgba(249, 115, 22, 0.1)',
+        borderWidth: 2,
+        fill: false,
+      }
+    ] : [
       {
         label: 'Total Invested',
         data: results.yearlyData.map(d => d.invested),
@@ -155,8 +246,10 @@ const StocksSharesISACalculator = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Input Panel */}
+          <CompareToggle isComparing={isComparing} onToggle={() => setIsComparing(!isComparing)} />
+
+          <div className={`grid grid-cols-1 ${isComparing ? 'lg:grid-cols-3' : 'lg:grid-cols-2'} gap-8`}>
+            {/* Input Panel - Scenario 1 */}
             <Card className="lg:sticky lg:top-24 h-fit">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -283,7 +376,12 @@ const StocksSharesISACalculator = () => {
               </div>
 
               {/* Chart */}
-              <Card>
+              <Card className="relative">
+                <MaximizeChart title="ISA Growth Projection">
+                  <div className="h-full">
+                    <Line data={chartData} options={chartOptions} />
+                  </div>
+                </MaximizeChart>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <TrendingUp className="h-5 w-5" />
