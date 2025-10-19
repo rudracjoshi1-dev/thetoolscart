@@ -461,9 +461,9 @@ const MortgageCalculator = () => {
                       Principal vs Interest
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <div className="h-64 w-full flex items-center justify-center">
-                      <div className="w-full max-w-md aspect-square">
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="w-full h-48 sm:h-56 md:h-64 flex items-center justify-center">
+                      <div className="w-full h-full max-w-xs sm:max-w-sm">
                         <Pie data={pieData} options={chartOptions} />
                       </div>
                     </div>
@@ -484,8 +484,8 @@ const MortgageCalculator = () => {
                       First Year Payments
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <div className="h-64">
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="h-48 sm:h-56 md:h-64">
                       <Bar data={barData} options={chartOptions} />
                     </div>
                   </CardContent>
