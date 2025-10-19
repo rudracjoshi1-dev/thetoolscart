@@ -7,6 +7,7 @@ import { Slider } from "@/components/ui/slider";
 import { Calculator, Home, PoundSterling, Calendar, PieChart, AlertTriangle } from "lucide-react";
 import { CompareToggle } from "@/components/CompareToggle";
 import { MaximizeChart } from "@/components/MaximizeChart";
+import { RelatedTools } from "@/components/RelatedTools";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -648,6 +649,9 @@ const MortgageCalculator = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* Related Tools */}
+          <RelatedTools currentPath="/uk-mortgage-payment-calculator-online" />
 
           {/* Mobile Ad Space */}
           <div className="mt-8 md:hidden">

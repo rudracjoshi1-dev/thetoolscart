@@ -8,6 +8,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import { CompareToggle } from "@/components/CompareToggle";
 import { MaximizeChart } from "@/components/MaximizeChart";
+import { RelatedTools } from "@/components/RelatedTools";
 import { Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -506,6 +507,9 @@ const CreditCardCalculator = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* Related Tools */}
+          <RelatedTools currentPath="/uk-credit-card-repayment-calculator" />
         </div>
       </div>
     </Layout>

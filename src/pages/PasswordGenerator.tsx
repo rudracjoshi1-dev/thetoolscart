@@ -8,6 +8,7 @@ import { Switch } from "@/components/ui/switch";
 import { Slider } from "@/components/ui/slider";
 import { Copy, RefreshCw, Key, Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { RelatedTools } from "@/components/RelatedTools";
 
 const PasswordGenerator = () => {
   const [password, setPassword] = useState("");
@@ -361,6 +362,9 @@ const PasswordGenerator = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* Related Tools */}
+          <RelatedTools currentPath="/free-secure-password-generator-online" />
 
         </div>
       </div>

@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { TrendingUp, PoundSterling, Calendar, Target, AlertTriangle } from "lucide-react";
 import { CompareToggle } from "@/components/CompareToggle";
 import { MaximizeChart } from "@/components/MaximizeChart";
+import { RelatedTools } from "@/components/RelatedTools";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -602,6 +603,9 @@ const CompoundInterestCalculator = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* Related Tools */}
+          <RelatedTools currentPath="/uk-compound-interest-calculator-online" />
 
       </div>
     </Layout>

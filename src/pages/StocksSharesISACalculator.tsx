@@ -9,6 +9,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import { CompareToggle } from "@/components/CompareToggle";
 import { MaximizeChart } from "@/components/MaximizeChart";
+import { RelatedTools } from "@/components/RelatedTools";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -567,6 +568,9 @@ const StocksSharesISACalculator = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* Related Tools */}
+          <RelatedTools currentPath="/uk-stocks-and-shares-isa-calculator" />
         </div>
       </div>
     </Layout>

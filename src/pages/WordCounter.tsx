@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { FileText, Clock, Eye, Mic } from "lucide-react";
+import { RelatedTools } from "@/components/RelatedTools";
 
 const WordCounter = () => {
   const [text, setText] = useState("");
@@ -258,6 +259,9 @@ const WordCounter = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* Related Tools */}
+          <RelatedTools currentPath="/free-online-word-counter-tool" />
 
         </div>
       </div>

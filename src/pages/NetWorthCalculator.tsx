@@ -11,6 +11,7 @@ import SEO from "@/components/SEO";
 import { toast } from "sonner";
 import { CompareToggle } from "@/components/CompareToggle";
 import { MaximizeChart } from "@/components/MaximizeChart";
+import { RelatedTools } from "@/components/RelatedTools";
 import { Doughnut, Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -640,6 +641,9 @@ const NetWorthCalculator = () => {
               </p>
             </CardContent>
           </Card>
+
+          {/* Related Tools */}
+          <RelatedTools currentPath="/net-worth-calculator" />
         </div>
       </div>
     </Layout>
