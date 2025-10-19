@@ -25,19 +25,12 @@ export const MaximizeChart = ({ title, children }: MaximizeChartProps) => {
       <Dialog open={isMaximized} onOpenChange={setIsMaximized}>
         <DialogContent className="max-w-7xl h-[90vh] p-6">
           <DialogHeader>
-            <DialogTitle className="flex items-center justify-between">
-              {title}
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsMaximized(false)}
-              >
-                <X className="h-5 w-5" />
-              </Button>
-            </DialogTitle>
+            <DialogTitle>{title}</DialogTitle>
           </DialogHeader>
-          <div className="flex-1 h-full pb-6">
-            {children}
+          <div className="flex-1 h-full pb-6 flex items-center justify-center">
+            <div className="w-full h-full max-h-[calc(90vh-8rem)]">
+              {children}
+            </div>
           </div>
         </DialogContent>
       </Dialog>

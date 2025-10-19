@@ -193,6 +193,7 @@ const MortgageCalculator = () => {
 
   const chartOptions = {
     responsive: true,
+    maintainAspectRatio: true,
     plugins: {
       legend: {
         position: 'top' as const,
@@ -448,8 +449,10 @@ const MortgageCalculator = () => {
               {results && pieData && (
                 <Card className="relative">
                   <MaximizeChart title="Principal vs Interest">
-                    <div className="h-full">
-                      <Pie data={pieData} options={chartOptions} />
+                    <div className="w-full h-full flex items-center justify-center p-4">
+                      <div className="w-full max-w-2xl aspect-square">
+                        <Pie data={pieData} options={chartOptions} />
+                      </div>
                     </div>
                   </MaximizeChart>
                   <CardHeader>
@@ -459,8 +462,10 @@ const MortgageCalculator = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="h-64">
-                      <Pie data={pieData} options={chartOptions} />
+                    <div className="h-64 w-full flex items-center justify-center">
+                      <div className="w-full max-w-md aspect-square">
+                        <Pie data={pieData} options={chartOptions} />
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
