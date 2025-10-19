@@ -489,13 +489,13 @@ const SavingsCalculator = () => {
                 <Card className="shadow-lg">
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-muted-foreground">Final Balance</p>
-                        <p className="text-2xl font-bold text-primary">
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs sm:text-sm font-medium text-muted-foreground">Final Balance</p>
+                        <p className="text-lg sm:text-xl md:text-2xl font-bold text-primary break-words">
                           £{results.finalBalance.toLocaleString()}
                         </p>
                       </div>
-                      <TrendingUp className="h-8 w-8 text-primary" />
+                      <TrendingUp className="h-6 w-6 sm:h-8 sm:w-8 text-primary flex-shrink-0" />
                     </div>
                   </CardContent>
                 </Card>
@@ -503,13 +503,13 @@ const SavingsCalculator = () => {
                 <Card className="shadow-lg">
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-muted-foreground">Total Deposited</p>
-                        <p className="text-2xl font-bold text-secondary">
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs sm:text-sm font-medium text-muted-foreground">Total Deposited</p>
+                        <p className="text-lg sm:text-xl md:text-2xl font-bold text-secondary break-words">
                           £{results.totalDeposited.toLocaleString()}
                         </p>
                       </div>
-                      <DollarSign className="h-8 w-8 text-secondary" />
+                      <DollarSign className="h-6 w-6 sm:h-8 sm:w-8 text-secondary flex-shrink-0" />
                     </div>
                   </CardContent>
                 </Card>
@@ -517,13 +517,13 @@ const SavingsCalculator = () => {
                 <Card className="shadow-lg">
                   <CardContent className="p-6">
                     <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-muted-foreground">Interest Earned</p>
-                        <p className="text-2xl font-bold text-green-600">
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs sm:text-sm font-medium text-muted-foreground">Interest Earned</p>
+                        <p className="text-lg sm:text-xl md:text-2xl font-bold text-green-600 break-words">
                           £{results.totalInterest.toLocaleString()}
                         </p>
                       </div>
-                      <PiggyBank className="h-8 w-8 text-green-600" />
+                      <PiggyBank className="h-6 w-6 sm:h-8 sm:w-8 text-green-600 flex-shrink-0" />
                     </div>
                   </CardContent>
                 </Card>
@@ -534,10 +534,10 @@ const SavingsCalculator = () => {
                 <Card className="shadow-lg">
                   <CardContent className="p-6">
                     <div className="flex items-center gap-4">
-                      <Target className="h-8 w-8 text-primary" />
-                      <div>
-                        <p className="text-sm font-medium text-muted-foreground">Time to Reach Goal</p>
-                        <p className="text-xl font-bold">
+                      <Target className="h-6 w-6 sm:h-8 sm:w-8 text-primary flex-shrink-0" />
+                      <div className="min-w-0 flex-1">
+                        <p className="text-xs sm:text-sm font-medium text-muted-foreground">Time to Reach Goal</p>
+                        <p className="text-base sm:text-lg md:text-xl font-bold break-words">
                           {results.yearsToGoal.toFixed(1)} years to reach £{savingsGoal.toLocaleString()}
                         </p>
                       </div>

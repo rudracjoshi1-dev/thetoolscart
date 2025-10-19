@@ -299,17 +299,17 @@ const MortgageCalculator = () => {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="text-center p-4 bg-primary/10 rounded-lg">
-                        <div className="text-2xl font-bold text-primary">
+                      <div className="text-center p-3 sm:p-4 bg-primary/10 rounded-lg">
+                        <div className="text-lg sm:text-xl md:text-2xl font-bold text-primary break-words">
                           £{results.monthlyPayment.toFixed(2)}
                         </div>
-                        <div className="text-sm text-muted-foreground">Monthly Payment</div>
+                        <div className="text-xs sm:text-sm text-muted-foreground">Monthly Payment</div>
                       </div>
-                      <div className="text-center p-4 bg-accent/10 rounded-lg">
-                        <div className="text-2xl font-bold text-accent">
+                      <div className="text-center p-3 sm:p-4 bg-accent/10 rounded-lg">
+                        <div className="text-lg sm:text-xl md:text-2xl font-bold text-accent break-words">
                           £{results.totalInterest.toFixed(2)}
                         </div>
-                        <div className="text-sm text-muted-foreground">Total Interest</div>
+                        <div className="text-xs sm:text-sm text-muted-foreground">Total Interest</div>
                       </div>
                     </div>
 
@@ -414,17 +414,17 @@ const MortgageCalculator = () => {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="text-center p-4 bg-green-500/10 rounded-lg">
-                          <div className="text-2xl font-bold" style={{color: 'hsl(142, 71%, 45%)'}}>
+                        <div className="text-center p-3 sm:p-4 bg-green-500/10 rounded-lg">
+                          <div className="text-lg sm:text-xl md:text-2xl font-bold break-words" style={{color: 'hsl(142, 71%, 45%)'}}>
                             £{results2.monthlyPayment.toFixed(2)}
                           </div>
-                          <div className="text-sm text-muted-foreground">Monthly Payment</div>
+                          <div className="text-xs sm:text-sm text-muted-foreground">Monthly Payment</div>
                         </div>
-                        <div className="text-center p-4 bg-orange-500/10 rounded-lg">
-                          <div className="text-2xl font-bold" style={{color: 'hsl(25, 95%, 53%)'}}>
+                        <div className="text-center p-3 sm:p-4 bg-orange-500/10 rounded-lg">
+                          <div className="text-lg sm:text-xl md:text-2xl font-bold break-words" style={{color: 'hsl(25, 95%, 53%)'}}>
                             £{results2.totalInterest.toFixed(2)}
                           </div>
-                          <div className="text-sm text-muted-foreground">Total Interest</div>
+                          <div className="text-xs sm:text-sm text-muted-foreground">Total Interest</div>
                         </div>
                       </div>
 

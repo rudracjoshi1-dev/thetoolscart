@@ -312,19 +312,19 @@ const CreditCardCalculator = () => {
                       <Clock className="h-6 w-6 text-purple-600 dark:text-purple-400" />
                       <h3 className="text-lg font-semibold text-purple-900 dark:text-purple-100">Time to Pay Off</h3>
                     </div>
-                    <div className="text-3xl font-bold text-purple-700 dark:text-purple-300 mb-4">
+                    <div className="text-xl sm:text-2xl md:text-3xl font-bold text-purple-700 dark:text-purple-300 mb-4 break-words">
                       {formatMonths(results.timeToPayOff)}
                     </div>
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
-                        <div className="text-purple-600 dark:text-purple-400 font-medium">Total Interest</div>
-                        <div className="text-purple-800 dark:text-purple-200 font-semibold">
+                        <div className="text-xs sm:text-sm text-purple-600 dark:text-purple-400 font-medium">Total Interest</div>
+                        <div className="text-sm sm:text-base text-purple-800 dark:text-purple-200 font-semibold break-words">
                           £{results.totalInterest < 999999 ? results.totalInterest.toLocaleString() : "∞"}
                         </div>
                       </div>
                       <div>
-                        <div className="text-purple-600 dark:text-purple-400 font-medium">Total Amount</div>
-                        <div className="text-purple-800 dark:text-purple-200 font-semibold">
+                        <div className="text-xs sm:text-sm text-purple-600 dark:text-purple-400 font-medium">Total Amount</div>
+                        <div className="text-sm sm:text-base text-purple-800 dark:text-purple-200 font-semibold break-words">
                           £{results.totalAmount < 999999 ? results.totalAmount.toLocaleString() : "∞"}
                         </div>
                       </div>

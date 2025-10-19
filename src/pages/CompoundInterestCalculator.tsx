@@ -303,23 +303,23 @@ const CompoundInterestCalculator = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div className="text-center p-4 bg-primary/10 rounded-lg">
-                      <div className="text-xl font-bold text-primary">
+                    <div className="text-center p-3 sm:p-4 bg-primary/10 rounded-lg">
+                      <div className="text-base sm:text-lg md:text-xl font-bold text-primary break-words">
                         £{results.finalBalance.toLocaleString()}
                       </div>
-                      <div className="text-sm text-muted-foreground">Final Balance</div>
+                      <div className="text-xs sm:text-sm text-muted-foreground">Final Balance</div>
                     </div>
-                    <div className="text-center p-4 bg-accent/10 rounded-lg">
-                      <div className="text-xl font-bold text-accent">
+                    <div className="text-center p-3 sm:p-4 bg-accent/10 rounded-lg">
+                      <div className="text-base sm:text-lg md:text-xl font-bold text-accent break-words">
                         £{results.totalContributions.toLocaleString()}
                       </div>
-                      <div className="text-sm text-muted-foreground">Total Contributions</div>
+                      <div className="text-xs sm:text-sm text-muted-foreground">Total Contributions</div>
                     </div>
-                    <div className="text-center p-4 bg-green-500/10 rounded-lg">
-                      <div className="text-xl font-bold text-green-500">
+                    <div className="text-center p-3 sm:p-4 bg-green-500/10 rounded-lg">
+                      <div className="text-base sm:text-lg md:text-xl font-bold text-green-500 break-words">
                         £{results.totalInterest.toLocaleString()}
                       </div>
-                      <div className="text-sm text-muted-foreground">Interest Earned</div>
+                      <div className="text-xs sm:text-sm text-muted-foreground">Interest Earned</div>
                     </div>
                   </div>
 

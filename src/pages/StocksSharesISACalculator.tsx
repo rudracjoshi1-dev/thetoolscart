@@ -348,29 +348,29 @@ const StocksSharesISACalculator = () => {
               {/* Summary Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/20 dark:to-green-900/20 border-green-200 dark:border-green-800">
-                  <CardContent className="p-4 text-center">
-                    <div className="text-2xl font-bold text-green-700 dark:text-green-300">
+                  <CardContent className="p-3 sm:p-4 text-center">
+                    <div className="text-lg sm:text-xl md:text-2xl font-bold text-green-700 dark:text-green-300 break-words">
                       £{results.totalInvested.toLocaleString()}
                     </div>
-                    <div className="text-sm text-green-600 dark:text-green-400">Total Invested</div>
+                    <div className="text-xs sm:text-sm text-green-600 dark:text-green-400">Total Invested</div>
                   </CardContent>
                 </Card>
 
                 <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950/20 dark:to-blue-900/20 border-blue-200 dark:border-blue-800">
-                  <CardContent className="p-4 text-center">
-                    <div className="text-2xl font-bold text-blue-700 dark:text-blue-300">
+                  <CardContent className="p-3 sm:p-4 text-center">
+                    <div className="text-lg sm:text-xl md:text-2xl font-bold text-blue-700 dark:text-blue-300 break-words">
                       £{results.totalReturn.toLocaleString()}
                     </div>
-                    <div className="text-sm text-blue-600 dark:text-blue-400">Investment Growth</div>
+                    <div className="text-xs sm:text-sm text-blue-600 dark:text-blue-400">Investment Growth</div>
                   </CardContent>
                 </Card>
 
-                <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/20 dark:to-purple-900/20 border-purple-200 dark:border-purple-800">
-                  <CardContent className="p-4 text-center">
-                    <div className="text-2xl font-bold text-purple-700 dark:text-purple-300">
+                <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/20 dark:to-purple-900/20 border-purple-200 dark:border-purple-808">
+                  <CardContent className="p-3 sm:p-4 text-center">
+                    <div className="text-lg sm:text-xl md:text-2xl font-bold text-purple-700 dark:text-purple-300 break-words">
                       £{results.finalValue.toLocaleString()}
                     </div>
-                    <div className="text-sm text-purple-600 dark:text-purple-400">Final Value</div>
+                    <div className="text-xs sm:text-sm text-purple-600 dark:text-purple-400">Final Value</div>
                   </CardContent>
                 </Card>
               </div>
