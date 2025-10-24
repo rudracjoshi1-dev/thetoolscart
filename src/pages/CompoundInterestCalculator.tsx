@@ -201,19 +201,42 @@ const CompoundInterestCalculator = () => {
 
   const chartOptions = {
     responsive: true,
+    maintainAspectRatio: true,
     plugins: {
       legend: {
-        position: 'top' as const,
+        position: 'bottom' as const,
+        labels: {
+          boxWidth: 12,
+          padding: 10,
+          font: {
+            size: 11,
+          },
+        },
       },
       title: {
         display: true,
         text: 'Investment Growth Over Time',
+        font: {
+          size: 14,
+        },
       },
     },
     scales: {
+      x: {
+        ticks: {
+          font: {
+            size: 10,
+          },
+          maxRotation: 45,
+          minRotation: 45,
+        },
+      },
       y: {
         beginAtZero: true,
         ticks: {
+          font: {
+            size: 11,
+          },
           callback: function(value: any) {
             return '£' + value.toLocaleString();
           }
@@ -348,6 +371,120 @@ const CompoundInterestCalculator = () => {
               </Card>
             </div>
 
+            {isComparing && (
+              <div className="space-y-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <PoundSterling className="h-5 w-5" />
+                      Scenario 2 - Investment Details
+                    </CardTitle>
+                    <CardDescription>
+                      Enter comparison investment parameters
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="initialDeposit2">Initial Deposit</Label>
+                      <Input
+                        id="initialDeposit2"
+                        type="number"
+                        value={initialDeposit2}
+                        onChange={(e) => setInitialDeposit2(e.target.value)}
+                        placeholder="10000"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="monthlyContribution2">Monthly Contribution</Label>
+                      <Input
+                        id="monthlyContribution2"
+                        type="number"
+                        value={monthlyContribution2}
+                        onChange={(e) => setMonthlyContribution2(e.target.value)}
+                        placeholder="500"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="annualInterestRate2">Annual Interest Rate (%)</Label>
+                      <Input
+                        id="annualInterestRate2"
+                        type="number"
+                        step="0.1"
+                        value={annualInterestRate2}
+                        onChange={(e) => setAnnualInterestRate2(e.target.value)}
+                        placeholder="7"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="years2">Investment Period (Years)</Label>
+                      <Input
+                        id="years2"
+                        type="number"
+                        value={years2}
+                        onChange={(e) => setYears2(e.target.value)}
+                        placeholder="20"
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Target className="h-5 w-5" />
+                      Scenario 2 - Results Summary
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div className="text-center p-3 sm:p-4 bg-green-500/10 rounded-lg">
+                        <div className="text-base sm:text-lg md:text-xl font-bold break-words" style={{color: 'hsl(142, 71%, 45%)'}}>
+                          £{results2.finalBalance.toLocaleString()}
+                        </div>
+                        <div className="text-xs sm:text-sm text-muted-foreground">Final Balance</div>
+                      </div>
+                      <div className="text-center p-3 sm:p-4 bg-orange-500/10 rounded-lg">
+                        <div className="text-base sm:text-lg md:text-xl font-bold break-words" style={{color: 'hsl(25, 95%, 53%)'}}>
+                          £{results2.totalContributions.toLocaleString()}
+                        </div>
+                        <div className="text-xs sm:text-sm text-muted-foreground">Total Contributions</div>
+                      </div>
+                      <div className="text-center p-3 sm:p-4 bg-emerald-500/10 rounded-lg">
+                        <div className="text-base sm:text-lg md:text-xl font-bold text-emerald-500 break-words">
+                          £{results2.totalInterest.toLocaleString()}
+                        </div>
+                        <div className="text-xs sm:text-sm text-muted-foreground">Interest Earned</div>
+                      </div>
+                    </div>
+
+                    <div className="mt-6 space-y-2">
+                      <div className="flex justify-between">
+                        <span>Return on Investment:</span>
+                        <span className="font-semibold text-emerald-500">
+                          {results2.totalContributions > 0 
+                            ? ((results2.totalInterest / results2.totalContributions) * 100).toFixed(1)
+                            : 0
+                          }%
+                        </span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Total Growth:</span>
+                        <span className="font-semibold">
+                          {results2.totalContributions > 0 
+                            ? ((results2.finalBalance / results2.totalContributions) * 100).toFixed(1)
+                            : 0
+                          }%
+                        </span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
+
             <div>
               <Card className="relative">
                 <MaximizeChart title="Growth Chart">
@@ -364,8 +501,8 @@ const CompoundInterestCalculator = () => {
                     Visualize your investment growth over time
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="h-96">
+                <CardContent className="p-4 sm:p-6">
+                  <div className="h-64 sm:h-72 md:h-80 lg:h-96">
                     <Line data={chartData} options={chartOptions} />
                   </div>
                 </CardContent>
