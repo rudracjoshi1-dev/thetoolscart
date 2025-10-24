@@ -93,6 +93,7 @@ export const RelatedTools = ({ currentPath, category }: RelatedToolsProps) => {
             <Link
               key={tool.path}
               to={tool.path}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="group block p-4 rounded-lg border border-border hover:border-primary transition-all hover:shadow-md bg-card"
             >
               <div className="flex items-start gap-3">
