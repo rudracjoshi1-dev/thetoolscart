@@ -329,19 +329,19 @@ const CompoundInterestCalculator = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div className="text-center p-3 sm:p-4 bg-primary/10 rounded-lg">
                       <div className="text-base sm:text-lg md:text-xl font-bold text-primary break-words">
-                        £{results.finalBalance.toLocaleString()}
+                        £{results.finalBalance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                       </div>
                       <div className="text-xs sm:text-sm text-muted-foreground">Final Balance</div>
                     </div>
                     <div className="text-center p-3 sm:p-4 bg-accent/10 rounded-lg">
                       <div className="text-base sm:text-lg md:text-xl font-bold text-accent break-words">
-                        £{results.totalContributions.toLocaleString()}
+                        £{results.totalContributions.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                       </div>
                       <div className="text-xs sm:text-sm text-muted-foreground">Total Contributions</div>
                     </div>
                     <div className="text-center p-3 sm:p-4 bg-green-500/10 rounded-lg">
                       <div className="text-base sm:text-lg md:text-xl font-bold text-green-500 break-words">
-                        £{results.totalInterest.toLocaleString()}
+                        £{results.totalInterest.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                       </div>
                       <div className="text-xs sm:text-sm text-muted-foreground">Interest Earned</div>
                     </div>
@@ -442,19 +442,19 @@ const CompoundInterestCalculator = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                       <div className="text-center p-3 sm:p-4 bg-green-500/10 rounded-lg">
                         <div className="text-base sm:text-lg md:text-xl font-bold break-words" style={{color: 'hsl(142, 71%, 45%)'}}>
-                          £{results2.finalBalance.toLocaleString()}
+                          £{results2.finalBalance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                         </div>
                         <div className="text-xs sm:text-sm text-muted-foreground">Final Balance</div>
                       </div>
                       <div className="text-center p-3 sm:p-4 bg-orange-500/10 rounded-lg">
                         <div className="text-base sm:text-lg md:text-xl font-bold break-words" style={{color: 'hsl(25, 95%, 53%)'}}>
-                          £{results2.totalContributions.toLocaleString()}
+                          £{results2.totalContributions.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                         </div>
                         <div className="text-xs sm:text-sm text-muted-foreground">Total Contributions</div>
                       </div>
                       <div className="text-center p-3 sm:p-4 bg-emerald-500/10 rounded-lg">
                         <div className="text-base sm:text-lg md:text-xl font-bold text-emerald-500 break-words">
-                          £{results2.totalInterest.toLocaleString()}
+                          £{results2.totalInterest.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                         </div>
                         <div className="text-xs sm:text-sm text-muted-foreground">Interest Earned</div>
                       </div>
@@ -510,44 +510,86 @@ const CompoundInterestCalculator = () => {
             </div>
           </div>
 
-          {/* Yearly Breakdown Table */}
-          <Card className="mt-8">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Calendar className="h-5 w-5" />
-                Year-by-Year Breakdown
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b">
-                      <th className="text-left p-2">Year</th>
-                      <th className="text-right p-2">Balance</th>
-                      <th className="text-right p-2">Contributions</th>
-                      <th className="text-right p-2">Interest</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {results.yearlyData.slice(0, 10).map((data) => (
-                      <tr key={data.year} className="border-b">
-                        <td className="p-2">{data.year}</td>
-                        <td className="text-right p-2">£{data.balance.toLocaleString()}</td>
-                        <td className="text-right p-2">£{data.contributions.toLocaleString()}</td>
-                        <td className="text-right p-2 text-green-500">£{data.interest.toLocaleString()}</td>
+          {/* Yearly Breakdown Tables */}
+          <div className={`grid grid-cols-1 ${isComparing ? 'lg:grid-cols-2' : ''} gap-8 mt-8`}>
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Calendar className="h-5 w-5" />
+                  {isComparing ? 'Scenario 1 - ' : ''}Year-by-Year Breakdown
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b">
+                        <th className="text-left p-2">Year</th>
+                        <th className="text-right p-2">Balance</th>
+                        <th className="text-right p-2">Contributions</th>
+                        <th className="text-right p-2">Interest</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              {results.yearlyData.length > 10 && (
-                <p className="text-sm text-muted-foreground mt-4 text-center">
-                  Showing first 10 years. Full breakdown available in the chart above.
-                </p>
-              )}
-            </CardContent>
-          </Card>
+                    </thead>
+                    <tbody>
+                      {results.yearlyData.slice(0, 10).map((data) => (
+                        <tr key={data.year} className="border-b">
+                          <td className="p-2">{data.year}</td>
+                          <td className="text-right p-2">£{data.balance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                          <td className="text-right p-2">£{data.contributions.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                          <td className="text-right p-2 text-green-500">£{data.interest.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {results.yearlyData.length > 10 && (
+                  <p className="text-sm text-muted-foreground mt-4 text-center">
+                    Showing first 10 years. Full breakdown available in the chart above.
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+
+            {isComparing && results2 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Calendar className="h-5 w-5" />
+                    Scenario 2 - Year-by-Year Breakdown
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="border-b">
+                          <th className="text-left p-2">Year</th>
+                          <th className="text-right p-2">Balance</th>
+                          <th className="text-right p-2">Contributions</th>
+                          <th className="text-right p-2">Interest</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {results2.yearlyData.slice(0, 10).map((data) => (
+                          <tr key={data.year} className="border-b">
+                            <td className="p-2">{data.year}</td>
+                            <td className="text-right p-2">£{data.balance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                            <td className="text-right p-2">£{data.contributions.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                            <td className="text-right p-2 text-emerald-500">£{data.interest.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  {results2.yearlyData.length > 10 && (
+                    <p className="text-sm text-muted-foreground mt-4 text-center">
+                      Showing first 10 years. Full breakdown available in the chart above.
+                    </p>
+                  )}
+                </CardContent>
+              </Card>
+            )}
+          </div>
         </div>
 
           {/* Educational Content */}
