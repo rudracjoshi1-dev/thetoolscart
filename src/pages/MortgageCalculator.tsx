@@ -202,6 +202,44 @@ const MortgageCalculator = () => {
     },
   };
 
+  const barChartOptions = {
+    responsive: true,
+    maintainAspectRatio: true,
+    plugins: {
+      legend: {
+        position: 'bottom' as const,
+        labels: {
+          boxWidth: 12,
+          padding: 10,
+          font: {
+            size: 11,
+          },
+        },
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          font: {
+            size: 10,
+          },
+          maxRotation: 45,
+          minRotation: 45,
+        },
+      },
+      y: {
+        ticks: {
+          font: {
+            size: 11,
+          },
+          callback: function(value: any) {
+            return '£' + value.toLocaleString();
+          },
+        },
+      },
+    },
+  };
+
   return (
     <Layout>
       <div className="container py-8">
@@ -476,7 +514,7 @@ const MortgageCalculator = () => {
                 <Card className="relative">
                   <MaximizeChart title="Payment Comparison">
                     <div className="h-full">
-                      <Bar data={barData} options={chartOptions} />
+                      <Bar data={barData} options={barChartOptions} />
                     </div>
                   </MaximizeChart>
                   <CardHeader>
@@ -486,8 +524,8 @@ const MortgageCalculator = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-4 sm:p-6">
-                    <div className="h-48 sm:h-56 md:h-64">
-                      <Bar data={barData} options={chartOptions} />
+                    <div className="h-64 sm:h-72 md:h-80">
+                      <Bar data={barData} options={barChartOptions} />
                     </div>
                   </CardContent>
                 </Card>
