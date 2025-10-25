@@ -23,12 +23,12 @@ export const MaximizeChart = ({ title, children }: MaximizeChartProps) => {
       </Button>
 
       <Dialog open={isMaximized} onOpenChange={setIsMaximized}>
-        <DialogContent className="max-w-7xl h-[90vh] p-6">
-          <DialogHeader>
-            <DialogTitle>{title}</DialogTitle>
+        <DialogContent className="max-w-7xl h-[90vh] p-2 sm:p-6 w-[95vw]">
+          <DialogHeader className="px-2 sm:px-0">
+            <DialogTitle className="text-base sm:text-lg">{title}</DialogTitle>
           </DialogHeader>
-          <div className="flex-1 h-full pb-6 flex items-center justify-center">
-            <div className="w-full h-full max-h-[calc(90vh-8rem)]">
+          <div className="flex-1 h-full pb-2 sm:pb-6 flex items-center justify-center">
+            <div className="w-full h-full max-h-[calc(90vh-6rem)] sm:max-h-[calc(90vh-8rem)]">
               {children}
             </div>
           </div>
