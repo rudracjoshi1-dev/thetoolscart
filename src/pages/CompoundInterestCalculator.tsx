@@ -202,47 +202,85 @@ const CompoundInterestCalculator = () => {
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: true,
+    aspectRatio: window.innerWidth < 768 ? 1 : 2,
     plugins: {
       legend: {
         position: 'bottom' as const,
         labels: {
-          boxWidth: 12,
-          padding: 10,
+          padding: window.innerWidth < 768 ? 10 : 15,
           font: {
-            size: 11,
+            size: window.innerWidth < 768 ? 11 : 12,
           },
+          boxWidth: window.innerWidth < 768 ? 30 : 40,
+          boxHeight: window.innerWidth < 768 ? 12 : 14,
+          usePointStyle: false
         },
       },
       title: {
         display: true,
         text: 'Investment Growth Over Time',
         font: {
-          size: 14,
+          size: window.innerWidth < 768 ? 14 : 16,
         },
+        padding: {
+          top: 10,
+          bottom: window.innerWidth < 768 ? 15 : 20
+        }
       },
+      tooltip: {
+        padding: window.innerWidth < 768 ? 8 : 12,
+        titleFont: {
+          size: window.innerWidth < 768 ? 12 : 14
+        },
+        bodyFont: {
+          size: window.innerWidth < 768 ? 11 : 13
+        }
+      }
     },
     scales: {
       x: {
         ticks: {
           font: {
-            size: 10,
+            size: window.innerWidth < 768 ? 10 : 12,
           },
           maxRotation: 45,
           minRotation: 45,
         },
+        grid: {
+          display: false
+        }
       },
       y: {
         beginAtZero: true,
         ticks: {
           font: {
-            size: 11,
+            size: window.innerWidth < 768 ? 10 : 12,
           },
+          padding: window.innerWidth < 768 ? 4 : 8,
           callback: function(value: any) {
+            if (window.innerWidth < 768) {
+              // Shorter format for mobile
+              if (value >= 1000) {
+                return '£' + (value / 1000).toFixed(0) + 'k';
+              }
+              return '£' + value;
+            }
             return '£' + value.toLocaleString();
           }
+        },
+        grid: {
+          color: 'rgba(0, 0, 0, 0.05)'
         }
       }
     },
+    layout: {
+      padding: {
+        left: window.innerWidth < 768 ? 5 : 10,
+        right: window.innerWidth < 768 ? 10 : 20,
+        top: window.innerWidth < 768 ? 5 : 10,
+        bottom: window.innerWidth < 768 ? 5 : 10
+      }
+    }
   };
 
   return (
@@ -501,8 +539,8 @@ const CompoundInterestCalculator = () => {
                     Visualize your investment growth over time
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="p-4 sm:p-6">
-                  <div className="h-64 sm:h-72 md:h-80 lg:h-96">
+                <CardContent className="p-2 sm:p-6">
+                  <div className="h-[400px] sm:h-80 w-full">
                     <Line data={chartData} options={chartOptions} />
                   </div>
                 </CardContent>
