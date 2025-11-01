@@ -102,7 +102,7 @@ const PasswordGenerator = () => {
         title="Password Generator | Free Secure Password Generator Online"
         description="Generate strong, secure passwords instantly. Free online password generator with customizable length and character options for maximum security."
         keywords="password generator, secure password, random password, strong password generator, password creator"
-        canonical="https://toolkit-pro.lovable.app/free-secure-password-generator-online"
+        canonical="https://Financialtoolz.lovable.app/free-secure-password-generator-online"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
