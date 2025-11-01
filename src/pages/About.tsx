@@ -11,7 +11,7 @@ const About = () => {
         title="About Us | Free Financial Calculators & Tools Mission"
         description="Learn about our mission to provide free, accurate UK financial calculators and tools to help you make informed financial decisions and plan your future."
         keywords="about financial tools, financial calculator mission, UK financial planning, financial education tools"
-        canonical="https://toolkit-pro.lovable.app/about"
+        canonical="https://Financialtoolz.lovable.app/about"
       />
       
       <div className="min-h-screen bg-gradient-to-br from-background to-secondary/20">
