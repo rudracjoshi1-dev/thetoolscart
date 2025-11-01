@@ -303,7 +303,7 @@ const CompoundInterestCalculator = () => {
         title="Compound Interest Calculator | Free Online Financial Calculator"
         description="Calculate compound interest on your investments with monthly contributions. See how your money grows over time with our free UK compound interest calculator and visual charts."
         keywords="compound interest calculator, investment calculator, savings growth, compound interest UK, investment growth calculator"
-        canonical="https://toolkit-pro.lovable.app/uk-compound-interest-calculator-online"
+        canonical="https://Financialtoolz.lovable.app/uk-compound-interest-calculator-online"
         structuredData={structuredData}
       />
       <div className="container py-8">
