@@ -7,9 +7,10 @@ const TermsOfUse = () => {
   return (
     <Layout>
       <SEO
-        title="Terms of Use - Financial Tools | Important Legal Information"
+        title="Terms of Use - Financialtoolz.com | Important Legal Information"
         description="Read our terms of use and disclaimer. Our financial calculators provide information only and are not financial advice."
         keywords="terms of use, disclaimer, financial information, legal notice"
+        canonical="https://Financialtoolz.lovable.app/terms"
       />
       
       <div className="min-h-screen bg-gradient-to-br from-background to-secondary/20">
