@@ -196,7 +196,7 @@ const CreditCardCalculator = () => {
         title="Credit Card Repayment Calculator | Free UK Debt Payoff Calculator"
         description="Calculate how long it will take to pay off your credit card debt and how much interest you'll pay. Free UK credit card calculator with payoff strategies."
         keywords="credit card calculator UK, debt payoff calculator, credit card repayment, debt calculator UK, credit card interest calculator"
-        canonical="https://toolkit-pro.lovable.app/uk-credit-card-repayment-calculator"
+        canonical="https://Financialtoolz.lovable.app/uk-credit-card-repayment-calculator"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
