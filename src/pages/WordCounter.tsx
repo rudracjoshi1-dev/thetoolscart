@@ -62,7 +62,7 @@ const WordCounter = () => {
         title="Word Counter | Free Online Word Counter Tool"
         description="Count words, characters, sentences, and paragraphs instantly. Free online word counter tool with reading time estimates and detailed text statistics."
         keywords="word counter, character counter, text counter, word count tool, sentence counter, paragraph counter"
-        canonical="https://toolkit-pro.lovable.app/free-online-word-counter-tool"
+        canonical="https://Financialtoolz.lovable.app/free-online-word-counter-tool"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
