@@ -98,7 +98,7 @@ const Index = () => {
         title="Free Financial Calculators & Tools | UK Mortgage, Savings & Investment Calculators"
         description="Free UK financial calculators for mortgages, savings, compound interest, ISAs, credit cards, and student loans. Professional tools for smart financial planning."
         keywords="financial calculator UK, mortgage calculator, savings calculator, compound interest calculator, ISA calculator, credit card calculator, student loan calculator"
-        canonical="https://toolkit-pro.lovable.app/"
+        canonical="https://Financialtoolz.lovable.app/"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "WebSite",
