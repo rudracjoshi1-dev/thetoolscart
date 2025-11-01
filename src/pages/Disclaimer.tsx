@@ -10,7 +10,7 @@ const Disclaimer = () => {
         title="Disclaimer - Financial Calculator Terms and Conditions"
         description="Important disclaimer and legal information for our financial calculators and tools. Understand limitations and proper usage guidelines."
         keywords="financial calculator disclaimer, terms conditions, investment calculator limitations, financial advice disclaimer"
-        canonical="https://toolkit-pro.lovable.app/disclaimer"
+        canonical="https://Financialtoolz.lovable.app/disclaimer"
       />
       
       <div className="container py-12">
