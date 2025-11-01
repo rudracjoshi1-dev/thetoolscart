@@ -7,10 +7,10 @@ const PrivacyPolicy = () => {
   return (
     <Layout>
       <SEO 
-        title="Privacy Policy - ToolKit Pro | Data Protection & Privacy"
+        title="Privacy Policy - Financialtoolz.com| Data Protection & Privacy"
         description="Read our privacy policy to understand how we protect your data and respect your privacy while using our free online tools."
         keywords="privacy policy, data protection, privacy, GDPR, user privacy"
-        canonical="https://toolkit-pro.lovable.app/privacy"
+        canonical="https://Financialtoolz.lovable.app/privacy"
       />
       <div className="container py-8">
         <div className="max-w-4xl mx-auto">
