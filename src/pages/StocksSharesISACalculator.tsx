@@ -291,7 +291,7 @@ const StocksSharesISACalculator = () => {
         title="Stocks & Shares ISA Calculator | Free UK Investment Growth Calculator"
         description="Calculate your Stocks & Shares ISA potential returns with our free UK calculator. See how your investments could grow tax-free over time with compound interest."
         keywords="stocks shares ISA calculator UK, UK ISA calculator, investment calculator, tax-free investing UK, ISA growth calculator"
-        canonical="https://toolkit-pro.lovable.app/uk-stocks-and-shares-isa-calculator"
+        canonical="https://Financialtooz.lovable.app/uk-stocks-and-shares-isa-calculator"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
