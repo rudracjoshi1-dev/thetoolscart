@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { FileText, Clock, Eye, Mic } from "lucide-react";
@@ -57,10 +58,28 @@ const WordCounter = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Word Counter | Free Online Word Counter Tool"
+        description="Count words, characters, sentences, and paragraphs instantly. Free online word counter tool with reading time estimates and detailed text statistics."
+        keywords="word counter, character counter, text counter, word count tool, sentence counter, paragraph counter"
+        canonical="https://toolkit-pro.lovable.app/free-online-word-counter-tool"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Word Counter Tool",
+          "applicationCategory": "UtilitiesApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "GBP"
+          },
+          "description": "Real-time word, character, sentence, and paragraph counter with reading and speaking time estimates."
+        }}
+      />
       <div className="container py-8">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">Word Counter</h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">Word Counter Tool</h1>
             <p className="text-lg text-muted-foreground">
               Count words, characters, and get reading time estimates for your text.
             </p>
@@ -148,7 +167,7 @@ const WordCounter = () => {
           {/* What is Word Counter */}
           <Card className="mt-12">
             <CardHeader>
-              <CardTitle>What is a Word Counter Tool?</CardTitle>
+              <h2 className="text-2xl font-bold">What is a Word Counter Tool?</h2>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm leading-relaxed">
@@ -187,7 +206,7 @@ const WordCounter = () => {
           {/* How to Use */}
           <Card className="mt-8">
             <CardHeader>
-              <CardTitle>How to Use the Word Counter</CardTitle>
+              <h2 className="text-2xl font-bold">How to Use the Word Counter</h2>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -217,7 +236,7 @@ const WordCounter = () => {
           {/* FAQ Section */}
           <Card className="mt-8">
             <CardHeader>
-              <CardTitle>Frequently Asked Questions</CardTitle>
+              <h2 className="text-2xl font-bold">Frequently Asked Questions</h2>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-4">

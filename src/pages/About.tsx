@@ -8,9 +8,10 @@ const About = () => {
   return (
     <Layout>
       <SEO
-        title="About Us - Financial Tools & Calculators | Our Mission"
-        description="Learn about our mission to provide free, accurate financial calculators and tools to help you make informed financial decisions."
-        keywords="about us, financial tools, mission, financial education"
+        title="About Us | Free Financial Calculators & Tools Mission"
+        description="Learn about our mission to provide free, accurate UK financial calculators and tools to help you make informed financial decisions and plan your future."
+        keywords="about financial tools, financial calculator mission, UK financial planning, financial education tools"
+        canonical="https://toolkit-pro.lovable.app/about"
       />
       
       <div className="min-h-screen bg-gradient-to-br from-background to-secondary/20">
@@ -51,7 +52,7 @@ const About = () => {
             </Card>
 
             {/* What We Offer */}
-            <div className="mb-12">
+            <section className="mb-12">
               <h2 className="text-2xl font-bold mb-6 text-center">What We Offer</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <Card>
@@ -99,7 +100,7 @@ const About = () => {
                   </CardContent>
                 </Card>
               </div>
-            </div>
+            </section>
 
             {/* Our Tools */}
             <Card className="mb-8">
@@ -122,7 +123,7 @@ const About = () => {
             </Card>
 
             {/* Our Values */}
-            <div className="mb-12">
+            <section className="mb-12">
               <h2 className="text-2xl font-bold mb-6 text-center">Our Values</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <Card>
@@ -170,7 +171,7 @@ const About = () => {
                   </CardContent>
                 </Card>
               </div>
-            </div>
+            </section>
 
             {/* Disclaimer */}
             <Card className="border-orange-200 bg-orange-50/50 dark:border-orange-800 dark:bg-orange-950/50">

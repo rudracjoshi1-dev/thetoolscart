@@ -202,10 +202,22 @@ const StudentLoanCalculator = () => {
   return (
     <Layout>
       <SEO 
-        title="Student Loan Repayment Calculator - UK Plans 1, 2, 4, 5 & Postgraduate"
-        description="Calculate your UK student loan repayments with our comprehensive calculator. Supports all loan plans with detailed projections and charts."
-        keywords="student loan calculator, UK student loan, repayment calculator, Plan 1, Plan 2, loan repayment"
+        title="Student Loan Repayment Calculator | UK Plans 1, 2, 4, 5 & Postgraduate"
+        description="Calculate UK student loan repayments with our comprehensive calculator. Supports all loan plans including Plan 1, 2, 4, 5, and Postgraduate with detailed projections."
+        keywords="student loan calculator UK, UK student loan repayment, student loan Plan 1, student loan Plan 2, postgraduate loan calculator"
         canonical="https://toolkit-pro.lovable.app/uk-student-loan-repayment-calculator"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "UK Student Loan Repayment Calculator",
+          "applicationCategory": "FinanceApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "GBP"
+          },
+          "description": "Calculate UK student loan repayments for all plans including Plan 1, 2, 4, 5, and Postgraduate loans with salary growth projections."
+        }}
       />
       
       <div className="container py-12">

@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -97,12 +98,30 @@ const PasswordGenerator = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Password Generator | Free Secure Password Generator Online"
+        description="Generate strong, secure passwords instantly. Free online password generator with customizable length and character options for maximum security."
+        keywords="password generator, secure password, random password, strong password generator, password creator"
+        canonical="https://toolkit-pro.lovable.app/free-secure-password-generator-online"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Secure Password Generator",
+          "applicationCategory": "UtilitiesApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "GBP"
+          },
+          "description": "Generate cryptographically secure random passwords with customizable length and character types."
+        }}
+      />
       <div className="container py-8">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">Password Generator</h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">Secure Password Generator</h1>
             <p className="text-lg text-muted-foreground">
-              Generate secure passwords with customizable settings.
+              Generate secure passwords with customizable options.
             </p>
           </div>
 
@@ -243,7 +262,7 @@ const PasswordGenerator = () => {
           {/* What is a Password Generator */}
           <Card className="mt-12">
             <CardHeader>
-              <CardTitle>What is a Password Generator?</CardTitle>
+              <h2 className="text-2xl font-bold">What is a Password Generator?</h2>
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm leading-relaxed">
@@ -282,7 +301,7 @@ const PasswordGenerator = () => {
           {/* How to Use */}
           <Card className="mt-8">
             <CardHeader>
-              <CardTitle>How to Use the Password Generator</CardTitle>
+              <h2 className="text-2xl font-bold">How to Use the Password Generator</h2>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -313,7 +332,7 @@ const PasswordGenerator = () => {
           {/* FAQ Section */}
           <Card className="mt-8">
             <CardHeader>
-              <CardTitle>Frequently Asked Questions</CardTitle>
+              <h2 className="text-2xl font-bold">Frequently Asked Questions</h2>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-4">

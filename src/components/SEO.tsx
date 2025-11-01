@@ -5,9 +5,11 @@ interface SEOProps {
   description: string;
   keywords?: string;
   canonical?: string;
+  robots?: string;
+  structuredData?: object;
 }
 
-const SEO = ({ title, description, keywords, canonical }: SEOProps) => {
+const SEO = ({ title, description, keywords, canonical, robots = "index, follow", structuredData }: SEOProps) => {
   useEffect(() => {
     // Set title
     document.title = title;
@@ -85,7 +87,31 @@ const SEO = ({ title, description, keywords, canonical }: SEOProps) => {
     setTwitterTag('twitter:card', 'summary');
     setTwitterTag('twitter:title', title);
     setTwitterTag('twitter:description', description);
-  }, [title, description, keywords, canonical]);
+
+    // Set robots meta tag
+    const metaRobots = document.querySelector('meta[name="robots"]');
+    if (metaRobots) {
+      metaRobots.setAttribute('content', robots);
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'robots';
+      meta.content = robots;
+      document.head.appendChild(meta);
+    }
+
+    // Add structured data (JSON-LD)
+    if (structuredData) {
+      const existingScript = document.querySelector('script[type="application/ld+json"]');
+      if (existingScript) {
+        existingScript.textContent = JSON.stringify(structuredData);
+      } else {
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(structuredData);
+        document.head.appendChild(script);
+      }
+    }
+  }, [title, description, keywords, canonical, robots, structuredData]);
 
   return null;
 };

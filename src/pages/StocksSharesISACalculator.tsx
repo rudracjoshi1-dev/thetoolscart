@@ -288,10 +288,22 @@ const StocksSharesISACalculator = () => {
   return (
     <Layout>
       <SEO 
-        title="Stocks & Shares ISA Calculator - Free UK Investment Growth Calculator"
+        title="Stocks & Shares ISA Calculator | Free UK Investment Growth Calculator"
         description="Calculate your Stocks & Shares ISA potential returns with our free UK calculator. See how your investments could grow tax-free over time with compound interest."
-        keywords="stocks shares ISA calculator, UK ISA calculator, investment calculator, tax-free investing UK, ISA growth calculator"
-        canonical="https://toolkit-pro.lovable.app/stocks-shares-isa"
+        keywords="stocks shares ISA calculator UK, UK ISA calculator, investment calculator, tax-free investing UK, ISA growth calculator"
+        canonical="https://toolkit-pro.lovable.app/uk-stocks-and-shares-isa-calculator"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "UK Stocks & Shares ISA Calculator",
+          "applicationCategory": "FinanceApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "GBP"
+          },
+          "description": "Calculate tax-free investment growth in Stocks & Shares ISAs with compound interest projections and visual charts."
+        }}
       />
       
       <div className="container py-12">

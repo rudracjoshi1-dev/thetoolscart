@@ -193,10 +193,22 @@ const CreditCardCalculator = () => {
   return (
     <Layout>
       <SEO 
-        title="Credit Card Repayment Calculator - Free Debt Payoff Calculator"
+        title="Credit Card Repayment Calculator | Free UK Debt Payoff Calculator"
         description="Calculate how long it will take to pay off your credit card debt and how much interest you'll pay. Free UK credit card calculator with payoff strategies."
-        keywords="credit card calculator, debt payoff calculator, credit card repayment, debt calculator, UK credit card calculator"
-        canonical="https://toolkit-pro.lovable.app/credit-card-calculator"
+        keywords="credit card calculator UK, debt payoff calculator, credit card repayment, debt calculator UK, credit card interest calculator"
+        canonical="https://toolkit-pro.lovable.app/uk-credit-card-repayment-calculator"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "UK Credit Card Repayment Calculator",
+          "applicationCategory": "FinanceApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "GBP"
+          },
+          "description": "Calculate credit card debt payoff time and interest. Compare repayment strategies with visual charts."
+        }}
       />
       
       <div className="container py-12">

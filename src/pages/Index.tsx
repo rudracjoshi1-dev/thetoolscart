@@ -95,9 +95,22 @@ const Index = () => {
   return (
     <Layout>
       <SEO
-        title="Financial Calculators & Tools | Professional Financial Planning"
-        description="Access professional financial calculators for savings, mortgages, investments, and credit cards. Plan your financial future with our free tools."
-        keywords="financial calculators, savings calculator, mortgage calculator, compound interest, investment planning, credit card calculator"
+        title="Free Financial Calculators & Tools | UK Mortgage, Savings & Investment Calculators"
+        description="Free UK financial calculators for mortgages, savings, compound interest, ISAs, credit cards, and student loans. Professional tools for smart financial planning."
+        keywords="financial calculator UK, mortgage calculator, savings calculator, compound interest calculator, ISA calculator, credit card calculator, student loan calculator"
+        canonical="https://toolkit-pro.lovable.app/"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "FinancialToolz",
+          "url": "https://toolkit-pro.lovable.app/",
+          "description": "Free UK financial calculators and professional tools for financial planning",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://toolkit-pro.lovable.app/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }}
       />
       
       <div className="min-h-screen bg-gradient-to-br from-background to-secondary/20">

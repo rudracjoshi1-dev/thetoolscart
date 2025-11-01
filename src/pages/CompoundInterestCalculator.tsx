@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -283,8 +284,28 @@ const CompoundInterestCalculator = () => {
     }
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Compound Interest Calculator",
+    "applicationCategory": "FinanceApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    },
+    "description": "Calculate compound interest on investments with monthly contributions. Free UK compound interest calculator with visual growth charts."
+  };
+
   return (
     <Layout>
+      <SEO
+        title="Compound Interest Calculator | Free Online Financial Calculator"
+        description="Calculate compound interest on your investments with monthly contributions. See how your money grows over time with our free UK compound interest calculator and visual charts."
+        keywords="compound interest calculator, investment calculator, savings growth, compound interest UK, investment growth calculator"
+        canonical="https://toolkit-pro.lovable.app/uk-compound-interest-calculator-online"
+        structuredData={structuredData}
+      />
       <div className="container py-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">

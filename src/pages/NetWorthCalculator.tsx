@@ -198,7 +198,18 @@ const NetWorthCalculator = () => {
         title="Net Worth Calculator - Track Your Financial Health | Free UK Calculator"
         description="Calculate your net worth by tracking assets and liabilities. Free UK net worth calculator with visual charts and financial health insights."
         keywords="net worth calculator, financial health, assets, liabilities, wealth tracker, UK calculator"
-        canonical="https://toolkit-pro.lovable.app/net-worth-calculator"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Net Worth Calculator",
+          "applicationCategory": "FinanceApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "GBP"
+          },
+          "description": "Calculate net worth by tracking assets and liabilities. Free UK calculator with visual breakdowns and financial insights."
+        }}
       />
       
       <div className="container py-12">

@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -286,12 +287,32 @@ const MortgageCalculator = () => {
     }
   };
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "UK Mortgage Calculator",
+    "applicationCategory": "FinanceApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    },
+    "description": "Calculate UK mortgage payments, interest rates, and amortization schedules. Free online mortgage calculator with payment breakdown charts."
+  };
+
   return (
     <Layout>
+      <SEO
+        title="Mortgage Calculator | Free Online UK Mortgage Payment Calculator"
+        description="Calculate monthly mortgage payments, total interest, and view amortization schedules. Free UK mortgage calculator with visual payment breakdown and comparison tools."
+        keywords="mortgage calculator UK, mortgage payment calculator, home loan calculator, UK mortgage rates, mortgage amortization"
+        canonical="https://toolkit-pro.lovable.app/uk-mortgage-payment-calculator-online"
+        structuredData={structuredData}
+      />
       <div className="container py-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">Mortgage Calculator</h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">UK Mortgage Calculator</h1>
             <p className="text-lg text-muted-foreground">
               Calculate your monthly mortgage payments and visualize the breakdown.
             </p>

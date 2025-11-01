@@ -274,9 +274,22 @@ const SavingsCalculator = () => {
   return (
     <Layout>
       <SEO
-        title="Savings Calculator - Plan Your Financial Future | Financial Tools"
-        description="Calculate how your savings could grow over time with compound interest. Plan your financial goals with our professional savings calculator."
-        keywords="savings calculator, compound interest, financial planning, savings growth, investment calculator"
+        title="Savings Calculator | Free Online UK Savings Interest Estimator"
+        description="Calculate savings growth with compound interest and monthly deposits. Free UK savings calculator shows how your money grows over time with visual charts."
+        keywords="savings calculator UK, savings interest calculator, compound savings, savings growth calculator, UK interest calculator"
+        canonical="https://toolkit-pro.lovable.app/uk-savings-calculator-interest-estimator"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "UK Savings Calculator",
+          "applicationCategory": "FinanceApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "GBP"
+          },
+          "description": "Calculate UK savings growth with compound interest. Track how monthly deposits and interest rates affect your savings over time."
+        }}
       />
       
       <div className="min-h-screen bg-gradient-to-br from-background to-secondary/20">
@@ -289,7 +302,7 @@ const SavingsCalculator = () => {
               </div>
             </div>
             <h1 className="text-4xl font-bold text-foreground mb-2">
-              Savings Calculator
+              UK Savings Calculator
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Plan your financial future by calculating how your savings could grow over time with compound interest
