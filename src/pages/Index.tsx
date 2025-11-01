@@ -103,11 +103,11 @@ const Index = () => {
           "@context": "https://schema.org",
           "@type": "WebSite",
           "name": "FinancialToolz",
-          "url": "https://toolkit-pro.lovable.app/",
+          "url": "https://Financialtoolz.lovable.app/",
           "description": "Free UK financial calculators and professional tools for financial planning",
           "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://toolkit-pro.lovable.app/?q={search_term_string}",
+            "target": "https://Financialtoolz.lovable.app/?q={search_term_string}",
             "query-input": "required name=search_term_string"
           }
         }}
