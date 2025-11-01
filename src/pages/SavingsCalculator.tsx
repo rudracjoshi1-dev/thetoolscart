@@ -277,7 +277,7 @@ const SavingsCalculator = () => {
         title="Savings Calculator | Free Online UK Savings Interest Estimator"
         description="Calculate savings growth with compound interest and monthly deposits. Free UK savings calculator shows how your money grows over time with visual charts."
         keywords="savings calculator UK, savings interest calculator, compound savings, savings growth calculator, UK interest calculator"
-        canonical="https://toolkit-pro.lovable.app/uk-savings-calculator-interest-estimator"
+        canonical="https://Financialtoolz.lovable.app/uk-savings-calculator-interest-estimator"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
