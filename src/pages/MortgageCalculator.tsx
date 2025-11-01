@@ -306,7 +306,7 @@ const MortgageCalculator = () => {
         title="Mortgage Calculator | Free Online UK Mortgage Payment Calculator"
         description="Calculate monthly mortgage payments, total interest, and view amortization schedules. Free UK mortgage calculator with visual payment breakdown and comparison tools."
         keywords="mortgage calculator UK, mortgage payment calculator, home loan calculator, UK mortgage rates, mortgage amortization"
-        canonical="https://toolkit-pro.lovable.app/uk-mortgage-payment-calculator-online"
+        canonical="https://Financialtoolz.lovable.app/uk-mortgage-payment-calculator-online"
         structuredData={structuredData}
       />
       <div className="container py-8">
