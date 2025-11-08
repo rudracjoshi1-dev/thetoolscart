@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -32,7 +32,17 @@ ChartJS.register(
 );
 
 const MortgageCalculator = () => {
+  const [isMobile, setIsMobile] = useState(false);
   const [isComparing, setIsComparing] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(typeof window !== 'undefined' && window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   // Scenario 1
   const [loanAmount, setLoanAmount] = useState("250000");
@@ -206,27 +216,27 @@ const MortgageCalculator = () => {
   const barChartOptions = {
     responsive: true,
     maintainAspectRatio: true,
-    aspectRatio: window.innerWidth < 768 ? 0.8 : 1.5,
+    aspectRatio: isMobile ? 0.8 : 1.5,
     plugins: {
       legend: {
         position: 'bottom' as const,
         labels: {
-          padding: window.innerWidth < 768 ? 10 : 15,
+          padding: isMobile ? 10 : 15,
           font: {
-            size: window.innerWidth < 768 ? 11 : 12,
+            size: isMobile ? 11 : 12,
           },
-          boxWidth: window.innerWidth < 768 ? 30 : 40,
-          boxHeight: window.innerWidth < 768 ? 12 : 14,
+          boxWidth: isMobile ? 30 : 40,
+          boxHeight: isMobile ? 12 : 14,
           usePointStyle: false
         },
       },
       tooltip: {
-        padding: window.innerWidth < 768 ? 8 : 12,
+        padding: isMobile ? 8 : 12,
         titleFont: {
-          size: window.innerWidth < 768 ? 12 : 14
+          size: isMobile ? 12 : 14
         },
         bodyFont: {
-          size: window.innerWidth < 768 ? 11 : 13
+          size: isMobile ? 11 : 13
         },
         callbacks: {
           label: function(context: any) {
@@ -246,7 +256,7 @@ const MortgageCalculator = () => {
       x: {
         ticks: {
           font: {
-            size: window.innerWidth < 768 ? 10 : 12,
+            size: isMobile ? 10 : 12,
           },
           maxRotation: 45,
           minRotation: 45,
@@ -258,11 +268,11 @@ const MortgageCalculator = () => {
       y: {
         ticks: {
           font: {
-            size: window.innerWidth < 768 ? 10 : 12,
+            size: isMobile ? 10 : 12,
           },
-          padding: window.innerWidth < 768 ? 4 : 8,
+          padding: isMobile ? 4 : 8,
           callback: function(value: any) {
-            if (window.innerWidth < 768) {
+            if (isMobile) {
               // Shorter format for mobile
               if (value >= 1000) {
                 return '£' + (value / 1000).toFixed(0) + 'k';
@@ -279,10 +289,10 @@ const MortgageCalculator = () => {
     },
     layout: {
       padding: {
-        left: window.innerWidth < 768 ? 5 : 10,
-        right: window.innerWidth < 768 ? 10 : 20,
-        top: window.innerWidth < 768 ? 5 : 10,
-        bottom: window.innerWidth < 768 ? 5 : 10
+        left: isMobile ? 5 : 10,
+        right: isMobile ? 10 : 20,
+        top: isMobile ? 5 : 10,
+        bottom: isMobile ? 5 : 10
       }
     }
   };

@@ -33,7 +33,17 @@ ChartJS.register(
 );
 
 const StocksSharesISACalculator = () => {
+  const [isMobile, setIsMobile] = useState(false);
   const [isComparing, setIsComparing] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(typeof window !== 'undefined' && window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   // Scenario 1
   const [initialInvestment, setInitialInvestment] = useState(0);
@@ -204,17 +214,17 @@ const StocksSharesISACalculator = () => {
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: true,
-    aspectRatio: window.innerWidth < 768 ? 1 : 2,
+    aspectRatio: isMobile ? 1 : 2,
     plugins: {
       legend: {
         position: 'bottom' as const,
         labels: {
-          padding: window.innerWidth < 768 ? 10 : 15,
+          padding: isMobile ? 10 : 15,
           font: {
-            size: window.innerWidth < 768 ? 11 : 12,
+            size: isMobile ? 11 : 12,
           },
-          boxWidth: window.innerWidth < 768 ? 30 : 40,
-          boxHeight: window.innerWidth < 768 ? 12 : 14,
+          boxWidth: isMobile ? 30 : 40,
+          boxHeight: isMobile ? 12 : 14,
           usePointStyle: false
         },
       },
@@ -222,20 +232,20 @@ const StocksSharesISACalculator = () => {
         display: true,
         text: 'ISA Growth Projection',
         font: {
-          size: window.innerWidth < 768 ? 14 : 16,
+          size: isMobile ? 14 : 16,
         },
         padding: {
           top: 10,
-          bottom: window.innerWidth < 768 ? 15 : 20
+          bottom: isMobile ? 15 : 20
         }
       },
       tooltip: {
-        padding: window.innerWidth < 768 ? 8 : 12,
+        padding: isMobile ? 8 : 12,
         titleFont: {
-          size: window.innerWidth < 768 ? 12 : 14
+          size: isMobile ? 12 : 14
         },
         bodyFont: {
-          size: window.innerWidth < 768 ? 11 : 13
+          size: isMobile ? 11 : 13
         }
       }
     },
@@ -243,7 +253,7 @@ const StocksSharesISACalculator = () => {
       x: {
         ticks: {
           font: {
-            size: window.innerWidth < 768 ? 10 : 12,
+            size: isMobile ? 10 : 12,
           },
           maxRotation: 45,
           minRotation: 45,
@@ -256,11 +266,11 @@ const StocksSharesISACalculator = () => {
         beginAtZero: true,
         ticks: {
           font: {
-            size: window.innerWidth < 768 ? 10 : 12,
+            size: isMobile ? 10 : 12,
           },
-          padding: window.innerWidth < 768 ? 4 : 8,
+          padding: isMobile ? 4 : 8,
           callback: function(value: any) {
-            if (window.innerWidth < 768) {
+            if (isMobile) {
               // Shorter format for mobile
               if (value >= 1000) {
                 return '£' + (value / 1000).toFixed(0) + 'k';
@@ -277,10 +287,10 @@ const StocksSharesISACalculator = () => {
     },
     layout: {
       padding: {
-        left: window.innerWidth < 768 ? 5 : 10,
-        right: window.innerWidth < 768 ? 10 : 20,
-        top: window.innerWidth < 768 ? 5 : 10,
-        bottom: window.innerWidth < 768 ? 5 : 10
+        left: isMobile ? 5 : 10,
+        right: isMobile ? 10 : 20,
+        top: isMobile ? 5 : 10,
+        bottom: isMobile ? 5 : 10
       }
     }
   };

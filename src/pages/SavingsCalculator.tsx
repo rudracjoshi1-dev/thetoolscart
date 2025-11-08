@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -34,7 +34,17 @@ ChartJS.register(
 );
 
 const SavingsCalculator = () => {
+  const [isMobile, setIsMobile] = useState(false);
   const [isComparing, setIsComparing] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(typeof window !== 'undefined' && window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   // Scenario 1
   const [initialAmount, setInitialAmount] = useState(1000);
@@ -190,17 +200,17 @@ const SavingsCalculator = () => {
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: true,
-    aspectRatio: window.innerWidth < 768 ? 1 : 2,
+    aspectRatio: isMobile ? 1 : 2,
     plugins: {
       legend: {
         position: "top" as const,
         labels: {
-          padding: window.innerWidth < 768 ? 8 : 15,
+          padding: isMobile ? 8 : 15,
           font: {
-            size: window.innerWidth < 768 ? 11 : 12
+            size: isMobile ? 11 : 12
           },
-          boxWidth: window.innerWidth < 768 ? 25 : 40,
-          boxHeight: window.innerWidth < 768 ? 10 : 12,
+          boxWidth: isMobile ? 25 : 40,
+          boxHeight: isMobile ? 10 : 12,
           usePointStyle: true
         }
       },
@@ -208,20 +218,20 @@ const SavingsCalculator = () => {
         display: true,
         text: "Savings Growth Over Time",
         font: {
-          size: window.innerWidth < 768 ? 14 : 16
+          size: isMobile ? 14 : 16
         },
         padding: {
           top: 10,
-          bottom: window.innerWidth < 768 ? 15 : 20
+          bottom: isMobile ? 15 : 20
         }
       },
       tooltip: {
-        padding: window.innerWidth < 768 ? 8 : 12,
+        padding: isMobile ? 8 : 12,
         titleFont: {
-          size: window.innerWidth < 768 ? 12 : 14
+          size: isMobile ? 12 : 14
         },
         bodyFont: {
-          size: window.innerWidth < 768 ? 11 : 13
+          size: isMobile ? 11 : 13
         }
       }
     },
@@ -229,10 +239,10 @@ const SavingsCalculator = () => {
       x: {
         ticks: {
           font: {
-            size: window.innerWidth < 768 ? 10 : 12
+            size: isMobile ? 10 : 12
           },
-          maxRotation: window.innerWidth < 768 ? 45 : 0,
-          minRotation: window.innerWidth < 768 ? 45 : 0
+          maxRotation: isMobile ? 45 : 0,
+          minRotation: isMobile ? 45 : 0
         },
         grid: {
           display: false
@@ -242,10 +252,10 @@ const SavingsCalculator = () => {
         beginAtZero: true,
         ticks: {
           font: {
-            size: window.innerWidth < 768 ? 10 : 12
+            size: isMobile ? 10 : 12
           },
           callback: function(value: any) {
-            if (window.innerWidth < 768) {
+            if (isMobile) {
               // Shorter format for mobile
               if (value >= 1000) {
                 return '£' + (value / 1000).toFixed(0) + 'k';
@@ -254,7 +264,7 @@ const SavingsCalculator = () => {
             }
             return '£' + value.toLocaleString();
           },
-          padding: window.innerWidth < 768 ? 4 : 8
+          padding: isMobile ? 4 : 8
         },
         grid: {
           color: 'rgba(0, 0, 0, 0.05)'
@@ -263,10 +273,10 @@ const SavingsCalculator = () => {
     },
     layout: {
       padding: {
-        left: window.innerWidth < 768 ? 5 : 10,
-        right: window.innerWidth < 768 ? 10 : 20,
-        top: window.innerWidth < 768 ? 5 : 10,
-        bottom: window.innerWidth < 768 ? 5 : 10
+        left: isMobile ? 5 : 10,
+        right: isMobile ? 10 : 20,
+        top: isMobile ? 5 : 10,
+        bottom: isMobile ? 5 : 10
       }
     }
   };
