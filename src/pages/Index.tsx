@@ -95,7 +95,7 @@ const Index = () => {
   return (
     <Layout>
       <SEO
-        title="Free Financial Calculators & Tools | UK Mortgage, Savings & Investment Calculators"
+        title="Free UK Financial Calculators | Mortgage, Savings & Investment Tools"
         description="Free UK financial calculators for mortgages, savings, compound interest, ISAs, credit cards, and student loans. Professional tools for smart financial planning."
         keywords="financial calculator UK, mortgage calculator, savings calculator, compound interest calculator, ISA calculator, credit card calculator, student loan calculator"
         canonical="https://Financialtoolz.lovable.app/"
