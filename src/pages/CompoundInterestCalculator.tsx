@@ -213,7 +213,7 @@ const CompoundInterestCalculator = () => {
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: true,
-    aspectRatio: isMobile ? 1 : 2,
+    aspectRatio: isMobile ? 0.8 : (isComparing ? 1.2 : 2),
     plugins: {
       legend: {
         position: 'bottom' as const,
@@ -571,7 +571,7 @@ const CompoundInterestCalculator = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-2 sm:p-6">
-                  <div className="h-[400px] sm:h-80 w-full">
+                  <div className={`w-full ${isComparing ? 'h-[500px] sm:h-[600px]' : 'h-[350px] sm:h-[400px]'}`}>
                     <Line data={chartData} options={chartOptions} />
                   </div>
                 </CardContent>
