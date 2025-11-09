@@ -11,31 +11,11 @@ import { CompareToggle } from "@/components/CompareToggle";
 import { MaximizeChart } from "@/components/MaximizeChart";
 import { RelatedTools } from "@/components/RelatedTools";
 import { Line } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 const StocksSharesISACalculator = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isComparing, setIsComparing] = useState(false);
-  
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(typeof window !== 'undefined' && window.innerWidth < 768);
@@ -44,59 +24,61 @@ const StocksSharesISACalculator = () => {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-  
+
   // Scenario 1
   const [initialInvestment, setInitialInvestment] = useState(0);
   const [monthlyContribution, setMonthlyContribution] = useState(500);
   const [expectedReturn, setExpectedReturn] = useState([5]);
   const [years, setYears] = useState([10]);
-  
+
   // Scenario 2
   const [initialInvestment2, setInitialInvestment2] = useState(1000);
   const [monthlyContribution2, setMonthlyContribution2] = useState(750);
   const [expectedReturn2, setExpectedReturn2] = useState([7]);
   const [years2, setYears2] = useState([10]);
-  
   const [results, setResults] = useState({
     totalInvested: 0,
     totalReturn: 0,
     finalValue: 0,
-    yearlyData: [] as { year: number; invested: number; growth: number; total: number }[]
+    yearlyData: [] as {
+      year: number;
+      invested: number;
+      growth: number;
+      total: number;
+    }[]
   });
-  
   const [results2, setResults2] = useState({
     totalInvested: 0,
     totalReturn: 0,
     finalValue: 0,
-    yearlyData: [] as { year: number; invested: number; growth: number; total: number }[]
+    yearlyData: [] as {
+      year: number;
+      invested: number;
+      growth: number;
+      total: number;
+    }[]
   });
-
   const currentISAAllowance = 20000;
-
   const calculateISA = () => {
     const monthlyRate = expectedReturn[0] / 100 / 12;
     const totalMonths = years[0] * 12;
     const yearlyData = [];
-    
     let currentValue = initialInvestment;
     let totalInvested = initialInvestment;
-
     for (let year = 1; year <= years[0]; year++) {
       for (let month = 1; month <= 12; month++) {
         // Apply monthly growth
         currentValue = currentValue * (1 + monthlyRate);
-        
+
         // Add monthly contribution (up to ISA allowance)
         const yearlyContributed = (year - 1) * 12 * monthlyContribution + month * monthlyContribution;
         const allowanceUsed = Math.min(yearlyContributed + initialInvestment, year * currentISAAllowance);
-        
         if (totalInvested < allowanceUsed) {
           const contribution = Math.min(monthlyContribution, allowanceUsed - totalInvested);
           currentValue += contribution;
           totalInvested += contribution;
         }
       }
-      
       yearlyData.push({
         year,
         invested: totalInvested,
@@ -104,7 +86,6 @@ const StocksSharesISACalculator = () => {
         total: currentValue
       });
     }
-
     setResults({
       totalInvested,
       totalReturn: currentValue - totalInvested,
@@ -112,29 +93,23 @@ const StocksSharesISACalculator = () => {
       yearlyData
     });
   };
-
   const calculateISA2 = () => {
     const monthlyRate = expectedReturn2[0] / 100 / 12;
     const totalMonths = years2[0] * 12;
     const yearlyData = [];
-    
     let currentValue = initialInvestment2;
     let totalInvested = initialInvestment2;
-
     for (let year = 1; year <= years2[0]; year++) {
       for (let month = 1; month <= 12; month++) {
         currentValue = currentValue * (1 + monthlyRate);
-        
         const yearlyContributed = (year - 1) * 12 * monthlyContribution2 + month * monthlyContribution2;
         const allowanceUsed = Math.min(yearlyContributed + initialInvestment2, year * currentISAAllowance);
-        
         if (totalInvested < allowanceUsed) {
           const contribution = Math.min(monthlyContribution2, allowanceUsed - totalInvested);
           currentValue += contribution;
           totalInvested += contribution;
         }
       }
-      
       yearlyData.push({
         year,
         invested: totalInvested,
@@ -142,7 +117,6 @@ const StocksSharesISACalculator = () => {
         total: currentValue
       });
     }
-
     setResults2({
       totalInvested,
       totalReturn: currentValue - totalInvested,
@@ -150,67 +124,56 @@ const StocksSharesISACalculator = () => {
       yearlyData
     });
   };
-
   useEffect(() => {
     calculateISA();
     calculateISA2();
   }, [initialInvestment, monthlyContribution, expectedReturn, years, initialInvestment2, monthlyContribution2, expectedReturn2, years2]);
-
   const chartData = {
     labels: results.yearlyData.map(d => `Year ${d.year}`),
-    datasets: isComparing ? [
-      {
-        label: 'Scenario 1 - Total Invested',
-        data: results.yearlyData.map(d => d.invested),
-        borderColor: 'rgb(59, 130, 246)',
-        backgroundColor: 'rgba(59, 130, 246, 0.1)',
-        borderWidth: 2,
-        fill: true,
-      },
-      {
-        label: 'Scenario 1 - Investment Growth',
-        data: results.yearlyData.map(d => d.total),
-        borderColor: 'rgb(34, 197, 94)',
-        backgroundColor: 'rgba(34, 197, 94, 0.1)',
-        borderWidth: 2,
-        fill: false,
-      },
-      {
-        label: 'Scenario 2 - Total Invested',
-        data: results2.yearlyData.map(d => d.invested),
-        borderColor: 'rgb(168, 85, 247)',
-        backgroundColor: 'rgba(168, 85, 247, 0.1)',
-        borderWidth: 2,
-        fill: true,
-      },
-      {
-        label: 'Scenario 2 - Investment Growth',
-        data: results2.yearlyData.map(d => d.total),
-        borderColor: 'rgb(249, 115, 22)',
-        backgroundColor: 'rgba(249, 115, 22, 0.1)',
-        borderWidth: 2,
-        fill: false,
-      }
-    ] : [
-      {
-        label: 'Total Invested',
-        data: results.yearlyData.map(d => d.invested),
-        borderColor: 'rgb(59, 130, 246)',
-        backgroundColor: 'rgba(59, 130, 246, 0.1)',
-        borderWidth: 2,
-        fill: true,
-      },
-      {
-        label: 'Investment Growth',
-        data: results.yearlyData.map(d => d.total),
-        borderColor: 'rgb(34, 197, 94)',
-        backgroundColor: 'rgba(34, 197, 94, 0.1)',
-        borderWidth: 2,
-        fill: false,
-      }
-    ]
+    datasets: isComparing ? [{
+      label: 'Scenario 1 - Total Invested',
+      data: results.yearlyData.map(d => d.invested),
+      borderColor: 'rgb(59, 130, 246)',
+      backgroundColor: 'rgba(59, 130, 246, 0.1)',
+      borderWidth: 2,
+      fill: true
+    }, {
+      label: 'Scenario 1 - Investment Growth',
+      data: results.yearlyData.map(d => d.total),
+      borderColor: 'rgb(34, 197, 94)',
+      backgroundColor: 'rgba(34, 197, 94, 0.1)',
+      borderWidth: 2,
+      fill: false
+    }, {
+      label: 'Scenario 2 - Total Invested',
+      data: results2.yearlyData.map(d => d.invested),
+      borderColor: 'rgb(168, 85, 247)',
+      backgroundColor: 'rgba(168, 85, 247, 0.1)',
+      borderWidth: 2,
+      fill: true
+    }, {
+      label: 'Scenario 2 - Investment Growth',
+      data: results2.yearlyData.map(d => d.total),
+      borderColor: 'rgb(249, 115, 22)',
+      backgroundColor: 'rgba(249, 115, 22, 0.1)',
+      borderWidth: 2,
+      fill: false
+    }] : [{
+      label: 'Total Invested',
+      data: results.yearlyData.map(d => d.invested),
+      borderColor: 'rgb(59, 130, 246)',
+      backgroundColor: 'rgba(59, 130, 246, 0.1)',
+      borderWidth: 2,
+      fill: true
+    }, {
+      label: 'Investment Growth',
+      data: results.yearlyData.map(d => d.total),
+      borderColor: 'rgb(34, 197, 94)',
+      backgroundColor: 'rgba(34, 197, 94, 0.1)',
+      borderWidth: 2,
+      fill: false
+    }]
   };
-
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -220,18 +183,18 @@ const StocksSharesISACalculator = () => {
         labels: {
           padding: isMobile ? 12 : 16,
           font: {
-            size: isMobile ? 13 : 14,
+            size: isMobile ? 13 : 14
           },
           boxWidth: isMobile ? 35 : 40,
           boxHeight: isMobile ? 14 : 16,
           usePointStyle: false
-        },
+        }
       },
       title: {
         display: true,
         text: 'ISA Growth Projection',
         font: {
-          size: isMobile ? 16 : 18,
+          size: isMobile ? 16 : 18
         },
         padding: {
           top: 15,
@@ -253,7 +216,7 @@ const StocksSharesISACalculator = () => {
       x: {
         ticks: {
           font: {
-            size: isMobile ? 12 : 13,
+            size: isMobile ? 12 : 13
           },
           maxRotation: isMobile ? 45 : 0,
           minRotation: isMobile ? 45 : 0,
@@ -268,10 +231,10 @@ const StocksSharesISACalculator = () => {
         beginAtZero: true,
         ticks: {
           font: {
-            size: isMobile ? 12 : 13,
+            size: isMobile ? 12 : 13
           },
           padding: isMobile ? 6 : 10,
-          callback: function(value: any) {
+          callback: function (value: any) {
             if (isMobile) {
               if (value >= 1000) {
                 return '£' + (value / 1000).toFixed(0) + 'k';
@@ -295,27 +258,19 @@ const StocksSharesISACalculator = () => {
       }
     }
   };
-
-  return (
-    <Layout>
-      <SEO 
-        title="Stocks & Shares ISA Calculator | Free UK Investment Growth Calculator"
-        description="Calculate your Stocks & Shares ISA potential returns with our free UK calculator. See how your investments could grow tax-free over time with compound interest."
-        keywords="stocks shares ISA calculator UK, UK ISA calculator, investment calculator, tax-free investing UK, ISA growth calculator"
-        canonical="https://Financialtooz.lovable.app/uk-stocks-and-shares-isa-calculator"
-        structuredData={{
-          "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          "name": "UK Stocks & Shares ISA Calculator",
-          "applicationCategory": "FinanceApplication",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "GBP"
-          },
-          "description": "Calculate tax-free investment growth in Stocks & Shares ISAs with compound interest projections and visual charts."
-        }}
-      />
+  return <Layout>
+      <SEO title="Stocks & Shares ISA Calculator | Free UK Investment Growth Calculator" description="Calculate your Stocks & Shares ISA potential returns with our free UK calculator. See how your investments could grow tax-free over time with compound interest." keywords="stocks shares ISA calculator UK, UK ISA calculator, investment calculator, tax-free investing UK, ISA growth calculator" canonical="https://Financialtooz.lovable.app/uk-stocks-and-shares-isa-calculator" structuredData={{
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "UK Stocks & Shares ISA Calculator",
+      "applicationCategory": "FinanceApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "GBP"
+      },
+      "description": "Calculate tax-free investment growth in Stocks & Shares ISAs with compound interest projections and visual charts."
+    }} />
       
       <div className="container py-12">
 
@@ -349,27 +304,13 @@ const StocksSharesISACalculator = () => {
                   <Label htmlFor="initial">Initial Investment</Label>
                   <div className="relative">
                     <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">£</span>
-                    <Input
-                      id="initial"
-                      type="number"
-                      value={initialInvestment}
-                      onChange={(e) => setInitialInvestment(Number(e.target.value) || 0)}
-                      className="pl-8"
-                      placeholder="0"
-                    />
+                    <Input id="initial" type="number" value={initialInvestment} onChange={e => setInitialInvestment(Number(e.target.value) || 0)} className="pl-8" placeholder="0" />
                   </div>
                 </div>
 
                 <div className="space-y-3">
                   <Label>Monthly Contribution: £{monthlyContribution.toLocaleString()}</Label>
-                  <Slider
-                    value={[monthlyContribution]}
-                    onValueChange={(value) => setMonthlyContribution(value[0])}
-                    max={1667}
-                    min={0}
-                    step={50}
-                    className="w-full"
-                  />
+                  <Slider value={[monthlyContribution]} onValueChange={value => setMonthlyContribution(value[0])} max={1667} min={0} step={50} className="w-full" />
                   <div className="flex justify-between text-sm text-muted-foreground">
                     <span>£0</span>
                     <span>£1,667/month</span>
@@ -378,14 +319,7 @@ const StocksSharesISACalculator = () => {
 
                 <div className="space-y-3">
                   <Label>Expected Annual Return: {expectedReturn[0]}%</Label>
-                  <Slider
-                    value={expectedReturn}
-                    onValueChange={setExpectedReturn}
-                    max={12}
-                    min={1}
-                    step={0.5}
-                    className="w-full"
-                  />
+                  <Slider value={expectedReturn} onValueChange={setExpectedReturn} max={12} min={1} step={0.5} className="w-full" />
                   <div className="flex justify-between text-sm text-muted-foreground">
                     <span>1%</span>
                     <span>12%</span>
@@ -394,14 +328,7 @@ const StocksSharesISACalculator = () => {
 
                 <div className="space-y-3">
                   <Label>Investment Period: {years[0]} years</Label>
-                  <Slider
-                    value={years}
-                    onValueChange={setYears}
-                    max={40}
-                    min={1}
-                    step={1}
-                    className="w-full"
-                  />
+                  <Slider value={years} onValueChange={setYears} max={40} min={1} step={1} className="w-full" />
                   <div className="flex justify-between text-sm text-muted-foreground">
                     <span>1 year</span>
                     <span>40 years</span>
@@ -423,8 +350,7 @@ const StocksSharesISACalculator = () => {
             </Card>
 
             {/* Input Panel - Scenario 2 */}
-            {isComparing && (
-              <Card className="lg:sticky lg:top-24 h-fit">
+            {isComparing && <Card className="lg:sticky lg:top-24 h-fit">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Calculator className="h-5 w-5" />
@@ -439,27 +365,13 @@ const StocksSharesISACalculator = () => {
                     <Label htmlFor="initial2">Initial Investment</Label>
                     <div className="relative">
                       <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">£</span>
-                      <Input
-                        id="initial2"
-                        type="number"
-                        value={initialInvestment2}
-                        onChange={(e) => setInitialInvestment2(Number(e.target.value) || 0)}
-                        className="pl-8"
-                        placeholder="0"
-                      />
+                      <Input id="initial2" type="number" value={initialInvestment2} onChange={e => setInitialInvestment2(Number(e.target.value) || 0)} className="pl-8" placeholder="0" />
                     </div>
                   </div>
 
                   <div className="space-y-3">
                     <Label>Monthly Contribution: £{monthlyContribution2.toLocaleString()}</Label>
-                    <Slider
-                      value={[monthlyContribution2]}
-                      onValueChange={(value) => setMonthlyContribution2(value[0])}
-                      max={1667}
-                      min={0}
-                      step={50}
-                      className="w-full"
-                    />
+                    <Slider value={[monthlyContribution2]} onValueChange={value => setMonthlyContribution2(value[0])} max={1667} min={0} step={50} className="w-full" />
                     <div className="flex justify-between text-sm text-muted-foreground">
                       <span>£0</span>
                       <span>£1,667/month</span>
@@ -468,14 +380,7 @@ const StocksSharesISACalculator = () => {
 
                   <div className="space-y-3">
                     <Label>Expected Annual Return: {expectedReturn2[0]}%</Label>
-                    <Slider
-                      value={expectedReturn2}
-                      onValueChange={setExpectedReturn2}
-                      max={12}
-                      min={1}
-                      step={0.5}
-                      className="w-full"
-                    />
+                    <Slider value={expectedReturn2} onValueChange={setExpectedReturn2} max={12} min={1} step={0.5} className="w-full" />
                     <div className="flex justify-between text-sm text-muted-foreground">
                       <span>1%</span>
                       <span>12%</span>
@@ -484,14 +389,7 @@ const StocksSharesISACalculator = () => {
 
                   <div className="space-y-3">
                     <Label>Investment Period: {years2[0]} years</Label>
-                    <Slider
-                      value={years2}
-                      onValueChange={setYears2}
-                      max={40}
-                      min={1}
-                      step={1}
-                      className="w-full"
-                    />
+                    <Slider value={years2} onValueChange={setYears2} max={40} min={1} step={1} className="w-full" />
                     <div className="flex justify-between text-sm text-muted-foreground">
                       <span>1 year</span>
                       <span>40 years</span>
@@ -510,8 +408,7 @@ const StocksSharesISACalculator = () => {
                     </div>
                   </div>
                 </CardContent>
-              </Card>
-            )}
+              </Card>}
 
             {/* Results Panel */}
             <div className="space-y-6">
@@ -525,7 +422,7 @@ const StocksSharesISACalculator = () => {
                 <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/20 dark:to-green-900/20 border-green-200 dark:border-green-800">
                   <CardContent className="p-3 sm:p-4 text-center">
                     <div className="text-xs text-green-600 dark:text-green-400 mb-1">{isComparing ? 'Scenario 1' : ''}</div>
-                    <div className="text-lg sm:text-xl md:text-2xl font-bold text-green-700 dark:text-green-300 break-words">
+                    <div className="text-lg sm:text-xl md:text-2xl font-bold text-green-700 dark:text-green-300 break-words mx-0 py-[9px]">
                       £{results.totalInvested.toLocaleString()}
                     </div>
                     <div className="text-xs sm:text-sm text-green-600 dark:text-green-400">Total Invested</div>
@@ -533,60 +430,58 @@ const StocksSharesISACalculator = () => {
                 </Card>
 
                 <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950/20 dark:to-blue-900/20 border-blue-200 dark:border-blue-800">
-                  <CardContent className="p-3 sm:p-4 text-center">
-                    <div className="text-xs text-blue-600 dark:text-blue-400 mb-1">{isComparing ? 'Scenario 1' : ''}</div>
-                    <div className="text-lg sm:text-xl md:text-2xl font-bold text-blue-700 dark:text-blue-300 break-words">
+                  <CardContent className="p-3 sm:p-4 text-center mx-0 my-0 py-0 px-0">
+                    <div className="text-xs text-blue-600 dark:text-blue-400 mb-1 px-[6px] py-[16px]">{isComparing ? 'Scenario 1' : ''}</div>
+                    <div className="text-lg sm:text-xl md:text-2xl font-bold text-blue-700 dark:text-blue-300 break-words px-0 my-0 mx-0 py-0">
                       £{results.totalReturn.toLocaleString()}
                     </div>
-                    <div className="text-xs sm:text-sm text-blue-600 dark:text-blue-400">Investment Growth</div>
+                    <div className="text-xs sm:text-sm text-blue-600 dark:text-blue-400 py-[20px] my-0 mx-[7px] px-0">Investment Growth</div>
                   </CardContent>
                 </Card>
 
-                <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/20 dark:to-purple-900/20 border-purple-200 dark:border-purple-808">
-                  <CardContent className="p-3 sm:p-4 text-center">
-                    <div className="text-xs text-purple-600 dark:text-purple-400 mb-1">{isComparing ? 'Scenario 1' : ''}</div>
-                    <div className="text-lg sm:text-xl md:text-2xl font-bold text-purple-700 dark:text-purple-300 break-words">
+                <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/20 dark:to-purple-900/20 border-purple-200 dark:border-purple-808 px-0 mx-0 my-0 py-0">
+                  <CardContent className="p-3 sm:p-4 text-center px-0">
+                    <div className="text-xs text-purple-600 dark:text-purple-400 mb-1 px-[6px] py-[6px]">{isComparing ? 'Scenario 1' : ''}</div>
+                    <div className="text-lg sm:text-xl md:text-2xl font-bold text-purple-700 dark:text-purple-300 break-words mx-0 px-0 my-0 py-[9px]">
                       £{results.finalValue.toLocaleString()}
                     </div>
-                    <div className="text-xs sm:text-sm text-purple-600 dark:text-purple-400">Final Value</div>
+                    <div className="text-xs sm:text-sm text-purple-600 dark:text-purple-400 mx-0 px-0 my-0">Final Value</div>
                   </CardContent>
                 </Card>
               </div>
 
               {/* Summary Cards - Scenario 2 */}
-              {isComparing && (
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <Card className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-950/20 dark:to-emerald-900/20 border-emerald-200 dark:border-emerald-800">
+              {isComparing && <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <Card className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-950/20 dark:to-emerald-900/20 border-emerald-200 dark:border-emerald-800 py-0 px-0 mx-0 my-[18px]">
                     <CardContent className="p-3 sm:p-4 text-center">
                       <div className="text-xs text-emerald-600 dark:text-emerald-400 mb-1">Scenario 2</div>
-                      <div className="text-lg sm:text-xl md:text-2xl font-bold text-emerald-700 dark:text-emerald-300 break-words">
+                      <div className="text-lg sm:text-xl md:text-2xl font-bold text-emerald-700 dark:text-emerald-300 break-words px-0">
                         £{results2.totalInvested.toLocaleString()}
                       </div>
-                      <div className="text-xs sm:text-sm text-emerald-600 dark:text-emerald-400">Total Invested</div>
+                      <div className="text-xs sm:text-sm text-emerald-600 dark:text-emerald-400 py-[17px]">Total Invested</div>
                     </CardContent>
                   </Card>
 
-                  <Card className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950/20 dark:to-orange-900/20 border-orange-200 dark:border-orange-800">
-                    <CardContent className="p-3 sm:p-4 text-center">
+                  <Card className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-950/20 dark:to-orange-900/20 border-orange-200 dark:border-orange-800 px-0 my-[18px] py-0 mx-0">
+                    <CardContent className="p-3 sm:p-4 text-center my-[13px]">
                       <div className="text-xs text-orange-600 dark:text-orange-400 mb-1">Scenario 2</div>
-                      <div className="text-lg sm:text-xl md:text-2xl font-bold text-orange-700 dark:text-orange-300 break-words">
+                      <div className="text-lg sm:text-xl md:text-2xl font-bold text-orange-700 dark:text-orange-300 break-words mx-0 my-0 py-0 px-0">
                         £{results2.totalReturn.toLocaleString()}
                       </div>
                       <div className="text-xs sm:text-sm text-orange-600 dark:text-orange-400">Investment Growth</div>
                     </CardContent>
                   </Card>
 
-                  <Card className="bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-950/20 dark:to-pink-900/20 border-pink-200 dark:border-pink-808">
+                  <Card className="bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-950/20 dark:to-pink-900/20 border-pink-200 dark:border-pink-808 px-0 mx-0 my-[20px]">
                     <CardContent className="p-3 sm:p-4 text-center">
                       <div className="text-xs text-pink-600 dark:text-pink-400 mb-1">Scenario 2</div>
-                      <div className="text-lg sm:text-xl md:text-2xl font-bold text-pink-700 dark:text-pink-300 break-words">
+                      <div className="text-lg sm:text-xl md:text-2xl font-bold text-pink-700 dark:text-pink-300 break-words px-0">
                         £{results2.finalValue.toLocaleString()}
                       </div>
                       <div className="text-xs sm:text-sm text-pink-600 dark:text-pink-400">Final Value</div>
                     </CardContent>
                   </Card>
-                </div>
-              )}
+                </div>}
 
               {/* Chart */}
               <Card className="relative">
@@ -662,7 +557,7 @@ const StocksSharesISACalculator = () => {
                       <li><strong>Tax-free growth:</strong> No capital gains tax on profits</li>
                       <li><strong>Tax-free income:</strong> No tax on dividends or interest</li>
                       <li><strong>Flexible access:</strong> Withdraw money anytime (but you lose that year's allowance)</li>
-                      <li><strong>Annual allowance:</strong> Fresh £{(currentISAAllowance/1000)}k allowance each tax year</li>
+                      <li><strong>Annual allowance:</strong> Fresh £{currentISAAllowance / 1000}k allowance each tax year</li>
                       <li><strong>No time limits:</strong> Keep your ISA as long as you want</li>
                     </ul>
                   </div>
@@ -785,8 +680,6 @@ const StocksSharesISACalculator = () => {
           <RelatedTools currentPath="/uk-stocks-and-shares-isa-calculator" />
         </div>
       </div>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default StocksSharesISACalculator;
