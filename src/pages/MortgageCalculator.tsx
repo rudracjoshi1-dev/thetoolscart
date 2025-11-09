@@ -215,29 +215,40 @@ const MortgageCalculator = () => {
 
   const barChartOptions = {
     responsive: true,
-    maintainAspectRatio: true,
-    aspectRatio: isMobile ? 0.8 : 1.5,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'bottom' as const,
         labels: {
-          padding: isMobile ? 10 : 15,
+          padding: isMobile ? 12 : 16,
           font: {
-            size: isMobile ? 11 : 12,
+            size: isMobile ? 13 : 14,
           },
-          boxWidth: isMobile ? 30 : 40,
-          boxHeight: isMobile ? 12 : 14,
+          boxWidth: isMobile ? 35 : 40,
+          boxHeight: isMobile ? 14 : 16,
           usePointStyle: false
         },
       },
+      title: {
+        display: true,
+        text: 'Monthly Payment Breakdown',
+        font: {
+          size: isMobile ? 16 : 18,
+        },
+        padding: {
+          top: 15,
+          bottom: isMobile ? 20 : 25
+        }
+      },
       tooltip: {
-        padding: isMobile ? 8 : 12,
+        padding: isMobile ? 10 : 14,
         titleFont: {
-          size: isMobile ? 12 : 14
+          size: isMobile ? 14 : 16
         },
         bodyFont: {
-          size: isMobile ? 11 : 13
+          size: isMobile ? 13 : 14
         },
+        boxPadding: 6,
         callbacks: {
           label: function(context: any) {
             let label = context.dataset.label || '';
@@ -256,24 +267,26 @@ const MortgageCalculator = () => {
       x: {
         ticks: {
           font: {
-            size: isMobile ? 10 : 12,
+            size: isMobile ? 12 : 13,
           },
-          maxRotation: 45,
-          minRotation: 45,
+          maxRotation: isMobile ? 45 : 0,
+          minRotation: isMobile ? 45 : 0,
+          autoSkip: true,
+          maxTicksLimit: isMobile ? 12 : 15
         },
         grid: {
           display: false
         }
       },
       y: {
+        beginAtZero: true,
         ticks: {
           font: {
-            size: isMobile ? 10 : 12,
+            size: isMobile ? 12 : 13,
           },
-          padding: isMobile ? 4 : 8,
+          padding: isMobile ? 6 : 10,
           callback: function(value: any) {
             if (isMobile) {
-              // Shorter format for mobile
               if (value >= 1000) {
                 return '£' + (value / 1000).toFixed(0) + 'k';
               }
@@ -289,10 +302,10 @@ const MortgageCalculator = () => {
     },
     layout: {
       padding: {
-        left: isMobile ? 5 : 10,
-        right: isMobile ? 10 : 20,
-        top: isMobile ? 5 : 10,
-        bottom: isMobile ? 5 : 10
+        left: isMobile ? 8 : 15,
+        right: isMobile ? 15 : 25,
+        top: isMobile ? 10 : 15,
+        bottom: isMobile ? 10 : 15
       }
     }
   };
@@ -416,28 +429,28 @@ const MortgageCalculator = () => {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="text-center p-3 sm:p-4 bg-primary/10 rounded-lg">
-                        <div className="text-lg sm:text-xl md:text-2xl font-bold text-primary break-words">
+                      <div className="text-center p-3 sm:p-4 bg-primary/10 rounded-lg overflow-hidden">
+                        <div className="text-lg sm:text-xl md:text-2xl font-bold text-primary break-words overflow-wrap-anywhere">
                           £{results.monthlyPayment.toFixed(2)}
                         </div>
-                        <div className="text-xs sm:text-sm text-muted-foreground">Monthly Payment</div>
+                        <div className="text-xs sm:text-sm text-muted-foreground break-words">Monthly Payment</div>
                       </div>
-                      <div className="text-center p-3 sm:p-4 bg-accent/10 rounded-lg">
-                        <div className="text-lg sm:text-xl md:text-2xl font-bold text-accent break-words">
+                      <div className="text-center p-3 sm:p-4 bg-accent/10 rounded-lg overflow-hidden">
+                        <div className="text-lg sm:text-xl md:text-2xl font-bold text-accent break-words overflow-wrap-anywhere">
                           £{results.totalInterest.toFixed(2)}
                         </div>
-                        <div className="text-xs sm:text-sm text-muted-foreground">Total Interest</div>
+                        <div className="text-xs sm:text-sm text-muted-foreground break-words">Total Interest</div>
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <div className="flex justify-between">
-                        <span>Loan Amount:</span>
-                        <span className="font-semibold">£{results.principal.toLocaleString()}</span>
+                      <div className="flex justify-between gap-2">
+                        <span className="text-sm sm:text-base">Loan Amount:</span>
+                        <span className="font-semibold text-sm sm:text-base break-words text-right">£{results.principal.toLocaleString()}</span>
                       </div>
-                      <div className="flex justify-between">
-                        <span>Total of Payments:</span>
-                        <span className="font-semibold">£{results.totalPayment.toLocaleString()}</span>
+                      <div className="flex justify-between gap-2">
+                        <span className="text-sm sm:text-base">Total of Payments:</span>
+                        <span className="font-semibold text-sm sm:text-base break-words text-right">£{results.totalPayment.toLocaleString()}</span>
                       </div>
                     </div>
                   </CardContent>
@@ -531,28 +544,28 @@ const MortgageCalculator = () => {
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="text-center p-3 sm:p-4 bg-green-500/10 rounded-lg">
-                          <div className="text-lg sm:text-xl md:text-2xl font-bold break-words" style={{color: 'hsl(142, 71%, 45%)'}}>
+                        <div className="text-center p-3 sm:p-4 bg-green-500/10 rounded-lg overflow-hidden">
+                          <div className="text-lg sm:text-xl md:text-2xl font-bold break-words overflow-wrap-anywhere" style={{color: 'hsl(142, 71%, 45%)'}}>
                             £{results2.monthlyPayment.toFixed(2)}
                           </div>
-                          <div className="text-xs sm:text-sm text-muted-foreground">Monthly Payment</div>
+                          <div className="text-xs sm:text-sm text-muted-foreground break-words">Monthly Payment</div>
                         </div>
-                        <div className="text-center p-3 sm:p-4 bg-orange-500/10 rounded-lg">
-                          <div className="text-lg sm:text-xl md:text-2xl font-bold break-words" style={{color: 'hsl(25, 95%, 53%)'}}>
+                        <div className="text-center p-3 sm:p-4 bg-orange-500/10 rounded-lg overflow-hidden">
+                          <div className="text-lg sm:text-xl md:text-2xl font-bold break-words overflow-wrap-anywhere" style={{color: 'hsl(25, 95%, 53%)'}}>
                             £{results2.totalInterest.toFixed(2)}
                           </div>
-                          <div className="text-xs sm:text-sm text-muted-foreground">Total Interest</div>
+                          <div className="text-xs sm:text-sm text-muted-foreground break-words">Total Interest</div>
                         </div>
                       </div>
 
                       <div className="space-y-2">
-                        <div className="flex justify-between">
-                          <span>Loan Amount:</span>
-                          <span className="font-semibold">£{results2.principal.toLocaleString()}</span>
+                        <div className="flex justify-between gap-2">
+                          <span className="text-sm sm:text-base">Loan Amount:</span>
+                          <span className="font-semibold text-sm sm:text-base break-words text-right">£{results2.principal.toLocaleString()}</span>
                         </div>
-                        <div className="flex justify-between">
-                          <span>Total of Payments:</span>
-                          <span className="font-semibold">£{results2.totalPayment.toLocaleString()}</span>
+                        <div className="flex justify-between gap-2">
+                          <span className="text-sm sm:text-base">Total of Payments:</span>
+                          <span className="font-semibold text-sm sm:text-base break-words text-right">£{results2.totalPayment.toLocaleString()}</span>
                         </div>
                       </div>
                     </CardContent>
@@ -600,8 +613,8 @@ const MortgageCalculator = () => {
                       First Year Payments
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="p-2 sm:p-6">
-                    <div className="h-[450px] sm:h-[400px] md:h-[450px] w-full">
+                  <CardContent className="p-3 sm:p-6">
+                    <div className={`w-full ${isComparing ? 'h-[550px] sm:h-[650px] md:h-[700px]' : 'h-[450px] sm:h-[500px] md:h-[550px]'}`}>
                       <Bar data={barData} options={barChartOptions} />
                     </div>
                   </CardContent>

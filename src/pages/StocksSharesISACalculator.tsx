@@ -213,18 +213,17 @@ const StocksSharesISACalculator = () => {
 
   const chartOptions = {
     responsive: true,
-    maintainAspectRatio: true,
-    aspectRatio: isMobile ? 1 : 2,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'bottom' as const,
         labels: {
-          padding: isMobile ? 10 : 15,
+          padding: isMobile ? 12 : 16,
           font: {
-            size: isMobile ? 11 : 12,
+            size: isMobile ? 13 : 14,
           },
-          boxWidth: isMobile ? 30 : 40,
-          boxHeight: isMobile ? 12 : 14,
+          boxWidth: isMobile ? 35 : 40,
+          boxHeight: isMobile ? 14 : 16,
           usePointStyle: false
         },
       },
@@ -232,31 +231,34 @@ const StocksSharesISACalculator = () => {
         display: true,
         text: 'ISA Growth Projection',
         font: {
-          size: isMobile ? 14 : 16,
+          size: isMobile ? 16 : 18,
         },
         padding: {
-          top: 10,
-          bottom: isMobile ? 15 : 20
+          top: 15,
+          bottom: isMobile ? 20 : 25
         }
       },
       tooltip: {
-        padding: isMobile ? 8 : 12,
+        padding: isMobile ? 10 : 14,
         titleFont: {
-          size: isMobile ? 12 : 14
+          size: isMobile ? 14 : 16
         },
         bodyFont: {
-          size: isMobile ? 11 : 13
-        }
+          size: isMobile ? 13 : 14
+        },
+        boxPadding: 6
       }
     },
     scales: {
       x: {
         ticks: {
           font: {
-            size: isMobile ? 10 : 12,
+            size: isMobile ? 12 : 13,
           },
-          maxRotation: 45,
-          minRotation: 45,
+          maxRotation: isMobile ? 45 : 0,
+          minRotation: isMobile ? 45 : 0,
+          autoSkip: true,
+          maxTicksLimit: isMobile ? 10 : 15
         },
         grid: {
           display: false
@@ -266,12 +268,11 @@ const StocksSharesISACalculator = () => {
         beginAtZero: true,
         ticks: {
           font: {
-            size: isMobile ? 10 : 12,
+            size: isMobile ? 12 : 13,
           },
-          padding: isMobile ? 4 : 8,
+          padding: isMobile ? 6 : 10,
           callback: function(value: any) {
             if (isMobile) {
-              // Shorter format for mobile
               if (value >= 1000) {
                 return '£' + (value / 1000).toFixed(0) + 'k';
               }
@@ -287,10 +288,10 @@ const StocksSharesISACalculator = () => {
     },
     layout: {
       padding: {
-        left: isMobile ? 5 : 10,
-        right: isMobile ? 10 : 20,
-        top: isMobile ? 5 : 10,
-        bottom: isMobile ? 5 : 10
+        left: isMobile ? 8 : 15,
+        right: isMobile ? 15 : 25,
+        top: isMobile ? 10 : 15,
+        bottom: isMobile ? 10 : 15
       }
     }
   };
@@ -600,8 +601,8 @@ const StocksSharesISACalculator = () => {
                     Growth Projection
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="p-2 sm:p-6">
-                  <div className="h-[400px] sm:h-80 w-full">
+                <CardContent className="p-3 sm:p-6">
+                  <div className={`w-full ${isComparing ? 'h-[550px] sm:h-[650px] md:h-[700px]' : 'h-[450px] sm:h-[500px] md:h-[550px]'}`}>
                     <Line data={chartData} options={chartOptions} />
                   </div>
                 </CardContent>

@@ -398,23 +398,23 @@ const CompoundInterestCalculator = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div className="text-center p-3 sm:p-4 bg-primary/10 rounded-lg">
-                      <div className="text-base sm:text-lg md:text-xl font-bold text-primary break-words">
+                    <div className="text-center p-3 sm:p-4 bg-primary/10 rounded-lg overflow-hidden">
+                      <div className="text-base sm:text-lg md:text-xl font-bold text-primary break-words overflow-wrap-anywhere">
                         £{results.finalBalance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                       </div>
-                      <div className="text-xs sm:text-sm text-muted-foreground">Final Balance</div>
+                      <div className="text-xs sm:text-sm text-muted-foreground break-words">Final Balance</div>
                     </div>
-                    <div className="text-center p-3 sm:p-4 bg-accent/10 rounded-lg">
-                      <div className="text-base sm:text-lg md:text-xl font-bold text-accent break-words">
+                    <div className="text-center p-3 sm:p-4 bg-accent/10 rounded-lg overflow-hidden">
+                      <div className="text-base sm:text-lg md:text-xl font-bold text-accent break-words overflow-wrap-anywhere">
                         £{results.totalContributions.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                       </div>
-                      <div className="text-xs sm:text-sm text-muted-foreground">Total Contributions</div>
+                      <div className="text-xs sm:text-sm text-muted-foreground break-words">Total Contributions</div>
                     </div>
-                    <div className="text-center p-3 sm:p-4 bg-green-500/10 rounded-lg">
-                      <div className="text-base sm:text-lg md:text-xl font-bold text-green-500 break-words">
+                    <div className="text-center p-3 sm:p-4 bg-green-500/10 rounded-lg overflow-hidden">
+                      <div className="text-base sm:text-lg md:text-xl font-bold text-green-500 break-words overflow-wrap-anywhere">
                         £{results.totalInterest.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                       </div>
-                      <div className="text-xs sm:text-sm text-muted-foreground">Interest Earned</div>
+                      <div className="text-xs sm:text-sm text-muted-foreground break-words">Interest Earned</div>
                     </div>
                   </div>
 
@@ -511,23 +511,23 @@ const CompoundInterestCalculator = () => {
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                      <div className="text-center p-3 sm:p-4 bg-green-500/10 rounded-lg">
-                        <div className="text-base sm:text-lg md:text-xl font-bold break-words" style={{color: 'hsl(142, 71%, 45%)'}}>
+                      <div className="text-center p-3 sm:p-4 bg-green-500/10 rounded-lg overflow-hidden">
+                        <div className="text-base sm:text-lg md:text-xl font-bold break-words overflow-wrap-anywhere" style={{color: 'hsl(142, 71%, 45%)'}}>
                           £{results2.finalBalance.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                         </div>
-                        <div className="text-xs sm:text-sm text-muted-foreground">Final Balance</div>
+                        <div className="text-xs sm:text-sm text-muted-foreground break-words">Final Balance</div>
                       </div>
-                      <div className="text-center p-3 sm:p-4 bg-orange-500/10 rounded-lg">
-                        <div className="text-base sm:text-lg md:text-xl font-bold break-words" style={{color: 'hsl(25, 95%, 53%)'}}>
+                      <div className="text-center p-3 sm:p-4 bg-orange-500/10 rounded-lg overflow-hidden">
+                        <div className="text-base sm:text-lg md:text-xl font-bold break-words overflow-wrap-anywhere" style={{color: 'hsl(25, 95%, 53%)'}}>
                           £{results2.totalContributions.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                         </div>
-                        <div className="text-xs sm:text-sm text-muted-foreground">Total Contributions</div>
+                        <div className="text-xs sm:text-sm text-muted-foreground break-words">Total Contributions</div>
                       </div>
-                      <div className="text-center p-3 sm:p-4 bg-emerald-500/10 rounded-lg">
-                        <div className="text-base sm:text-lg md:text-xl font-bold text-emerald-500 break-words">
+                      <div className="text-center p-3 sm:p-4 bg-emerald-500/10 rounded-lg overflow-hidden">
+                        <div className="text-base sm:text-lg md:text-xl font-bold text-emerald-500 break-words overflow-wrap-anywhere">
                           £{results2.totalInterest.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                         </div>
-                        <div className="text-xs sm:text-sm text-muted-foreground">Interest Earned</div>
+                        <div className="text-xs sm:text-sm text-muted-foreground break-words">Interest Earned</div>
                       </div>
                     </div>
 

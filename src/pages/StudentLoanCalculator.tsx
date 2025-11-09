@@ -38,6 +38,7 @@ ChartJS.register(
 );
 
 const StudentLoanCalculator = () => {
+  const [isMobile, setIsMobile] = useState(false);
   const [loanAmount, setLoanAmount] = useState(40000);
   const [interestRate, setInterestRate] = useState(6.25);
   const [loanTerm, setLoanTerm] = useState(30);
@@ -54,6 +55,15 @@ const StudentLoanCalculator = () => {
     totalAmount: 0,
     yearlyBreakdown: [] as Array<{year: number, balance: number, payment: number, interest: number, salary: number}>
   });
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(typeof window !== 'undefined' && window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const calculateLoan = () => {
     const thresholds = {
@@ -171,8 +181,25 @@ const StudentLoanCalculator = () => {
     plugins: {
       legend: {
         position: 'bottom' as const,
+        labels: {
+          padding: isMobile ? 12 : 16,
+          font: {
+            size: isMobile ? 13 : 14,
+          },
+          boxWidth: isMobile ? 35 : 40,
+          boxHeight: isMobile ? 14 : 16,
+          usePointStyle: false
+        },
       },
       tooltip: {
+        padding: isMobile ? 10 : 14,
+        titleFont: {
+          size: isMobile ? 14 : 16
+        },
+        bodyFont: {
+          size: isMobile ? 13 : 14
+        },
+        boxPadding: 6,
         callbacks: {
           label: function(context: any) {
             const value = context.parsed.y || context.parsed;
@@ -182,13 +209,48 @@ const StudentLoanCalculator = () => {
       }
     },
     scales: {
+      x: {
+        ticks: {
+          font: {
+            size: isMobile ? 12 : 13,
+          },
+          maxRotation: isMobile ? 45 : 0,
+          minRotation: isMobile ? 45 : 0,
+          autoSkip: true,
+          maxTicksLimit: isMobile ? 10 : 15
+        },
+        grid: {
+          display: false
+        }
+      },
       y: {
         beginAtZero: true,
         ticks: {
+          font: {
+            size: isMobile ? 12 : 13,
+          },
+          padding: isMobile ? 6 : 10,
           callback: function(value: any) {
+            if (isMobile) {
+              if (value >= 1000) {
+                return '£' + (value / 1000).toFixed(0) + 'k';
+              }
+              return '£' + value;
+            }
             return '£' + Number(value).toLocaleString();
           }
+        },
+        grid: {
+          color: 'rgba(0, 0, 0, 0.05)'
         }
+      }
+    },
+    layout: {
+      padding: {
+        left: isMobile ? 8 : 15,
+        right: isMobile ? 15 : 25,
+        top: isMobile ? 10 : 15,
+        bottom: isMobile ? 10 : 15
       }
     }
   };
@@ -387,27 +449,27 @@ const StudentLoanCalculator = () => {
                         <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-100">Repayment Summary</h3>
                       </div>
                       <div className="grid grid-cols-2 gap-4 mt-4">
-                        <div>
-                          <div className="text-blue-600 dark:text-blue-400 font-medium">Monthly Payment</div>
-                          <div className="text-2xl font-bold text-blue-700 dark:text-blue-300">
+                        <div className="overflow-hidden">
+                          <div className="text-sm sm:text-base text-blue-600 dark:text-blue-400 font-medium break-words">Monthly Payment</div>
+                          <div className="text-xl sm:text-2xl font-bold text-blue-700 dark:text-blue-300 break-words">
                             £{results.monthlyPayment.toFixed(0)}
                           </div>
                         </div>
-                        <div>
-                          <div className="text-blue-600 dark:text-blue-400 font-medium">Payoff Date</div>
-                          <div className="text-lg font-semibold text-blue-800 dark:text-blue-200">
+                        <div className="overflow-hidden">
+                          <div className="text-sm sm:text-base text-blue-600 dark:text-blue-400 font-medium break-words">Payoff Date</div>
+                          <div className="text-base sm:text-lg font-semibold text-blue-800 dark:text-blue-200 break-words">
                             {results.payoffDate}
                           </div>
                         </div>
-                        <div>
-                          <div className="text-blue-600 dark:text-blue-400 font-medium">Total Interest</div>
-                          <div className="text-lg font-semibold text-blue-800 dark:text-blue-200">
+                        <div className="overflow-hidden">
+                          <div className="text-sm sm:text-base text-blue-600 dark:text-blue-400 font-medium break-words">Total Interest</div>
+                          <div className="text-base sm:text-lg font-semibold text-blue-800 dark:text-blue-200 break-words">
                             £{results.totalInterest.toLocaleString()}
                           </div>
                         </div>
-                        <div>
-                          <div className="text-blue-600 dark:text-blue-400 font-medium">Total Amount</div>
-                          <div className="text-lg font-semibold text-blue-800 dark:text-blue-200">
+                        <div className="overflow-hidden">
+                          <div className="text-sm sm:text-base text-blue-600 dark:text-blue-400 font-medium break-words">Total Amount</div>
+                          <div className="text-base sm:text-lg font-semibold text-blue-800 dark:text-blue-200 break-words">
                             £{results.totalAmount.toLocaleString()}
                           </div>
                         </div>
@@ -438,8 +500,8 @@ const StudentLoanCalculator = () => {
                           Loan Balance Projection
                         </CardTitle>
                       </CardHeader>
-                      <CardContent>
-                        <div className="h-80">
+                      <CardContent className="p-3 sm:p-6">
+                        <div className="h-[450px] sm:h-[500px] md:h-[550px] w-full">
                           <Line data={balanceOverTimeData} options={chartOptions} />
                         </div>
                         <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-950/30 rounded-lg">
@@ -464,8 +526,8 @@ const StudentLoanCalculator = () => {
                           Annual Payments vs Interest
                         </CardTitle>
                       </CardHeader>
-                      <CardContent>
-                        <div className="h-80">
+                      <CardContent className="p-3 sm:p-6">
+                        <div className="h-[450px] sm:h-[500px] md:h-[550px] w-full">
                           <Bar data={paymentBreakdownData} options={chartOptions} />
                         </div>
                         <div className="mt-4 p-4 bg-green-50 dark:bg-green-950/30 rounded-lg">

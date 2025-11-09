@@ -199,18 +199,17 @@ const SavingsCalculator = () => {
 
   const chartOptions = {
     responsive: true,
-    maintainAspectRatio: true,
-    aspectRatio: isMobile ? 1 : 2,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: "top" as const,
+        position: "bottom" as const,
         labels: {
-          padding: isMobile ? 8 : 15,
+          padding: isMobile ? 12 : 16,
           font: {
-            size: isMobile ? 11 : 12
+            size: isMobile ? 13 : 14
           },
-          boxWidth: isMobile ? 25 : 40,
-          boxHeight: isMobile ? 10 : 12,
+          boxWidth: isMobile ? 35 : 40,
+          boxHeight: isMobile ? 14 : 16,
           usePointStyle: true
         }
       },
@@ -218,31 +217,34 @@ const SavingsCalculator = () => {
         display: true,
         text: "Savings Growth Over Time",
         font: {
-          size: isMobile ? 14 : 16
+          size: isMobile ? 16 : 18
         },
         padding: {
-          top: 10,
-          bottom: isMobile ? 15 : 20
+          top: 15,
+          bottom: isMobile ? 20 : 25
         }
       },
       tooltip: {
-        padding: isMobile ? 8 : 12,
+        padding: isMobile ? 10 : 14,
         titleFont: {
-          size: isMobile ? 12 : 14
+          size: isMobile ? 14 : 16
         },
         bodyFont: {
-          size: isMobile ? 11 : 13
-        }
+          size: isMobile ? 13 : 14
+        },
+        boxPadding: 6
       }
     },
     scales: {
       x: {
         ticks: {
           font: {
-            size: isMobile ? 10 : 12
+            size: isMobile ? 12 : 13
           },
           maxRotation: isMobile ? 45 : 0,
-          minRotation: isMobile ? 45 : 0
+          minRotation: isMobile ? 45 : 0,
+          autoSkip: true,
+          maxTicksLimit: isMobile ? 10 : 15
         },
         grid: {
           display: false
@@ -252,11 +254,10 @@ const SavingsCalculator = () => {
         beginAtZero: true,
         ticks: {
           font: {
-            size: isMobile ? 10 : 12
+            size: isMobile ? 12 : 13
           },
           callback: function(value: any) {
             if (isMobile) {
-              // Shorter format for mobile
               if (value >= 1000) {
                 return '£' + (value / 1000).toFixed(0) + 'k';
               }
@@ -264,7 +265,7 @@ const SavingsCalculator = () => {
             }
             return '£' + value.toLocaleString();
           },
-          padding: isMobile ? 4 : 8
+          padding: isMobile ? 6 : 10
         },
         grid: {
           color: 'rgba(0, 0, 0, 0.05)'
@@ -273,10 +274,10 @@ const SavingsCalculator = () => {
     },
     layout: {
       padding: {
-        left: isMobile ? 5 : 10,
-        right: isMobile ? 10 : 20,
-        top: isMobile ? 5 : 10,
-        bottom: isMobile ? 5 : 10
+        left: isMobile ? 8 : 15,
+        right: isMobile ? 15 : 25,
+        top: isMobile ? 10 : 15,
+        bottom: isMobile ? 10 : 15
       }
     }
   };
@@ -644,8 +645,8 @@ const SavingsCalculator = () => {
                     See how your savings grow over time with compound interest
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="p-2 sm:p-6">
-                  <div className="h-[400px] sm:h-80 w-full">
+                <CardContent className="p-3 sm:p-6">
+                  <div className={`w-full ${isComparing ? 'h-[550px] sm:h-[650px] md:h-[700px]' : 'h-[450px] sm:h-[500px] md:h-[550px]'}`}>
                     <Line data={chartData} options={chartOptions} />
                   </div>
                 </CardContent>
